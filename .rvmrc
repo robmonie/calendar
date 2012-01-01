@@ -1,0 +1,5 @@
+if [[ `rvm list` == *1.9.2-p290-patched* ]]; then
+  rvm 1.9.2-p290-patched@calendar --create
+else
+  rvm 1.9.2-p290@calendar --create
+fi

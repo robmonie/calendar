@@ -1,0 +1,25 @@
+%h1 Create an account
+
+- if @signup.errors.any?
+  #error_explanation
+    %p Please fix the following errors:
+    %ul
+      - @signup.errors.full_messages.each do |msg|
+        %li= msg
+
+= simple_form_for(@signup) do |f|
+  %fieldset
+    %legend Business details
+    = f.input :business_name
+  %fieldset
+    %legend Your details
+    = f.input :first_name
+    = f.input :last_name
+    = f.input :email
+  %fieldset
+    %legend Login details
+    = f.input :password
+    = f.input :password_confirmation
+  %ul.actions
+    %li
+      = f.submit "Sign up"
