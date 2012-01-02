@@ -37,7 +37,8 @@ gem 'google-api-client'
 group :development, :test do
   # Pretty printed test output
   gem 'turn',             '0.8.2', :require => false
-  gem 'capybara'                    , :git => 'git://github.com/jnicklas/capybara.git', :ref => 'ec94dd9d498b67ed5919'
+  gem 'database_cleaner', '0.7.0'
+  gem 'capybara',         :git => 'git://github.com/jnicklas/capybara.git', :ref => 'ec94dd9d498b67ed5919'
   gem 'selenium-webdriver', '2.8.0' #REMOVE THIS LINE WHEN 2.12> is released and this bug is fixed : http://code.google.com/p/selenium/issues/detail?id=2700
   gem 'rspec',            '2.6.0'
   gem 'rspec-rails',      '2.6.1'
