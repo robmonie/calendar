@@ -19,7 +19,7 @@ class Signup
     #TODO: need to add validation  to signup equal to that on user. Ie, email format, password length etc.
     @business = Business.new(:name => self.business_name)
     @user = User.new( :first_name => self.first_name, :last_name => self.last_name, :email => self.email,
-                      :password => self.password, :password_confirm => self.password_confirm, :role => :business_admin)
+                      :password => self.password, :password_confirm => self.password_confirm, :role => 'business_admin')
 
   end
 

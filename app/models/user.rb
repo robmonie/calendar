@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  ROLES = [:user, :business_admin, :app_admin]
+  ROLES = ['user', 'business_admin', 'app_admin']
 
 
   # Include default devise modules. Others available are:
@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :role
+  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :role,
+                  :google_access_token, :google_refresh_token, :google_issued_at, :google_expires_in
 
   belongs_to :business
 
@@ -19,13 +20,25 @@ class User < ActiveRecord::Base
 
 
   def has_role?(role)
-    self.role.to_sym == role
+    self.role.to_s == role.to_s
   end
 
+  def connnected_to_google?
+    ! google_access_token.blank?
+  end
+
+  def setup_complete?
+    false
+  end
+
+  def google_access_token_expired?
+    return true if google_expires_in.blank?
+    google_expires_in.seconds.ago > google_issued_at
+  end
 
   private
 
   def set_defaults
-    self.role = :user unless self.role
+    self.role = 'user' unless self.role
   end
 end

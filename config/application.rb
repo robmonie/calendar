@@ -39,6 +39,10 @@ module Calendar
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 
+    # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
+    config.assets.precompile += [ /admin_vendor\.(js|css)/, /admin_app\.(js|css)/, /plugin_vendor\.(js|css)/, /plugin_app\.(js|css)/ ]
+
+
     # Enable the asset pipeline
     config.assets.enabled = true
 

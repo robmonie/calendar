@@ -1,0 +1,4 @@
+array @practitioners do |p|
+  id p.id
+  name "#{p.first_name} #{p.last_name}"
+end

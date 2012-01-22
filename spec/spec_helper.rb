@@ -23,12 +23,13 @@ RSpec.configure do |config|
   config.before(:all)    { Sham.reset(:before_all)  }
   config.before(:each)   { Sham.reset(:before_each) }
   config.before :each do
-    if example.metadata[:js]
-      DatabaseCleaner.strategy = :truncation
-    else
-      DatabaseCleaner.strategy = :transaction
-      DatabaseCleaner.start
-    end
+    DatabaseCleaner.strategy = :truncation
+    # if example.metadata[:js]
+    #       DatabaseCleaner.strategy = :truncation
+    #     else
+    #       DatabaseCleaner.strategy = :transaction
+    #       DatabaseCleaner.start
+    #     end
   end
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures

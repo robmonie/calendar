@@ -3,10 +3,9 @@
   %head
     %title Calendar
     = stylesheet_link_tag "application"
-    = javascript_include_tag "application"
     = csrf_meta_tags
 
-  %body
+  %body{:id => "#{@page_name}"}
     #header
       %ul
       - if current_user
@@ -20,6 +19,8 @@
       = yield
 
     #footer
+  = javascript_include_tag "admin_vendor"
+  = javascript_include_tag "admin_app"
 
 
 

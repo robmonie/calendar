@@ -1,7 +1,11 @@
 class BusinessesController < ApplicationController
 
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => :book
   load_and_authorize_resource
+  skip_authorize_resource :only => :book
+  layout 'booking', :only => [:book]
+
+  page_name "business"
 
   def update
     respond_to do |format|
@@ -22,6 +26,25 @@ class BusinessesController < ApplicationController
   def show
     respond_to do |format|
       format.html
+    end
+  end
+
+  def book
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
+
+  private
+
+  def resolve_layout
+    case action_name
+    when "book"
+      "booking"
+    else
+      "application"
     end
   end
 

@@ -7,6 +7,8 @@ gem 'haml',         '3.1.4'
 gem 'simple_form',  '1.5.2'
 gem 'devise',       '1.5.3'
 gem 'cancan',       '1.6.7'
+gem 'json_builder', '3.0.6'
+gem "ember-rails",  '0.2.2'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'

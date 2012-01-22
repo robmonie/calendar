@@ -2,9 +2,23 @@ Calendar::Application.routes.draw do
 
   devise_for :users
 
-  resources :businesses
+  resources :businesses do
+    member do
+      get 'book'
+    end
+  end
+
+  namespace :api do
+    resources :businesses do
+      resources :practitioners, :only => [:index]
+    end
+  end
+
+
 
   resources :signups, :only => [:new, :create]
+
+  match 'oauth2callback' => 'oauth2_callback#index'
 
   root :to => "pages#index"
 

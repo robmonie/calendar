@@ -7,7 +7,7 @@ describe Ability do
 
     before :each do
       @business = Business.make
-      @user = User.make(:business => @business, :role => :user)
+      @user = User.make(:business => @business, :role => 'user')
       @ability = Ability.new(@user)
     end
 
@@ -43,7 +43,7 @@ describe Ability do
 
     before :each do
       @business = Business.make
-      @user = User.make(:business => @business, :role => :business_admin)
+      @user = User.make(:business => @business, :role => 'business_admin')
       @ability = Ability.new(@user)
     end
 
@@ -79,7 +79,7 @@ describe Ability do
   context "user with app_admin role" do
     before :each do
       @business = Business.make
-      @user = User.make(:business => @business, :role => :app_admin)
+      @user = User.make(:business => @business, :role => 'app_admin')
       @ability = Ability.new(@user)
     end
 

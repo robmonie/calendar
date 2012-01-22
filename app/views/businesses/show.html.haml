@@ -1,5 +1,4 @@
-%h1 Business
-
-%dl
-  %dt Name:
-  %dd= @business.name
+- if current_user.setup_complete?
+  = render 'home'
+- else
+  = render 'welcome'
