@@ -1,0 +1,24 @@
+%h1 Update profile
+
+%fieldset
+  %legend Personal Details
+  %dl
+    %dt Name
+    %dd #{@user.first_name} #{@user.last_name}
+
+%fieldset
+  %legend Appointment Types
+  -if @user.appointment_types.length
+    %ul.appointment-types{'data-user-id' => @user.id}
+      - @user.appointment_types.each do |appointment_type|
+        %li{'data-id' => appointment_type.id}
+          %strong #{appointment_type.name}:
+          %span #{appointment_type.duration}mins, #{number_to_currency(appointment_type.price)}
+  -elsif
+    .alert.alert-info You have not created any appointment types yet. You'll need to create at least one type of appointment in order to take bookings online
+
+  %button.add-appointment-type.btn Add Appointment Type
+
+- content_for :javascript, "$(function() { CalendarAdmin.userPage.init() });"
+
+

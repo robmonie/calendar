@@ -12,7 +12,8 @@ class User < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :role,
                   :google_access_token, :google_refresh_token, :google_issued_at, :google_expires_in
 
-  belongs_to :business
+  belongs_to  :business
+  has_many    :appointment_types
 
   before_validation :set_defaults
 

@@ -39,13 +39,13 @@ class BusinessesController < ApplicationController
 
   private
 
-  def resolve_layout
-    case action_name
-    when "book"
-      "booking"
-    else
-      "application"
-    end
-  end
+  # def resolve_layout
+  #   case action_name
+  #   when "book"
+  #     "booking"
+  #   else
+  #     "application"
+  #   end
+  # end
 
 end

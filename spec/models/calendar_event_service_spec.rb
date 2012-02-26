@@ -45,7 +45,7 @@ describe CalendarEventService do
 
       it "returns the expected number of calendar events" do
         event = CalendarEventService.create(@user, event_data)
-        events = CalendarEventService.findAll(@user)
+        events = CalendarEventService.find_all(@user)
         events.size.should_not eql 1
       end
     end

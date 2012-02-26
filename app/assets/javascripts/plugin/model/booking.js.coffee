@@ -1,4 +1,4 @@
 CalendarPlugin.Booking = Ember.Object.extend
-  practitioner: null
+  user: null
   startDate:    null
   endDate:      null

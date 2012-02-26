@@ -2,10 +2,20 @@ class CalendarEventService
 
   attr_accessor :event
 
-  def self.findAll(user)
+  def self.find_all(user)
     client = GoogleApiClientFactory.client_for_user(user)
     service = client.discovered_api('calendar', 'v3')
     result = client.execute!(:api_method => service.events.list, :parameters => {'calendarId' => 'primary'})
+    result.data.items
+  end
+
+  def self.find_all_by_date(user, date)
+    client = GoogleApiClientFactory.client_for_user(user)
+    service = client.discovered_api('calendar', 'v3')
+
+    params = {'calendarId' => 'primary', 'timeMin' => self.date_for_google(date), 'timeMax' => self.date_for_google(date + 1.days)}
+    puts params
+    result = client.execute!(:api_method => service.events.list, :parameters => params)
     result.data.items
   end
 
@@ -19,7 +29,7 @@ class CalendarEventService
 
   end
 
-  def self.findById(user, id)
+  def self.find_by_id(user, id)
     client = GoogleApiClientFactory.client_for_user(user)
     service = client.discovered_api('calendar', 'v3')
     client.execute!(:api_method => service.events.get, :parameters => {'calendarId' => 'primary', 'eventId' => id})
@@ -30,5 +40,9 @@ class CalendarEventService
     service = client.discovered_api('calendar', 'v3')
     #Don't use the ! version as it can't parse properly
     client.execute(:api_method => service.events.delete, :parameters => {'calendarId' => 'primary', 'eventId' => id})
+  end
+
+  def self.date_for_google(date)
+    date.iso8601.slice(0,19) + "z"
   end
 end

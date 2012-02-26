@@ -8,9 +8,17 @@ Calendar::Application.routes.draw do
     end
   end
 
+  resources :users, :except => [:index] do
+    resources :appointment_types
+  end
+
   namespace :api do
     resources :businesses do
-      resources :practitioners, :only => [:index]
+      resources :users, :only => [:index]
+    end
+    resources :users do
+      resources :timeslots, :only => [:index]
+      resources :appointment_types, :only => [:index]
     end
   end
 

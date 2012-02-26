@@ -12,10 +12,10 @@ module ApplicationHelper
     html = %w(error alert notice success info, failure).select do |msg|
       # concat will push the text to rendered page without a <%= %>.
        concat content_tag(:div,
-        content_tag(:p,
+        content_tag(:div,
           flash[msg.to_sym]),
         :id => "flash-message",
-        :class => [msg, additional_classes].join(' ')
+        :class => ["alert-#{msg}", additional_classes].join(' ')
        ) unless flash[msg.to_sym].blank?
     end
   end

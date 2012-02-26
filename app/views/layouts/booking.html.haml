@@ -6,6 +6,7 @@
     = csrf_meta_tags
 
   %body
+    = yield
     = javascript_include_tag "plugin_vendor"
     = javascript_include_tag "plugin_app"
     %script{:type => "text/javascript", :charset => "utf-8"}

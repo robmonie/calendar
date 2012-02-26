@@ -1,0 +1,14 @@
+#user-page {
+  .modal {
+    display: none;
+  }
+  
+  .appointment-types li {
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+  .appointment-types li:hover {
+    text-decoration: underline;
+  }
+}

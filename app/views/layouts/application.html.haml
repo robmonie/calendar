@@ -2,7 +2,7 @@
 %html
   %head
     %title Calendar
-    = stylesheet_link_tag "application"
+    = stylesheet_link_tag "admin_app"
     = csrf_meta_tags
 
   %body{:id => "#{@page_name}"}
@@ -15,12 +15,14 @@
         %li= link_to 'Sign up', new_signup_path
 
     #body
-      - flash_messages
+      - flash_messages 'alert'
       = yield
 
     #footer
   = javascript_include_tag "admin_vendor"
   = javascript_include_tag "admin_app"
+  %script{:type => "text/javascript", :charset => "utf-8"}
+    = yield :javascript
 
 
 

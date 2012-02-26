@@ -1,10 +1,10 @@
-class Api::PractitionersController < Api::BaseController
+class Api::UsersController < Api::BaseController
 
   before_filter :load_business
 
   def index
-    @practitioners = @business.users
-    respond_with @practitioners
+    @users = @business.users
+    respond_with @users
   end
 
   private
