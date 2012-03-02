@@ -4,11 +4,12 @@ gem 'rails',  '3.1.3'
 
 gem 'pg',           '0.11.0'
 gem 'haml',         '3.1.4'
-gem 'simple_form',  '1.5.2'
+gem 'simple_form',  '2.0.1'
 gem 'devise',       '1.5.3'
 gem 'cancan',       '1.6.7'
 gem 'json_builder', '3.0.6'
 gem 'ember-rails',  '0.2.4'
+gem 'compass',      :git => "git://github.com/chriseppstein/compass.git", :branch => "master", :ref => 'be7b41947963f2df98a7cddf918a1a912cacf182'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'

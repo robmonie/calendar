@@ -6,19 +6,36 @@
     = csrf_meta_tags
 
   %body{:id => "#{@page_name}"}
-    #header
-      %ul
-      - if current_user
-        %li= link_to "Sign out", destroy_user_session_path, :method => :delete
-      - else
-        %li= link_to "Sign in", new_user_session_path
-        %li= link_to 'Sign up', new_signup_path
+    #header.navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          %a.btn.btn-navbar{'data-toggle' => "collapse", 'data-target' => ".nav-collapse"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
 
-    #body
+          %a.brand{:href=>"#"} Calendar
+
+          .nav-collapse
+            %ul.nav
+              - if current_user
+                %li{:class => active_path_class(business_path(current_user.business))}
+                  = link_to "Dashboard", business_path(current_user.business)
+                %li{:class => active_path_class(user_path(current_user))}
+                  = link_to "Edit Profile", user_path(current_user)
+
+            %ul.nav.pull-right
+              - if current_user
+                %li= link_to "Sign out", destroy_user_session_path, :method => :delete
+              - else
+                %li= link_to "Sign in", new_user_session_path
+                %li= link_to 'Sign up', new_signup_path
+
+    #body.container
       - flash_messages 'alert'
       = yield
 
-    #footer
+    #footer.container
   = javascript_include_tag "admin_vendor"
   = javascript_include_tag "admin_app"
   %script{:type => "text/javascript", :charset => "utf-8"}

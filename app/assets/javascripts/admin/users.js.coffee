@@ -10,14 +10,23 @@ namespace "CalendarAdmin.userPage", (exports) ->
 
   initAddAppointmentType = ->
     $(".add-appointment-type").on('click', ->
-      showInModal("/users/#{userId}/appointment_types/new") if not showingModal
+      href = $(this).attr('href')
+      showInModal(href) if not showingModal
+      return false
     )
 
 
   initEditAppointmentType = ->
-    $("ul.appointment-types li").on('click', ->
-      appointmentTypeId = $(this).attr('data-id')
-      showInModal("/users/#{userId}/appointment_types/#{appointmentTypeId}/edit") if not showingModal
+    $("ul.appointment-types li a").on('click', ->
+      href = $(this).attr('href')
+      method = $(this).attr('data-method')
+      if method == 'destroy'
+        CalendarAdmin.uiHelpers.confirmDelete(href,
+          "Delete Appointment Type",
+          "Are you sure you want to delete this appointment type?")
+      else
+        showInModal(href) if not showingModal
+      return false
     )
 
 

@@ -1,0 +1,9 @@
+= simple_form_for [@user, @appointment_type], :html => { :class => 'form-horizontal' } do |f|
+  = f.input :name, :hint => "Eg. Physiotherapy, Initial Consultation"
+  = f.input :description, :as => 'text', :input_html => { :rows => 5 }, :hint => "Briefly describe when a client should choose this service"
+  = f.input :duration, :wrapper => :append, :label => 'Duration', :hint => 'How long to create appointments of this type in your calendar' do
+    = f.input_field :duration, :class => 'short-number'
+    = content_tag :span, "mins", :class => "add-on"
+  = f.input :price, :wrapper => :prepend, :label => 'Price', :hint => 'Indicative only' do
+    = f.input_field :price, :class => 'currency'
+    = content_tag :span, "$", :class => "add-on"

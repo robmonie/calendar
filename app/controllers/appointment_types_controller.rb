@@ -4,6 +4,8 @@ class AppointmentTypesController < ApplicationController
   before_filter :load_user
   load_and_authorize_resource
   layout 'plain'
+  respond_to :html, :except => :destroy
+  respond_to :json, :only => :destroy
 
   page_name "appointment-type"
 
@@ -45,11 +47,14 @@ class AppointmentTypesController < ApplicationController
     end
   end
 
-  # def show
-  #   respond_to do |format|
-  #     format.html
-  #   end
-  # end
+  def destroy
+    if @appointment_type.destroy
+      flash[:notice] = "Appointment Type was successfully deleted"
+      respond_with true
+    else
+      respond_with false
+    end
+  end
 
   private
 

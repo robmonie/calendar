@@ -17,13 +17,13 @@ class Ability
   def authorize_business_admin
     can [:read, :update], Business, :id => @user.business_id
     can [:read, :update], User, :id => @user.id
-    can [:read, :create, :update], AppointmentType, :user_id => @user.id
+    can [:read, :create, :update, :destroy], AppointmentType, :user_id => @user.id
   end
 
   def authorize_user
     can :read, Business, :id => @user.business_id
     can [:read, :update], User, :id => @user.id
-    can [:read, :create, :update], AppointmentType, :user_id => @user.id
+    can [:read, :create, :update, :destroy], AppointmentType, :user_id => @user.id
   end
 
   def authorize_anonymous

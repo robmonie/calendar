@@ -4,6 +4,7 @@ class BusinessesController < ApplicationController
   load_and_authorize_resource
   skip_authorize_resource :only => :book
   layout 'booking', :only => [:book]
+  layout 'application', :except => [:book]
 
   page_name "business"
 

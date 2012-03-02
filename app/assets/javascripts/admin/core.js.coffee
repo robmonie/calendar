@@ -3,3 +3,12 @@ window.namespace = (target, name, block) ->
   top    = target
   target = target[item] or= {} for item in name.split '.'
   block target, top
+
+$(->
+  token = $('meta[name="csrf-token"]').attr("content");
+  $.ajaxSetup({
+    headers: {
+      "X-CSRF-Token": token
+    }
+  })
+)

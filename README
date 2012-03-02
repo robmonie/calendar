@@ -1,2 +1,27 @@
 Dev user for testing in a browser - dragonflycalendar1@gmail.com
 /businesses/11/book
+
+To Do:
+
+* Delete appointment types
+* Validate appointment_types
+* Change appointment type from a select list to radio buttons with formatting (like opencal)
+* Selecting a practitioner is only necessary if there are multiple. Auto-select and display as text if not.
+* Enter customer details (email, mobile, name)
+* Submit booking
+* Confirmation email
+* Calendar events added to calendar should also send invitation to the client
+
+* Should practitioners just login with their google account ?
+
+
+Design decisions:
+
+* All user experiences should be responsive down to iphone size
+* It's all about clients booking directly into a google calendar. No other features matter yet.
+
+
+Why and who ?
+
+* Assumption that many practitioners use google calendar or just their phone as a way to organise their appointments. The iphone calendar app works so why rewrite it ?
+* Assumption that it would be beneficial for practitioners to let their clients book online from their own website.

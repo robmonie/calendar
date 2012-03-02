@@ -20,4 +20,12 @@ module ApplicationHelper
     end
   end
 
+  def active_path_class(path)
+    if path == request.path
+      'active'
+    else
+      ''
+    end
+  end
+
 end

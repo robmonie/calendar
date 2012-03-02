@@ -11,13 +11,20 @@
   -if @user.appointment_types.length
     %ul.appointment-types{'data-user-id' => @user.id}
       - @user.appointment_types.each do |appointment_type|
-        %li{'data-id' => appointment_type.id}
-          %strong #{appointment_type.name}:
-          %span #{appointment_type.duration}mins, #{number_to_currency(appointment_type.price)}
+        %li
+          %a{:href => edit_user_appointment_type_path(@user, appointment_type), :class => 'edit'}
+            %h4 #{appointment_type.name}
+            %div #{appointment_type.description}
+            %div
+              %span Duration: #{appointment_type.duration} mins
+              %span Price: #{number_to_currency(appointment_type.price)}
+          = link_to '<i class="icon-trash icon-white"></i> Delete'.html_safe, user_appointment_type_path(@user, appointment_type),
+            :method => 'destroy', :title => 'Delete', :class => 'delete btn btn-danger'
+
   -elsif
     .alert.alert-info You have not created any appointment types yet. You'll need to create at least one type of appointment in order to take bookings online
 
-  %button.add-appointment-type.btn Add Appointment Type
+  = link_to '<i class="icon-plus"></i> Add Appointment Type'.html_safe, new_user_appointment_type_path(@user), :class => 'add-appointment-type btn btn-small'
 
 - content_for :javascript, "$(function() { CalendarAdmin.userPage.init() });"
 

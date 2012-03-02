@@ -3,12 +3,38 @@
     display: none;
   }
   
-  .appointment-types li {
-    cursor: pointer;
-    padding: 5px;
+  .appointment-types {
+    list-style: none;
+    margin: 0 0 1.5em 0;
   }
   
-  .appointment-types li:hover {
-    text-decoration: underline;
+  
+  .appointment-types li {
+    position: relative;
   }
+  
+  .appointment-types li a.edit {
+    cursor: pointer;
+    padding: 1em;
+    display: block;
+    padding-right: 100px;
+    color: #888;
+    border: 1px solid #fff;
+  }
+  .appointment-types li a.edit:hover {
+    background-color: #D9EDF7;
+    text-decoration: none;
+    border-color: #BCE8F1;
+  }
+  
+  .appointment-types li a.delete{
+    display: none;
+    position: absolute;
+    right: 25px;
+    top: 25px;
+  }
+  .appointment-types li:hover a.delete {
+    display: block;
+  }
+  
 }

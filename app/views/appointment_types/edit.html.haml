@@ -2,10 +2,7 @@
   %a.close{'data-dismiss' => "modal"} ×
   %h3 Edit Appointment Type
 .modal-body
-  = simple_form_for [@user, @appointment_type] do |f|
-    = f.input :name
-    = f.input :duration
-    = f.input :price
+  = render 'form'
 .modal-footer
   %a{'href' => "#", 'class' => "btn btn-primary create"} Update
   %a{'href' => "#", 'class' => "btn cancel"} Cancel
