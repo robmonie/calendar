@@ -1,3 +1,5 @@
-//= require ./jquery
-//= require jquery_ujs
-//= require ./ember
+#= require ./jquery
+#= require ./jquery.validate
+#= require jquery_ujs
+#= require twitter/bootstrap
+#= require ./ember

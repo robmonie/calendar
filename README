@@ -3,7 +3,6 @@ Dev user for testing in a browser - dragonflycalendar1@gmail.com
 
 To Do:
 
-* Delete appointment types
 * Validate appointment_types
 * Change appointment type from a select list to radio buttons with formatting (like opencal)
 * Selecting a practitioner is only necessary if there are multiple. Auto-select and display as text if not.

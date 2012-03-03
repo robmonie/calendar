@@ -9,3 +9,8 @@ input.short-number {
 .form-actions {
   position: relative;
 }
+
+form label.error {
+  position: absolute;
+  top: -9999px;
+}

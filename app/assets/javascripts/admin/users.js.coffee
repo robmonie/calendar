@@ -36,6 +36,29 @@ namespace "CalendarAdmin.userPage", (exports) ->
       url: url
     ).done((html) ->
       modal = $("<div class=\"modal fade\">#{html}</div>").appendTo("body").modal('show')
+      form = modal.find('form')
+      validator = form.validate({
+        errorPlacement: (error, element) ->
+          error.appendTo(element.closest(".control-group"))
+        highlight: (element, errorClass) ->
+          $(element).closest('.control-group').addClass('error')
+        unhighlight: (element, errorClass) ->
+          $(element).closest('.control-group').removeClass('error')
+      })
+
+      form.find('input, textarea').tooltip
+        trigger: 'manual'
+        placement: 'right'
+        title: ->
+          $(this).closest('.control-group').find('label.error').text()
+
+      .on 'focus', ->
+        if $(this).closest('.control-group').hasClass('error')
+          $(this).tooltip('show')
+      .on 'blur', ->
+        $(this).tooltip('hide')
+
+
       modal.on('hidden', ->
         showingModal = false
         modal.remove()
@@ -46,7 +69,8 @@ namespace "CalendarAdmin.userPage", (exports) ->
 
       modal.find('.modal-footer .create').on('click', ->
         modal.find('form').submit()
-        modal.modal('hide')
+        if validator.valid()
+          modal.modal('hide')
       )
     )
 
