@@ -2,10 +2,10 @@ window.CalendarPlugin = Ember.Application.create
   NAMESPACE: 'Calendar'
   VERSION:   '0.1.0'
 
-  main: (config = {rootElement: $("body")}) ->
-    Ember.run ->
+  main: (config = {}) ->
+    Ember.run =>
       CalendarPlugin.bookingController = CalendarPlugin.BookingController.create
         businessId: config.businessId
 
-      CalendarPlugin.PluginContainerView.create().append(config.rootElement)
+      CalendarPlugin.BookingWizardView.create().append(config.rootElement || $('body'))
 

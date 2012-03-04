@@ -1,0 +1,33 @@
+<div class="booking-summary">
+<strong>What you're booking:</strong> {{content.booking.appointmentType.label}} with {{content.booking.user.name}} @ {{content.booking.timeslot.label}}, {{content.booking.date.label}}
+</div>
+<fieldset class="form-horizontal">
+  <legend>Tell us about yourself</legend>
+  <div class="control-group">
+    <label class="control-label">Name</label>
+    <div class="controls">
+      {{view Ember.TextField valueBinding="content.booking.clientName"}}
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Email</label>
+    <div class="controls">
+      {{view Ember.TextField valueBinding="content.booking.clientEmail"}}
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Phone</label>
+    <div class="controls">
+      {{view Ember.TextField valueBinding="content.booking.clientPhone"}}
+    </div>
+  </div>
+</fieldset>
+
+<fieldset class="form-horizontal">
+  <legend>Is there anything else we should know?</legend>
+  <label class="control-label">Comments</label>
+  <div class="controls">
+    {{view Ember.TextArea valueBinding="content.booking.comments" rows="10"}}
+  </div>
+</fieldset>
+

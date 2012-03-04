@@ -8,6 +8,24 @@ CalendarPlugin.BookingController = SC.Object.extend
   timeslots: []
   appointmentTypes: []
 
+  currentWizardPage: 1
+  numberOfWizardPages: 2
+
+  isCurrentWizardPageValid: (->
+    return switch @get('currentWizardPage')
+      when 1 then @get('isFirstPageValid')
+      when 2 then @get('isSecondPageValid')
+      else false
+  ).property 'currentWizardPage', 'isFirstPageValid', 'isSecondPageValid'
+
+  isFirstPageValid: (->
+    @getPath('booking.user')? and @getPath('booking.appointmentType')? and @getPath('booking.date')? and @getPath('booking.timeslot')?
+  ).property 'booking.user', 'booking.appointmentType', 'booking.date', 'booking.timeslot'
+
+  isSecondPageValid: (->
+
+  ).property()
+
   init: ->
     @_super()
     @_loadUsers()
@@ -32,7 +50,7 @@ CalendarPlugin.BookingController = SC.Object.extend
   ).observes('businessId')
 
   _loadAppointmentTypes: (->
-    appointmentTypes = CalendarPlugin.AppointmentType.findAllForUser(@getPath 'booking.user')
+    appointmentTypes = CalendarPlugin.AppointmentType.findAllForUser(@getPath 'booking.user', @get('appointmentTypes'))
     @set 'appointmentTypes', appointmentTypes
   ).observes('booking.user')
 

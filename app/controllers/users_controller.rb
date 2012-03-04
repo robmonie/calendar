@@ -6,15 +6,20 @@ class UsersController < ApplicationController
 
   page_name "user"
 
-  # def update
-  #    respond_to do |format|
-  #      if @user.update_attributes(params[:user])
-  #        format.html  { redirect_to(@user, :notice => 'Business was successfully updated.') }
-  #      else
-  #        format.html  { render :action => "edit" }
-  #      end
-  #    end
-  #  end
+  def update
+     respond_to do |format|
+       if @user.update_attributes(params[:user])
+         if params[:refresh_calendar]
+           @user.refresh_calendar_metadata
+           format.html  { redirect_to(@user, :notice => 'Calendar was successfully refreshed') }
+         else
+           format.html  { redirect_to(@user, :notice => 'User was successfully updated.') }
+         end
+       else
+         format.html  { render :action => "edit" }
+       end
+     end
+   end
 
   # def edit
   #     respond_to do |format|

@@ -24,17 +24,24 @@ class User < ActiveRecord::Base
     self.role.to_s == role.to_s
   end
 
-  def connnected_to_google?
-    ! google_access_token.blank?
+  def connected_to_google?
+    ! calendar_id.blank?
   end
 
   def setup_complete?
-    false
+    connected_to_google? && appointment_types.count > 0
   end
 
   def google_access_token_expired?
     return true if google_expires_in.blank?
     google_expires_in.seconds.ago > google_issued_at
+  end
+
+  def refresh_calendar_metadata
+    meta = CalendarService.find_calendar_meta_for_user(self)
+    self.timezone = meta.timeZone
+    self.calendar_id = meta.id
+    self.save!
   end
 
   private

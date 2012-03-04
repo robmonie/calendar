@@ -19,7 +19,6 @@ CalendarPlugin.Timeslot.reopenClass
   findAllForUserAndDate: (user, date, duration) ->
 
     timeslots = []
-    timeslots.beginPropertyChanges()
     timeslots.set 'status', 'loading'
 
     req = $.ajax
@@ -27,17 +26,19 @@ CalendarPlugin.Timeslot.reopenClass
       type: 'GET'
       dataType: 'json'
     req.done (data)=>
-      data.forEach (item) ->
-        timeslots.push CalendarPlugin.Timeslot.create
-          startTime:  new Date(Date.parse(item.start_time))
-          endTime:    new Date(Date.parse(item.end_time))
+      Ember.run ->
+        timeslots.beginPropertyChanges()
+        data.forEach (item) ->
+          timeslots.pushObject CalendarPlugin.Timeslot.create
+            startTime:  new Date(Date.parse(item.start_time))
+            endTime:    new Date(Date.parse(item.end_time))
 
-      timeslots.set 'status', 'ready'
-      timeslots.endPropertyChanges()
+        timeslots.set 'status', 'ready'
+        Em.run.sync()
+        timeslots.endPropertyChanges()
 
     req.fail (e)->
       timeslots.set 'status', 'error'
-      timeslots.endPropertyChanges()
       console.error 'failed loading timeslots'
 
     timeslots

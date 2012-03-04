@@ -3,8 +3,7 @@ class BusinessesController < ApplicationController
   before_filter :authenticate_user!, :except => :book
   load_and_authorize_resource
   skip_authorize_resource :only => :book
-  layout 'booking', :only => [:book]
-  layout 'application', :except => [:book]
+  layout :resolve_layout
 
   page_name "business"
 
@@ -40,13 +39,13 @@ class BusinessesController < ApplicationController
 
   private
 
-  # def resolve_layout
-  #   case action_name
-  #   when "book"
-  #     "booking"
-  #   else
-  #     "application"
-  #   end
-  # end
+  def resolve_layout
+    case action_name
+    when "book"
+      "booking"
+    else
+      "application"
+    end
+  end
 
 end

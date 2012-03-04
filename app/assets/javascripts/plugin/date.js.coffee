@@ -13,7 +13,7 @@ CalendarPlugin.date = {
     "#{date.getFullYear()}-#{CalendarPlugin.string.leftPad(date.getMonth() + 1, 2, '0')}-#{CalendarPlugin.string.leftPad(date.getDate(), 2, '0')}"
 
   formatForUser: (date) ->
-    "#{CalendarPlugin.string.leftPad(date.getDate(), 2, '0')}-#{CalendarPlugin.string.leftPad(date.getMonth() + 1, 2, '0')}-#{date.getFullYear()}"
+    "#{CalendarPlugin.string.leftPad(date.getDate(), 2, '0')}/#{CalendarPlugin.string.leftPad(date.getMonth() + 1, 2, '0')}/#{date.getFullYear()}"
 
   formatTime: (date) ->
     if date.getHours() < 12

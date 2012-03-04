@@ -27,13 +27,26 @@ class Oauth2CallbackController < ApplicationController
     client.authorization.fetch_access_token!
 
     user = current_user
+    puts client.authorization.inspect
     user.google_access_token = client.authorization.access_token
     user.google_refresh_token = client.authorization.refresh_token
     user.google_issued_at = DateTime.parse(client.authorization.issued_at.to_s)
     user.google_expires_in = client.authorization.expires_in
-    user.save!
 
-    redirect_to current_user.business
+    if user.google_refresh_token
+      user.save!
+      user.refresh_calendar_metadata
+      redirect_to current_user.business
+    else
+      existing = User.where(:calendar_id => current_user.calendar_id)
+      if existing.length > 0
+        flash[:error] =  "You appear to have already authorised this google account with a different login."
+      else
+        flash[:error] =  "We're having trouble connecting with your calendar. Please try again later or get in touch."
+      end
+      redirect_to current_user.business
+    end
+
 
   end
 

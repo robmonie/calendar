@@ -13,10 +13,42 @@ class CalendarEventService
     client = GoogleApiClientFactory.client_for_user(user)
     service = client.discovered_api('calendar', 'v3')
 
-    params = {'calendarId' => 'primary', 'timeMin' => self.date_for_google(date), 'timeMax' => self.date_for_google(date + 1.days)}
+    params = {
+      'calendarId' => 'primary',
+      'singleEvents' => 'true',
+      'showDeleted' => 'false',
+      'orderBy' => 'startTime',
+      'timeMin' => self.date_for_google(date, user.timezone),
+      'timeMax' => self.date_for_google(date + 1.days, user.timezone),
+      'timeZone' => user.timezone
+    }
     puts params
     result = client.execute!(:api_method => service.events.list, :parameters => params)
     result.data.items
+  end
+
+  def self.find_busy_times_by_date(user, date)
+
+    client = GoogleApiClientFactory.client_for_user(user)
+    service = client.discovered_api('calendar', 'v3')
+
+    params = {
+      'timeMin' => self.date_for_google(date, user.timezone),
+      'timeMax' => self.date_for_google(date + 1.days, user.timezone),
+      'timeZone' => user.timezone,
+      'items' => [ {'id' => user.calendar_id} ]
+    }
+    puts params
+    result = client.execute!(
+      :api_method => service.freebusy.query,
+      :body => [JSON.dump(params)],
+      :headers => {'Content-Type' => 'application/json'})
+
+    calendars = result.data.calendars
+    busy = calendars[user.calendar_id].busy
+
+    busy
+
   end
 
   def self.create(user, event_data)
@@ -42,7 +74,7 @@ class CalendarEventService
     client.execute(:api_method => service.events.delete, :parameters => {'calendarId' => 'primary', 'eventId' => id})
   end
 
-  def self.date_for_google(date)
-    date.iso8601.slice(0,19) + "z"
+  def self.date_for_google(date, time_zone)
+    date.in_time_zone(time_zone).to_datetime.rfc3339
   end
 end

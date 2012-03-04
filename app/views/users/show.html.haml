@@ -1,30 +1,51 @@
 %h1 Update profile
 
-%fieldset
-  %legend Personal Details
-  %dl
-    %dt Name
-    %dd #{@user.first_name} #{@user.last_name}
+%h2 Personal Details
+%dl
+  %dt Name
+  %dd #{@user.first_name} #{@user.last_name}
 
-%fieldset
-  %legend Appointment Types
-  -if @user.appointment_types.length
-    %ul.appointment-types{'data-user-id' => @user.id}
-      - @user.appointment_types.each do |appointment_type|
-        %li
-          %a{:href => edit_user_appointment_type_path(@user, appointment_type), :class => 'edit'}
-            %h4 #{appointment_type.name}
-            %div #{appointment_type.description}
-            %div
-              %span Duration: #{appointment_type.duration} mins
-              %span Price: #{number_to_currency(appointment_type.price)}
-          = link_to '<i class="icon-trash icon-white"></i> Delete'.html_safe, user_appointment_type_path(@user, appointment_type),
-            :method => 'destroy', :title => 'Delete', :class => 'delete btn btn-danger'
+%h2 Google Calendar Details
+.row
+  -if current_user.calendar_id
+    .span4
+      %dl
+        %dt Default calendar
+        %dd #{@user.calendar_id}
+        %dt Calendar Timezone
+        %dd #{@user.timezone}
+    .span4.well
+      %p Your online bookings are based on the these Google Calendar settings.
+      %p <span class="label label-warning">Warning</span> If you change these settings at any time in your Google Calendar such as updating your time zone, you will need to refresh them here.
+      %p= link_to '<i class="icon-refresh"></i> Refresh Google Calendar Settings'.html_safe, user_path(@user, :refresh_calendar => true), :method => 'put', :class => 'btn'
+  -else
+    .span4
+      .alert.alert-info
+        You have not connected to your google calendar yet.
+        %br
+        %br
+        %strong
+          %a{:href => google_connect_link, :class => 'btn btn-primary'} Get Connected Now.
 
-  -elsif
-    .alert.alert-info You have not created any appointment types yet. You'll need to create at least one type of appointment in order to take bookings online
+%h2 Appointment Types
+%p Appointment types can be selected by clients when they book online
+-if @user.appointment_types.length
+  %ul.appointment-types{'data-user-id' => @user.id}
+    - @user.appointment_types.each do |appointment_type|
+      %li
+        %a{:href => edit_user_appointment_type_path(@user, appointment_type), :class => 'edit'}
+          %h4 #{appointment_type.name}
+          %div #{appointment_type.description}
+          %div
+            %span Duration: #{appointment_type.duration} mins
+            %span Price: #{number_to_currency(appointment_type.price)}
+        = link_to '<i class="icon-trash icon-white"></i> Delete'.html_safe, user_appointment_type_path(@user, appointment_type),
+          :method => 'destroy', :title => 'Delete', :class => 'delete btn btn-danger'
 
-  = link_to '<i class="icon-plus"></i> Add Appointment Type'.html_safe, new_user_appointment_type_path(@user), :class => 'add-appointment-type btn btn-small'
+-else
+  .alert.alert-info You have not created any appointment types yet. You'll need to create at least one type of appointment in order to take bookings online
+
+= link_to '<i class="icon-plus"></i> Add Appointment Type'.html_safe, new_user_appointment_type_path(@user), :class => 'add-appointment-type btn btn-small'
 
 - content_for :javascript, "$(function() { CalendarAdmin.userPage.init() });"
 
