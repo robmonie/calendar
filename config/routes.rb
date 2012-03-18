@@ -12,6 +12,8 @@ Calendar::Application.routes.draw do
     resources :appointment_types
   end
 
+  resources :signups, :only => [:new, :create]
+
   namespace :api do
     resources :businesses do
       resources :users, :only => [:index]
@@ -19,12 +21,9 @@ Calendar::Application.routes.draw do
     resources :users do
       resources :timeslots, :only => [:index]
       resources :appointment_types, :only => [:index]
+      resources :appointments, :only => [:create]
     end
   end
-
-
-
-  resources :signups, :only => [:new, :create]
 
   match 'oauth2callback' => 'oauth2_callback#index'
 

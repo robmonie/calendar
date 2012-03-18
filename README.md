@@ -6,6 +6,7 @@ Dev user for testing in a browser - dragonflycalendar1@gmail.com
 * Confirmation email
 * Calendar events added to calendar should also send invitation to the client
 * Add a cancellation policy
+* Extract a Practitioner model and move stuff from user
 
 * Should practitioners just login with their google account ?
 
@@ -45,5 +46,5 @@ Dev user for testing in a browser - dragonflycalendar1@gmail.com
 
 ## Potential Names
 
-* appointly.com
+* appointly.com (seems to be taken kinda - although domain appears to be available. Also, a product called Appointy exists)
 * instabookr.com

@@ -1,19 +1,7 @@
 <fieldset class="form-horizontal">
   <legend for="">Appointment Details</legend>
-  <div class="control-group">
-    <label class="control-label">Practitioner</label>
-    <div class="controls">
-      {{view UserSelectFieldView }}
-      <p class="help-block">Who would you like to see?</p>
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label">Appointment Type</label>
-    <div class="controls">
-      {{view AppointmentTypeSelectFieldView }}
-      <p class="help-block"></p>
-    </div>
-  </div>
+  {{view UserSelectFieldView }}
+  {{view AppointmentTypeSelectFieldView }}
   <div class="control-group">
     <label class="control-label">Date and Time</label>
     <div class="controls stacked">
@@ -25,6 +13,7 @@
         </div>
       {{else}}
         {{view TimeslotSelectFieldView }}
+        {{{content.booking.errors.timeslot.display}}}
       {{/if}}
       <p class="help-block">The date and time you select will be booked directly into our calendar</p>
     </div>

@@ -1,15 +1,9 @@
-CalendarPlugin.ClientDetailsView = Ember.View.extend
-
+#= require plugin/view/wizard_page_view
+CalendarPlugin.ClientDetailsView = CalendarPlugin.WizardPageView.extend
   contentBinding: Ember.Binding.oneWay 'CalendarPlugin.bookingController'
   templateName: "plugin/view/client_details"
 
-  isVisible: (->
-    CalendarPlugin.bookingController.get('currentWizardPage') == 2
-  ).property('CalendarPlugin.bookingController.currentWizardPage')
-
-  # formattedAppointmentDateBinding: Em.Binding.oneWay('content.booking.date.d').transform (date) ->
-  #   console.log date
-  #   CalendarPlugin.date.formatForUser(date) if date
-
-
+  # isVisible: (->
+  #   CalendarPlugin.bookingController.get('currentWizardPage') == 2
+  # ).property('content.currentWizardPage')
 

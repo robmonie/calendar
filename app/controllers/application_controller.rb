@@ -16,4 +16,8 @@ class ApplicationController < ActionController::Base
     business_path(current_user.business)
   end
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to new_user_session_url
+  end
+
 end

@@ -16,17 +16,25 @@ body {
 }
 
 .controls.stacked {
-  
+
   input, textarea, select {
     margin-bottom: 9px;
     display: block;
   }
 }
 
-input[disabled], select[disabled], 
-textarea[disabled], input[readonly], 
+input[disabled], select[disabled],
+textarea[disabled], input[readonly],
 select[readonly], textarea[readonly] {
   background: #ddd;
   border-color: #bbb;
   color: #aaa;
+}
+
+input, select, textarea {
+  width: 320px;
+}
+
+textarea {
+  height: 70px;
 }
