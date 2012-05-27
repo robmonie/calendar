@@ -1,3 +1,20 @@
+## To Do
+### Round 1
+ * List appointments for practitioner
+ * Create appointment for practitioner (select client from drop down)
+ * Cancel appointment for practitioner (and probably client as well)
+ * Email confirmation for client and practitioner on booking
+
+### To get into prod for Rose
+
+ * Manually seed db with appointment times
+ * Populate with client data and existing appointments
+ * Heroku ping
+ * Integrate with website
+
+### Round 2
+ * Reminder emails
+ * Remove remaining google stuff
 
 
 
