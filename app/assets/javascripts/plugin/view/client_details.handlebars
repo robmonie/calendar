@@ -4,7 +4,7 @@
 <fieldset class="form-horizontal">
   <legend>Your details</legend>
   {{view CalendarPlugin.TextField valueBinding="content.booking.clientName" required="true" hint="something" label="Name"}}
-  {{view CalendarPlugin.TextField valueBinding="content.booking.clientEmail" required="true" label="Email"}}
+  {{view CalendarPlugin.TextField valueBinding="content.booking.clientEmail" required="true" label="Email" validators="email"}}
   {{view CalendarPlugin.TextField valueBinding="content.booking.clientPhone" required="true" label="Phone"}}
 </fieldset>
 

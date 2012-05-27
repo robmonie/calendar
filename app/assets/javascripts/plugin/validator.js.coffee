@@ -13,11 +13,17 @@ CalendarPlugin.Validator = Ember.Object.extend
     @set('rules', rules = [])
     @set('required', host.get('required'))
     rules = @get('rules')
-    if @get('required')
-      rules.pushObject(CalendarPlugin.validatorRegistry.required)
-    else
-      rules.removeObject(CalendarPlugin.validatorRegistry.required)
 
+    validators = host.get('validators')
+    if typeof validators == 'string'
+      validators = validators.split(' ')
+    else
+      validators = []
+
+    for key in validators
+      validator = CalendarPlugin.validatorRegistry[key]
+      console.error "There is no validator registered under the key '#{key}'. Double check the name in the validator registry." if not validator
+      rules.pushObject(validator)
 
   validate: ((value)->
 
@@ -25,8 +31,14 @@ CalendarPlugin.Validator = Ember.Object.extend
     rules = @get('rules')
     errorMessages = []
 
-    for rule in rules
-      errorMessages.pushObject(rule.message) if not rule.validate(value)
+    if @get('required')
+      requiredRule = CalendarPlugin.validatorRegistry.required
+      errorMessages.pushObject(requiredRule.message) if not requiredRule.isValid(value)
+
+    #Only run other validators if not failing due to mandatory rules
+    if not errorMessages.length
+      for rule in rules
+        errorMessages.pushObject(rule.message) if not rule.isValid(value)
 
     @get('host').set('errorMessages', errorMessages)
   )

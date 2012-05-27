@@ -4,8 +4,7 @@
 #=require plugin/view/confirmation_view
 CalendarPlugin.BookingWizardView = CalendarPlugin.WizardView.extend
 
-
-  numberOfPages:  1
+  classNames: ['container']
   contentBinding: Ember.Binding.oneWay 'CalendarPlugin.bookingController'
   pageViewClasses: [
       CalendarPlugin.SelectAppointmentView

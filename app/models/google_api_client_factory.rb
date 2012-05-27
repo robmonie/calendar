@@ -11,7 +11,7 @@ class GoogleApiClientFactory
     )
 
     client.authorization.client_id = '741011956518.apps.googleusercontent.com'
-    client.authorization.client_secret = 'EM6CjieUAPCmC41ijVLSbjRx'
+    client.authorization.client_secret = 'KvF5nd3459WI4beVX17estG0'
     client.authorization.scope = 'https://www.googleapis.com/auth/calendar'
     client.authorization.redirect_uri = 'http://localhost:3000/oauth2callback'
     client

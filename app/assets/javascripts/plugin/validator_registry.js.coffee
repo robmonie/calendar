@@ -1,7 +1,11 @@
 CalendarPlugin.validatorRegistry =
 
   required:
-    errorKey: 'required'
-    validate: (value) ->
+    isValid: (value) ->
       if value then true else false
-    message: "Field is required"
+    message: "This field cannot be blank"
+
+  email:
+    isValid: (value) ->
+      if value && value.match(/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/) then true else false
+    message: "A valid email is required"
