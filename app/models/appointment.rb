@@ -1,20 +1,24 @@
-class Appointment
+class Appointment < ActiveRecord::Base
 
-  extend ActiveModel::Naming
-  include ActiveModel::Validations
-  include ActiveModel::Conversion
+  validates_presence_of :start_time, :end_time, :client
 
-  validates_presence_of :start_time, :end_time, :client, :comments
+  belongs_to :user
+  belongs_to :client
+  belongs_to :appointment_type
 
-  attr_accessor :start_time, :end_time, :client, :comments
+  after_initialize :set_end_time_for_appointment_type, :if => Proc.new { |appointment| appointment.appointment_type.present? && appointment.end_time.blank? }
+  after_create :set_sha
 
-  def initialize(data)
-    @user = data[:user]
-    @client = data[:client]
-    @appointment_type = data[:appointment_type]
-    @start_time = data[:start_time]
-    @end_time = @start_time + @appointment_type.duration.minutes
-    @comments = data[:comments]
+  def self.find_by_user_and_day(user, time)
+    Appointment.where("user_id = ? AND start_time >= ? AND end_time < ?", user.id, time.beginning_of_day, time.end_of_day)
+  end
+
+  def set_end_time_for_appointment_type
+    self.end_time = start_time + appointment_type.duration.minutes
+  end
+
+  def set_sha
+    self.sha = Digest::SHA1.hexdigest("#{id}#{client.email}")
   end
 
 end

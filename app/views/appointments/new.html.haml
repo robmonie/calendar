@@ -1,0 +1,48 @@
+.page-container
+  %h1 Book an appointment
+  = simple_form_for [@business, @appointment] do |f|
+    %fieldset.form-horizontal
+      %legend Appointment Details
+      =f.input :user_id, :collection => @business.users, :label => "Practitioner", :label_method => 'full_name', :value_method => 'id', :prompt => "Select a practitioner"
+      =f.input :appointment_type_id, :collection => [], :prompt => "Select an appointment type"
+
+      .control-group
+        %label.control-label Date and Time
+        .controls.stacked
+          =select_tag :date, options_for_select(@date_options)
+          %select{:name => 'appointment[start_time]'}
+            %option{:value => ''}
+              Select a time
+
+          .alert.no-appointment-times Sorry, there are no appointment times available for this date. <br/> Please try selecting a different date.
+
+
+    %fieldset.form-horizontal
+      %legend Your Details
+      .control-group
+        %label.control-label Name
+        .controls
+          %input{:name => 'appointment[client[name]]'}
+      .control-group
+        %label.control-label Email
+        .controls
+          %input{:name => 'appointment[client[email]]'}
+
+      .control-group
+        %label.control-label Phone
+        .controls
+          %input{:name => 'appointment[client[phone]]'}
+
+    %fieldset.form-horizontal
+      %legend Is there anything else we should know?
+      .control-group
+        %label.control-label Comments
+        .controls
+          %textarea{:name => 'appointment[client[comments]]'}
+
+
+      .nav-bottom-view.form-actions
+        = f.button :submit, :class => 'btn btn-primary submit'
+
+
+- content_for :javascript, "$(function() { Calendar.ready({businessId: #{@business.id} });})"

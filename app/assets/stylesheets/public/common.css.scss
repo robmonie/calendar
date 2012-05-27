@@ -1,11 +1,24 @@
 body {
   margin: 0;
   padding: 0;
+  background: #eee;
 }
 
-.container-narrow {
-  width: 470px;
+.page-container {
+
+  margin-left: auto;
+  margin-right: auto;
+  padding: 40px;
+  background: #fafafa;
+  border: 1px solid #ddd;
 }
+
+@media (min-width: 480px) {
+  .page-container {
+    width: 480px;
+  }
+}
+
 
 .text-left {
   text-align: left;
@@ -32,9 +45,18 @@ select[readonly], textarea[readonly] {
 }
 
 input, select, textarea {
-  width: 320px;
+  width: 250px;
 }
 
 textarea {
   height: 70px;
+}
+
+label.help-inline {
+  display: block;
+  margin-left: 157px;
+}
+
+.no-appointment-times {
+  display: none
 }

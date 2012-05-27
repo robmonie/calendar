@@ -40,7 +40,7 @@ module Calendar
     config.filter_parameters += [:password]
 
     # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-    config.assets.precompile += [ /admin_vendor\.(js|css)/, /admin_app\.(js|css)/, /plugin_vendor\.(js|css)/, /plugin_app\.(js|css)/ ]
+    config.assets.precompile += [ /admin_vendor\.(js|css)/, /admin_app\.(js|css)/, /public_vendor\.(js|css)/, /public_app\.(js|css)/ ]
 
 
     # Enable the asset pipeline

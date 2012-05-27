@@ -5,6 +5,8 @@ class CreateAppointmentTypes < ActiveRecord::Migration
       t.integer :duration
       t.decimal :price
       t.references :user
+
+      t.timestamps
     end
   end
 end

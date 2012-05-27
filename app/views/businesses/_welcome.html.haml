@@ -1,23 +1,12 @@
 .page-header
-  %h1 Welcome #{current_user.first_name}
-  %p.lead
-    You're nearly ready to start taking bookings online for
-    %strong #{current_user.business.name}
-%p Once you've completed the following steps you'll be ready to go:
+  %h1 #{current_user.business.name}
+
 %ol
-  - if current_user.connected_to_google?
-    %li.done.google-connect You're connected to your google calendar
-  -else
-    %li
-      %a{:class => 'google-connect', :href => google_connect_link} Authorise your personal account to sync with your google calendar account
-
-
-  -if current_user.appointment_types.count > 0
-    %li.done You've setup your appointment types
-  -else
-    %li
-      = link_to 'Configure your appointment types so that your clients can book', user_path(current_user)
   %li
-    %a Add your custom booking widget to your website or link to our hosted booking page
+    = link_to 'Manage your appointment types', user_path(current_user)
+  %li
+    = link_to 'Manage your availability / working hours', user_path(current_user)
+  %li
+    %a Grab your custom online booking widget code to add to your website
   %li
     %a Invite other users within your business (optional)

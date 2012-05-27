@@ -3,9 +3,7 @@ Calendar::Application.routes.draw do
   devise_for :users
 
   resources :businesses do
-    member do
-      get 'book'
-    end
+    resources :appointments, :only => [:new, :create, :show]
   end
 
   resources :users, :except => [:index] do

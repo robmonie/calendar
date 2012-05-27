@@ -3,7 +3,8 @@ class Api::TimeslotsController < Api::BaseController
   before_filter :load_user
 
   def index
-    @timeslots = Timeslot.find_available(@user, Time.parse(params[:date]), Integer(params[:duration]))
+    appointment_type = AppointmentType.find(params[:appointment_type_id])
+    @timeslots = Timeslot.find_available(@user, Time.parse(params[:date]), appointment_type.duration)
     respond_with @timeslots
   end
 

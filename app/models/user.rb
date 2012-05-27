@@ -9,8 +9,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :role,
-                  :google_access_token, :google_refresh_token, :google_issued_at, :google_expires_in
+  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :role
 
   belongs_to  :business
   has_many    :appointment_types
@@ -19,29 +18,16 @@ class User < ActiveRecord::Base
 
   validates :role, :inclusion => { :in => ROLES, :message => "%{value} is not a valid role" }
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 
   def has_role?(role)
     self.role.to_s == role.to_s
   end
 
-  def connected_to_google?
-    ! calendar_id.blank?
-  end
-
   def setup_complete?
-    connected_to_google? && appointment_types.count > 0
-  end
-
-  def google_access_token_expired?
-    return true if google_expires_in.blank?
-    google_expires_in.seconds.ago > google_issued_at
-  end
-
-  def refresh_calendar_metadata
-    meta = CalendarService.find_calendar_meta_for_user(self)
-    self.timezone = meta.timeZone
-    self.calendar_id = meta.id
-    self.save!
+     appointment_types.count > 0
   end
 
   private

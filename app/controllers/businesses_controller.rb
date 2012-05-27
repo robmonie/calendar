@@ -3,7 +3,6 @@ class BusinessesController < ApplicationController
   before_filter :authenticate_user!, :except => :book
   load_and_authorize_resource
   skip_authorize_resource :only => :book
-  layout :resolve_layout
 
   page_name "business"
 
@@ -33,18 +32,6 @@ class BusinessesController < ApplicationController
 
     respond_to do |format|
       format.html
-    end
-  end
-
-
-  private
-
-  def resolve_layout
-    case action_name
-    when "book"
-      "booking"
-    else
-      "application"
     end
   end
 

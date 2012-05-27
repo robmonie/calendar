@@ -5,27 +5,6 @@
   %dt Name
   %dd #{@user.first_name} #{@user.last_name}
 
-%h2 Google Calendar Details
-.row
-  -if current_user.calendar_id
-    .span4
-      %dl
-        %dt Default calendar
-        %dd #{@user.calendar_id}
-        %dt Calendar Timezone
-        %dd #{@user.timezone}
-    .span4.well
-      %p Your online bookings are based on the these Google Calendar settings.
-      %p <span class="label label-warning">Warning</span> If you change these settings at any time in your Google Calendar such as updating your time zone, you will need to refresh them here.
-      %p= link_to '<i class="icon-refresh"></i> Refresh Google Calendar Settings'.html_safe, user_path(@user, :refresh_calendar => true), :method => 'put', :class => 'btn'
-  -else
-    .span4
-      .alert.alert-info
-        You have not connected to your google calendar yet.
-        %br
-        %br
-        %strong
-          %a{:href => google_connect_link, :class => 'btn btn-primary'} Get Connected Now.
 
 %h2 Appointment Types
 %p Appointment types can be selected by clients when they book online
