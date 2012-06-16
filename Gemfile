@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails',  '3.1.3'
-
+gem 'thin'
 gem 'pg',           '0.11.0'
 gem 'haml',         '3.1.4'
 gem 'simple_form',  '2.0.1'
