@@ -38,6 +38,9 @@ gem 'httpadapter',        '~> 1.0.1'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+group :production do
+  gem 'newrelic_rpm'
+end
 
 group :development, :test do
   # Pretty printed test output
