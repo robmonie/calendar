@@ -30,6 +30,7 @@ Calendar::Application.routes.draw do
     end
   end
 
+  match 'pages/ping' => 'pages#ping'
 
   root :to => "appointments#index"
 
