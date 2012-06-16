@@ -1,8 +1,8 @@
 class BusinessesController < ApplicationController
 
-  before_filter :authenticate_user!, :except => :book
+  before_filter :authenticate_user!
   load_and_authorize_resource
-  skip_authorize_resource :only => :book
+
 
   page_name "business"
 
@@ -23,16 +23,11 @@ class BusinessesController < ApplicationController
   end
 
   def show
-    respond_to do |format|
-      format.html
-    end
-  end
-
-  def book
 
     respond_to do |format|
       format.html
     end
   end
+
 
 end

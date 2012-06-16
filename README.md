@@ -4,6 +4,7 @@
  * Create appointment for practitioner (select client from drop down)
  * Cancel appointment for practitioner (and probably client as well)
  * Email confirmation for client and practitioner on booking
+ * JSON views to return only stuff that should be visible
 
 ### To get into prod for Rose
 

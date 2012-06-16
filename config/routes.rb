@@ -3,7 +3,13 @@ Calendar::Application.routes.draw do
   devise_for :users
 
   resources :businesses do
-    resources :appointments, :only => [:new, :create, :show]
+    resources :appointments, :except => [:show]
+  end
+
+  match 'appointment/success' => 'appointments#success'
+
+  resources :appointments, :only => [:index, :destroy] do
+
   end
 
   resources :users, :except => [:index] do
@@ -15,6 +21,7 @@ Calendar::Application.routes.draw do
   namespace :api do
     resources :businesses do
       resources :users, :only => [:index]
+      resources :clients, :only => [:show]
     end
     resources :users do
       resources :timeslots, :only => [:index]
@@ -23,9 +30,8 @@ Calendar::Application.routes.draw do
     end
   end
 
-  match 'oauth2callback' => 'oauth2_callback#index'
 
-  root :to => "pages#index"
+  root :to => "appointments#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -21,10 +21,12 @@
           .nav-collapse
             %ul.nav
               - if current_user
-                %li{:class => active_path_class(business_path(current_user.business))}
-                  = link_to "Dashboard", business_path(current_user.business)
                 %li{:class => active_path_class(user_path(current_user))}
                   = link_to "Edit Profile", user_path(current_user)
+                %li{:class => active_path_class(appointments_path)}
+                  = link_to "Upcoming Appointments", appointments_path
+                %li{:class => active_path_class(new_business_appointment_path(current_user.business))}
+                  = link_to "Create Appointment", new_business_appointment_path(current_user.business)
 
             %ul.nav.pull-right
               - if current_user

@@ -17,21 +17,17 @@
           .alert.no-appointment-times Sorry, there are no appointment times available for this date. <br/> Please try selecting a different date.
 
 
-    %fieldset.form-horizontal
-      %legend Your Details
-      .control-group
-        %label.control-label Name
-        .controls
-          %input{:name => 'appointment[client[name]]'}
-      .control-group
-        %label.control-label Email
-        .controls
-          %input{:name => 'appointment[client[email]]'}
 
-      .control-group
-        %label.control-label Phone
-        .controls
-          %input{:name => 'appointment[client[phone]]'}
+    -if current_user.present?
+      %fieldset.form-horizontal
+        %legend Client
+        =f.input :client_id, :collection => @business.clients, :label => "Client", :label_method => 'name', :value_method => 'id', :prompt => "New client"
+        =render 'client_details'
+      -else
+        %fieldset.form-horizontal
+          %legend Your Details
+          =render 'client_details'
+
 
     %fieldset.form-horizontal
       %legend Is there anything else we should know?

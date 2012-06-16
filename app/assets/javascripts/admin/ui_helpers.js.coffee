@@ -2,7 +2,7 @@ namespace "CalendarAdmin.uiHelpers", (exports) ->
 
   showingModal = false
 
-  exports.confirmDelete = (targetUrl, title, message) ->
+  exports.confirmDelete = (targetUrl, title, message, callback) ->
 
     html = """
       <div class=\"modal fade\">
@@ -36,7 +36,10 @@ namespace "CalendarAdmin.uiHelpers", (exports) ->
         url: targetUrl
         type: 'DELETE'
       ).done((response) ->
-        window.location.reload()
+        if callback
+          callback()
+        else
+          window.location.reload()
       )
 
       modal.modal('hide')

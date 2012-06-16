@@ -5,12 +5,17 @@ body {
 }
 
 .page-container {
-
-  margin-left: auto;
-  margin-right: auto;
-  padding: 40px;
+  margin: 0 auto 20px auto;
+  padding: 40px 40px 0 40px;
   background: #fafafa;
   border: 1px solid #ddd;
+
+  .form-actions {
+    margin: 0 -40px;
+    padding: 20px;
+    text-align: center;
+  }
+
 }
 
 @media (min-width: 480px) {
@@ -44,6 +49,11 @@ select[readonly], textarea[readonly] {
   color: #aaa;
 }
 
+form {
+  margin: 0;
+}
+
+
 input, select, textarea {
   width: 250px;
 }
@@ -58,5 +68,7 @@ label.help-inline {
 }
 
 .no-appointment-times {
-  display: none
+  display: none;
+  width: 200px;
 }
+

@@ -1,8 +1,0 @@
-.page-container
-  %h1 Your appointment details
-  -if flash[:notice]
-    %p.alert.alert-success= flash[:notice]
-  -if flash[:error]
-    %p.alert.alert-error= flash[:error]
-
-  .lead= "Your appointment with #{@appointment.user.full_name} is at #{@appointment.start_time.strftime('%I:%M %p')} on #{@appointment.start_time.strftime('%a, %d %b')}"

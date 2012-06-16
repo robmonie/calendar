@@ -1,20 +1,27 @@
-
+businessId = null
 form = practitionerField = appointmentTypeField = dateField = startTimeField = submitField = null
+clientSelectField = clientNameField = clientEmailField = clientPhoneField = null
 
 window.Calendar = {
 
   ready: (options)->
 
+    businessId = options.businessId
     form = $("form")
     practitionerField = form.find('[name="appointment[user_id]"]')
     appointmentTypeField = form.find('[name="appointment[appointment_type_id]"]')
     dateField = form.find('[name="date"]')
     startTimeField = form.find('[name="appointment[start_time]"]')
-    submitField = form.find('.submit')
+    # submitField = form.find('.submit')
+    clientSelectField = $("[name='appointment[client_id]']")
+    clientNameField = $("[name='appointment[client[name]]']")
+    clientEmailField = $("[name='appointment[client[email]]']")
+    clientPhoneField = $("[name='appointment[client[phone]]']")
 
     practitionerField.on 'change', handlePractitionerFieldChange
     appointmentTypeField.on 'change', handleAppointmentFieldChange
     dateField.on 'change', handleDateFieldChange
+    clientSelectField.on 'change', handleClientSelectFieldChange
 
     practitionerOptions = practitionerField.find('option')
     if practitionerOptions.length == 2
@@ -52,6 +59,7 @@ window.Calendar = {
 handlePractitionerFieldChange = ->
   userId = $(this).val()
   if userId
+    appointmentTypeField.html("<option value=''>Loading appointment types...</option>")
     $.ajax
       type: 'GET'
       url: "/api/users/#{userId}/appointment_types.json"
@@ -78,10 +86,12 @@ handleAppointmentFieldChange = ->
     resetField(startTimeField)
 
 handleDateFieldChange = ->
+  console.log 'aa'
   dateString = $(this).val()
   userId = practitionerField.val()
   appointmentTypeId = appointmentTypeField.val()
   if dateString && userId && appointmentTypeId
+    startTimeField.html("<option value=''>Loading times...</option>")
     $.ajax
       type: 'GET'
       url: "/api/users/#{userId}/timeslots.json"
@@ -109,6 +119,27 @@ handleDateFieldChange = ->
         throw statusMessage
   else
     resetField(startTimeField)
+
+
+
+handleClientSelectFieldChange = ->
+  clientId = clientSelectField.val()
+  if !clientId
+    clientNameField.val('')
+    clientEmailField.val('')
+    clientPhoneField.val('')
+  else
+    req = $.ajax
+      url: "/api/businesses/#{businessId}/clients/#{clientId}"
+      type: 'GET'
+      dataType: 'json'
+    req.done (data)=>
+      clientNameField.val(data.name)
+      clientEmailField.val(data.email)
+      clientPhoneField.val(data.phone)
+    req.fail (e)->
+
+
 
 # handleTimeFieldChange = ->
 #   if $(this).val()

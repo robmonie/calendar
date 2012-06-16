@@ -12,12 +12,6 @@ class Timeslot
   def self.find_available(user, date, duration)
     unavailable_timeslots = []
 
-    # Availability.find_by_user_for_day(user, date).each do |availability|
-    #   start_time = date.beginning_of_day + availability.start_hour.hours + availability.start_minute.minutes
-    #   end_time = date.beginning_of_day + availability.end_hour.hours + availability.end_minute.minutes
-    #   unavailable_timeslots.push(Timeslot.new(:start_time => start_time, :end_time => end_time))
-    # end
-
     Appointment.find_by_user_and_day(user, date).each do |appointment|
       unavailable_timeslots.push(Timeslot.new(:start_time => appointment.start_time, :end_time => appointment.end_time))
     end
@@ -31,6 +25,7 @@ class Timeslot
       timeslot_start = availability_start_time
 
       now = DateTime.now
+      now = now.change(:sec => 0)
       if timeslot_start < now
         timeslot_start = now + (60 - now.min + 60).minutes
       end

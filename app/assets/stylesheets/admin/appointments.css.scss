@@ -1,0 +1,130 @@
+#appointments-page {
+
+  .page-container {
+    max-width: 800px;
+    position: relative;
+
+    button.edit, button.cancel {
+      position: absolute;
+      top: 15px;
+      right: 10px;
+    }
+    button.cancel {
+      display: none;
+    }
+  }
+
+
+  .dates h3 {
+    padding: 3px;
+    background: #eee;
+    border: 1px solid #ddd;
+
+  }
+
+  h4 {
+    display: inline-block;
+    margin-right: 2em;
+
+    a {
+      color: #fff;
+    }
+  }
+
+  .appointments li {
+    border-bottom: 1px solid #ccc;
+    padding: .7em 0;
+    position: relative;
+
+    button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: none;
+    }
+
+    &.deleted {
+      transition: opacity 2s;
+      text-decoration: line-through;
+      opacity: 0.3;
+    }
+
+
+  }
+
+  .appointments li:last-child {
+
+    border-bottom: none;
+  }
+
+  .appointment-type {
+    margin-left: 12em
+  }
+
+
+  ul.show-delete, li.show-delete {
+
+    button {
+      display: block;
+    }
+  }
+
+
+  .text-left {
+    text-align: left;
+  }
+
+  .text-right {
+    text-align: right;
+  }
+
+  .controls.stacked {
+
+    input, textarea, select {
+      margin-bottom: 9px;
+      display: block;
+    }
+  }
+
+  input[disabled], select[disabled],
+  textarea[disabled], input[readonly],
+  select[readonly], textarea[readonly] {
+    background: #ddd;
+    border-color: #bbb;
+    color: #aaa;
+  }
+
+  form {
+    margin: 0;
+  }
+
+
+  input, select, textarea {
+    width: 250px;
+  }
+
+  textarea {
+    height: 70px;
+  }
+
+  label.help-inline {
+    display: block;
+    margin-left: 157px;
+  }
+
+  .no-appointment-times {
+    display: none;
+    width: 200px;
+  }
+
+}
+
+@media (min-width: 480px) {
+  .page-container {
+    width: 480px;
+  }
+  #appointments-page .page-container {
+    width: 480px;
+  }
+}
+

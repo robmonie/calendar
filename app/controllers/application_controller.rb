@@ -9,11 +9,11 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_up_path_for(resource)
-    redirect_to welcome_business_path current_user.business
+    redirect_to edit_user_path(current_user)
   end
 
   def after_sign_in_path_for(resource)
-    business_path(current_user.business)
+    appointments_path
   end
 
   rescue_from CanCan::AccessDenied do |exception|

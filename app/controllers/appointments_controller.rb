@@ -1,12 +1,40 @@
-class AppointmentsController < Api::BaseController
+class AppointmentsController < ApplicationController
 
-  layout 'public'
+  before_filter :load_business, :except => [:index, :destroy, :success]
+
+  # before_filter :authenticate_user!, :only => [:index]
+  # before_filter :load_user, :only => [:index]
+
+  layout :resolve_layout
+
+  page_name "appointments"
+
+  def index
+    authenticate_user!
+    if params[:start_time]
+      start_time = DateTime.parse(params[:start_time])
+    else
+      start_time = DateTime.now
+    end
+
+    start_time = start_time
+
+    appointments = current_user.appointments.where("start_time >= '#{start_time.utc}'")
+
+    @appointments_by_date = {}
+
+    appointments.each do |appointment|
+      arr = @appointments_by_date[appointment.start_time.midnight] ||= []
+      arr << appointment
+    end
+
+  end
 
   def new
     @appointment = Appointment.new
-    now = DateTime.now
+    today = Date.today
     @date_options =  (0..14).map do |index|
-      dt = now + index.days
+      dt = today + index.days
       value = dt.to_date.to_s(:db)
       display = dt.strftime('%a, %d %b')
       [display, value]
@@ -15,23 +43,22 @@ class AppointmentsController < Api::BaseController
     @date_options.unshift ["Select a date", ""]
   end
 
-  before_filter do
-    @business = Business.find(params[:business_id])
-  end
-
   def create
 
     appointment_params = params[:appointment]
+    user = User.find(appointment_params[:user_id])
 
-    client = Client.find_by_email(appointment_params[:email])
+    client = Client.find_by_email_and_business_id(appointment_params[:client][:email], @business.id)
+
 
     if client
       client.phone = appointment_params[:client][:phone]
     else
       client = Client.new(appointment_params[:client])
+      client.business = @business
     end
 
-    user = User.find(appointment_params[:user_id])
+
     appointment_type = AppointmentType.find(appointment_params[:appointment_type_id])
 
     @appointment = Appointment.new(
@@ -43,18 +70,49 @@ class AppointmentsController < Api::BaseController
     )
 
     if client.save && @appointment.save
-      flash[:notice] = "Your appointment has been booked"
-      redirect_to business_appointment_path(@business, @appointment.sha)
+      if current_user.present?
+        redirect_to appointments_path
+      else
+        flash[:notice] = "Thanks! Your appointment with #{@appointment.user.full_name} is at #{@appointment.start_time.strftime('%I:%M %p')} on #{@appointment.start_time.strftime('%a, %d %b')}"
+        redirect_to '/appointment/success'
+      end
     else
       render @appointment
     end
 
   end
 
-  def show
-    @appointment = Appointment.find_by_sha(params[:appointment_id])
+  # def edit
+  #   @appointment = Appointment.find(params[:appointment_id])
+  # end
+
+  def destroy
+    respond_to do |format|
+      format.json {
+        @appointment = Appointment.find(params[:id])
+        @appointment.destroy
+        render :json => @appintment
+      }
+    end
+
   end
 
+  def success
 
+  end
+
+  private
+
+  def load_business
+    @business = Business.find(params[:business_id])
+  end
+
+  def resolve_layout
+    if current_user.present?
+      'application'
+    else
+      'public'
+    end
+  end
 
 end

@@ -1,0 +1,23 @@
+.page-container
+  .page-header
+    %h1 Upcoming appointments
+    %button.btn.btn-secondary.edit Edit
+    %button.btn.btn-secondary.cancel Cancel
+
+
+  %ul.dates.unstyled
+    - @appointments_by_date.each_key do |date|
+      %li{:class => date.today? ? 'today': ''}
+        %h3= date.today? ? 'Today': date.strftime('%d/%m/%Y')
+        %ul.appointments.unstyled
+          - @appointments_by_date[date].each do |appointment|
+            %li
+              %i.icon-time
+              %h4.label.label-info #{appointment.start_time.in_time_zone(current_user.timezone).strftime('%I:%M %p')} - #{appointment.end_time.in_time_zone(current_user.timezone).strftime('%I:%M %p')}
+              %strong #{appointment.client.name}
+              .appointment-type #{appointment.appointment_type.name} - #{number_to_currency(appointment.appointment_type.price)}
+              %button.btn.btn-danger.delete{'data-id' => appointment.id}
+                %i.icon.icon-minus-sign.icon-white
+
+=content_for :javascript, "$(function() {CalendarAdmin.appointmentsPage.ready()});"
+
