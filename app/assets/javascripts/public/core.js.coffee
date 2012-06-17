@@ -115,7 +115,7 @@ handleDateFieldChange = ->
       success: (data, textStatus, jqXHR) =>
         optionsHtml = "<option value=''>Select a time</option>"
         for item in data
-          date = new Date(Date.parse(item.start_time))
+          date = new Date(item.start_time)
           optionsHtml = optionsHtml + "<option value='#{item.start_time}'>#{formatTime(date)}</option>"
         startTimeField.html(optionsHtml)
         # startTimeField.removeAttr('disabled')
