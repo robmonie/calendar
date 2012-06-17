@@ -65,7 +65,7 @@ handlePractitionerFieldChange = ->
       success: (data, textStatus, jqXHR) =>
         optionsHtml = "<option value=''>Select an appointment type</option>"
         for item in data
-          optionsHtml = optionsHtml + "<option value='#{item.id}'>#{item.name}: $#{Number(item.price).toFixed(2)} (#{item.duration}mins)</option>"
+          optionsHtml = optionsHtml + "<option value='#{item.id}'>#{item.name}: $#{Number(item.price).toFixed(2)} (#{item.duration} mins)</option>"
         appointmentTypeField.html(optionsHtml)
         # appointmentTypeField.removeAttr('disabled')
 

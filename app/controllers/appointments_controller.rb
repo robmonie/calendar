@@ -58,7 +58,7 @@ class AppointmentsController < ApplicationController
     )
 
     if client.save && @appointment.save
-      AppointmentMailer.practitioner_email(@appointment, current_user).deliver
+      AppointmentMailer.practitioner_email(@appointment).deliver
       if current_user.present?
         redirect_to appointments_path
       else
