@@ -35,8 +35,9 @@ class AppointmentsController < ApplicationController
 
     appointment_params = params[:appointment]
     user = User.find(appointment_params[:user_id])
+    client_email = appointment_params[:client][:email]
 
-    client = Client.find_by_email_and_business_id(appointment_params[:client][:email], @business.id)
+    client = client_email.blank? ? nil : Client.find_by_email_and_business_id(client_email, @business.id)
 
 
     if client

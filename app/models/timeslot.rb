@@ -38,7 +38,7 @@ class Timeslot
           timeslot_start = overlaps_with.end_time
         else
           timeslots.push timeslot
-          timeslot_start = timeslot_end
+          timeslot_start = timeslot_start + 30.minutes
         end
 
       end
