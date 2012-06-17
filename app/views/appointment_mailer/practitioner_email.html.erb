@@ -4,6 +4,12 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
+    <h1>New Appointment</h1>
     <p>New <%= @appointment.appointment_type.name %> appointment with <%= @appointment.client.name %> at <%= @formatted_start_time %></p>
+
+    <h2>Comments</h2>
+    <p>
+      <%= @appointment.comment %>
+    </p>
   </body>
 </html>
