@@ -14,7 +14,7 @@ class SignupsController < ApplicationController
 
     if @signup.save
       sign_in(@signup.user)
-      redirect_to @signup.business
+      redirect_to user_path(current_user)
     else
       render :action => "new"
     end

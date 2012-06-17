@@ -32,7 +32,7 @@ class Ability
 
   def authorize_anonymous
     can :create, Signup
-    can [:read, :create], Appointment
+    can [:create], Appointment
   end
 
 end

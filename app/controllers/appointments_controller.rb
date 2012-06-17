@@ -2,9 +2,6 @@ class AppointmentsController < ApplicationController
 
   before_filter :load_business, :except => [:index, :destroy, :success]
 
-  # before_filter :authenticate_user!, :only => [:index]
-  # before_filter :load_user, :only => [:index]
-
   layout :resolve_layout
 
   page_name "appointments"
@@ -73,7 +70,7 @@ class AppointmentsController < ApplicationController
       if current_user.present?
         redirect_to appointments_path
       else
-        flash[:notice] = "Thanks! Your appointment with #{@appointment.user.full_name} is at #{@appointment.start_time.strftime('%I:%M %p')} on #{@appointment.start_time.strftime('%a, %d %b')}"
+        flash[:notice] = "Thanks! Your appointment with #{@appointment.user.full_name} has been scheduled for #{@appointment.start_time.in_time_zone(@appointment.user.timezone).strftime('%I:%M %p')} on #{@appointment.start_time.in_time_zone(@appointment.user.timezone).strftime('%a, %d %b')}"
         redirect_to '/appointment/success'
       end
     else

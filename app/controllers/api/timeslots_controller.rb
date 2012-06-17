@@ -4,7 +4,8 @@ class Api::TimeslotsController < Api::BaseController
 
   def index
     appointment_type = AppointmentType.find(params[:appointment_type_id])
-    @timeslots = Timeslot.find_available(@user, Time.parse(params[:date]), appointment_type.duration)
+    user = appointment_type.user
+    @timeslots = Timeslot.find_available(@user, DateTime.parse(params[:date]).in_time_zone(user.timezone), appointment_type.duration)
     respond_with @timeslots
   end
 
