@@ -29,15 +29,6 @@ class AppointmentsController < ApplicationController
 
   def new
     @appointment = Appointment.new
-    today = Date.today
-    @date_options =  (0..14).map do |index|
-      dt = today + index.days
-      value = dt.to_date.to_s(:db)
-      display = dt.strftime('%a, %d %b')
-      [display, value]
-    end
-
-    @date_options.unshift ["Select a date", ""]
   end
 
   def create

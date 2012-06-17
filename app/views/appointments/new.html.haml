@@ -11,10 +11,8 @@
       .control-group
         %label.control-label Date and Time
         .controls.stacked
-          =select_tag :date, options_for_select(@date_options)
+          =select_tag :date, []
           %select{:name => 'appointment[start_time]'}
-            %option{:value => ''}
-              Select a time
 
           .alert.no-appointment-times Sorry, there are no appointment times available for this date. <br/> Please try selecting a different date.
 
@@ -43,4 +41,4 @@
         = f.button :submit, :class => 'btn btn-primary submit'
 
 
-- content_for :javascript, "$(function() { Calendar.ready({businessId: #{@business.id} });})"
+- content_for :javascript, "$(function() { Calendar.ready({businessId: #{@business.id}, public: #{current_user.blank?} });})"

@@ -109,12 +109,16 @@
 
   label.help-inline {
     display: block;
-    margin-left: 157px;
   }
 
   .no-appointment-times {
     display: none;
     width: 200px;
+  }
+
+  form label.error {
+    position: relative;
+    top: 0px;
   }
 
 }

@@ -1,6 +1,6 @@
 businessId = null
 form = practitionerField = appointmentTypeField = dateField = startTimeField = submitField = null
-clientSelectField = clientNameField = clientEmailField = clientPhoneField = null
+clientSelectField = clientNameField = clientEmailField = clientPhoneField = dates = null
 
 window.Calendar = {
 
@@ -38,22 +38,20 @@ window.Calendar = {
         'appointment[client[name]]':
           required: true
         'appointment[client[email]]':
-          required: true
+          required: options.public
           email: true
         'appointment[client[phone]]':
-          required: true
+          required: options.public
         'appointment[client[comments]]':
           maxlength: 2000
 
       errorPlacement: (error, element) ->
-        error.appendTo(element.closest(".control-group")).addClass('help-inline')
+        error.appendTo(element.closest(".controls")).addClass('help-inline')
       highlight: (element, errorClass) ->
         $(element).closest('.control-group').addClass('error')
       unhighlight: (element, errorClass) ->
         $(element).closest('.control-group').removeClass('error')
 
-    form.find(':input').one 'focusout', (e) =>
-      form.validate().element($(e.target))
 }
 
 handlePractitionerFieldChange = ->
@@ -73,6 +71,17 @@ handlePractitionerFieldChange = ->
 
       failure: (response, statusText, statusMessage) =>
         throw statusMessage
+
+    $.ajax
+      type: 'GET'
+      url: "/api/users/#{userId}/dates.json"
+      dataType: 'json'
+      success: (data, textStatus, jqXHR) =>
+        dates = data
+
+      failure: (response, statusText, statusMessage) =>
+        throw statusMessage
+
   else
     resetField(appointmentTypeField)
     resetField(dateField)
@@ -80,13 +89,17 @@ handlePractitionerFieldChange = ->
 
 handleAppointmentFieldChange = ->
   if $(this).val()
-    # dateField.removeAttr('disabled')
+    optionsHtml = "<option value=''>Select a date</option>"
+    for date in dates
+      parts = date.split('-')
+      optionsHtml = optionsHtml + "<option value='#{date}'>#{formatDate(new Date(parts[0], parts[1], parts[2]))}</option>"
+      dateField.html(optionsHtml)
   else
     resetField(dateField)
     resetField(startTimeField)
 
 handleDateFieldChange = ->
-  console.log 'aa'
+
   dateString = $(this).val()
   userId = practitionerField.val()
   appointmentTypeId = appointmentTypeField.val()
@@ -149,7 +162,11 @@ handleClientSelectFieldChange = ->
 
 resetField = (field) ->
   field.val('').trigger('change')
+  field.html('')
   # field.attr('disabled', true)
+
+formatDate = (date) ->
+  "#{leftPad(date.getDate(), 2, '0')}/#{leftPad(date.getMonth() + 1, 2, '0')}/#{date.getFullYear()} (#{days[date.getDay()]})"
 
 formatTime = (date) ->
   if date.getHours() < 12
@@ -157,6 +174,8 @@ formatTime = (date) ->
   else
     amPm = "PM"
   "#{leftPad(date.getHours(), 2, '0')}:#{leftPad(date.getMinutes(), 2, '0')} #{amPm}"
+
+
 
 leftPad =  (val, size, ch) ->
   result = String(val)
@@ -166,4 +185,6 @@ leftPad =  (val, size, ch) ->
     result = ch + result
 
   result
+
+days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat']
 

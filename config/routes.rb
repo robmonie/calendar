@@ -27,6 +27,7 @@ Calendar::Application.routes.draw do
       resources :timeslots, :only => [:index]
       resources :appointment_types, :only => [:index]
       resources :appointments, :only => [:create]
+      resources :dates, :only => [:index]
     end
   end
 
