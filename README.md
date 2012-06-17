@@ -1,3 +1,26 @@
+## Features to do
+
+### Required
+ * Need to be able to book any date in the future. Not so much for clients but mainly for rose. Possibly use date field type
+ * Email practitioner and client of new appointment
+ * List clients
+ * Link to client from appointment to get details
+
+### ASAP
+  * Need to be able to block out adhoc availability. Maybe add to profile section with main availability and only show future time blocked out with ability to add new for date/timespan
+
+### Sometime later
+
+
+### General stuff
+ * UI is a bit quirky
+ * Field selection order etc
+ * sometimes validation sticks
+ * Check overall security
+
+
+
+
 ## To Do
 ### Round 1
  * List appointments for practitioner
