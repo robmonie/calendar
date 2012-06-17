@@ -92,7 +92,7 @@ handleAppointmentFieldChange = ->
     optionsHtml = "<option value=''>Select a date</option>"
     for date in dates
       parts = date.split('-')
-      optionsHtml = optionsHtml + "<option value='#{date}'>#{formatDate(new Date(parts[0], parts[1], parts[2]))}</option>"
+      optionsHtml = optionsHtml + "<option value='#{date}'>#{formatDate(new Date(parts[0], (parts[1] - 1), parts[2]))}</option>"
       dateField.html(optionsHtml)
   else
     resetField(dateField)
