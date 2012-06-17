@@ -1,7 +1,6 @@
 ## Features to do
 
 ### Required
- * Need to be able to book any date in the future. Not so much for clients but mainly for rose. Possibly use date field type
  * Email practitioner and client of new appointment
  * List clients
  * Link to client from appointment to get details
