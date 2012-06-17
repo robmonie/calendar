@@ -90,9 +90,9 @@ handlePractitionerFieldChange = ->
 handleAppointmentFieldChange = ->
   if $(this).val()
     optionsHtml = "<option value=''>Select a date</option>"
-    for date in dates
-      parts = date.split('-')
-      optionsHtml = optionsHtml + "<option value='#{date}'>#{formatDate(new Date(parts[0], (parts[1] - 1), parts[2]))}</option>"
+    for dateStr in dates
+      date = new XDate(dateStr)
+      optionsHtml = optionsHtml + "<option value='#{dateStr}'>#{date.toString('dd/MM/yy - ddd')}</option>"
       dateField.html(optionsHtml)
   else
     resetField(dateField)
@@ -115,10 +115,9 @@ handleDateFieldChange = ->
       success: (data, textStatus, jqXHR) =>
         optionsHtml = "<option value=''>Select a time</option>"
         for item in data
-          date = new Date(item.start_time)
-          optionsHtml = optionsHtml + "<option value='#{item.start_time}'>#{formatTime(date)}</option>"
+          date = new XDate(item.start_time)
+          optionsHtml = optionsHtml + "<option value='#{item.start_time}'>#{date.toString('hh:mm TT')}</option>"
         startTimeField.html(optionsHtml)
-        # startTimeField.removeAttr('disabled')
 
         if data.length
           form.find('.no-appointment-times').hide()
@@ -153,28 +152,10 @@ handleClientSelectFieldChange = ->
     req.fail (e)->
 
 
-
-# handleTimeFieldChange = ->
-#   if $(this).val()
-#     submitField.removeAttr('disabled').removeClass('disabled')
-#   else
-#     submitField.attr('disabled', true).addClass('disabled')
-
 resetField = (field) ->
   field.val('').trigger('change')
   field.html('')
   # field.attr('disabled', true)
-
-formatDate = (date) ->
-  "#{leftPad(date.getDate(), 2, '0')}/#{leftPad(date.getMonth() + 1, 2, '0')}/#{date.getFullYear()} (#{days[date.getDay()]})"
-
-formatTime = (date) ->
-  if date.getHours() < 12
-    amPm = "AM"
-  else
-    amPm = "PM"
-  "#{leftPad(date.getHours(), 2, '0')}:#{leftPad(date.getMinutes(), 2, '0')} #{amPm}"
-
 
 
 leftPad =  (val, size, ch) ->
