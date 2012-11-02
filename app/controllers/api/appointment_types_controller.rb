@@ -4,7 +4,7 @@ class Api::AppointmentTypesController < Api::BaseController
 
   def index
     @appointment_types = @user.appointment_types
-    respond_with @appointment_types
+    respond_with @appointment_types, :callback => params[:callback]
   end
 
   private

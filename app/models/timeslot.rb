@@ -30,36 +30,25 @@ class Timeslot
         timeslot_start = now + (60 - now.min + 60).minutes
       end
 
-      while(timeslot_start < availability_end_time)
-        timeslot_end = timeslot_start + duration.minutes
+      timeslot_end = timeslot_start + duration.minutes
+
+      while(timeslot_start < availability_end_time && timeslot_end <= availability_end_time)
         timeslot = Timeslot.new(:start_time => timeslot_start, :end_time => timeslot_end)
         if overlaps_with = self.find_overlapping_timeslot(unavailable_timeslots, timeslot)
           # start the next slot at the end of the overlapping appointment
           timeslot_start = overlaps_with.end_time
         else
-          timeslots.push timeslot
+          timeslots << timeslot
           timeslot_start = timeslot_start + 30.minutes
         end
 
+        timeslot_end = timeslot_start + duration.minutes
       end
 
     end
 
     timeslots
   end
-
-  # def self.within_business_hours(business_availability, timeslot)
-  #   allowed = false
-  #   business_availability.each do |availability|
-  #     availability_start_time = timeslot.start_time.beginning_of_day + availability.start_hour.hours + availability.start_minute.minutes
-  #     availability_end_time = timeslot.end_time.beginning_of_day + availability.end_hour.hours + availability.end_minute.minutes
-  #     if timeslot.start_time >= availability_start_time && timeslot.end_time <= availability_end_time
-  #       allowed = true
-  #       break
-  #     end
-  #   end
-  #   allowed
-  # end
 
   def self.find_overlapping_timeslot(unavailable_timeslots, timeslot)
     overlaps_with = nil
