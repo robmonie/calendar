@@ -9,7 +9,9 @@ gem 'devise',       '1.5.3'
 gem 'cancan',       '1.6.7'
 gem 'json_builder', '3.0.6'
 gem 'ember-rails',  '0.2.4'
-gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem "therubyracer"
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem "twitter-bootstrap-rails"
 gem 'compass',      :git => "git://github.com/chriseppstein/compass.git", :branch => "master", :ref => 'be7b41947963f2df98a7cddf918a1a912cacf182'
 
 # Bundle edge Rails instead:
