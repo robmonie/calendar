@@ -6,7 +6,7 @@ body {
 
 .page-container {
   margin: 0 auto 20px auto;
-  padding: 40px 40px 40px 40px;
+  padding: 40px 40px 0 40px;
   background: rgba(245, 245, 245, 0.5);
   border: 1px solid #ddd;
 
@@ -65,11 +65,11 @@ label.help-inline {
   width: 200px;
 }
 
-@media (min-width: 480px) {
-  .page-container {
-    width: 480px;
-  }
-}
+// @media (min-width: 480px) {
+//   .page-container {
+//     width: 480px;
+//   }
+// }
 
 @media (max-width: 320px) {
   .page-container {
