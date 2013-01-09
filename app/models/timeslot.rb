@@ -16,8 +16,8 @@ class Timeslot
       unavailable_timeslots.push(Timeslot.new(:start_time => appointment.start_time, :end_time => appointment.end_time))
     end
 
-    user.unavailabilities.in_future.each do |unavailability|
-      unavailable_timeslots.push(Timeslot.new(:start_time => unavailability.start_time, :end_time => unavailability.end_time))
+    user.busy_times.in_future.each do |busy_time|
+      unavailable_timeslots.push(Timeslot.new(:start_time => busy_time.start_time, :end_time => busy_time.end_time))
     end
 
     timeslots = []

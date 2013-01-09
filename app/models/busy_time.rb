@@ -1,4 +1,4 @@
-class Unavailability < ActiveRecord::Base
+class BusyTime < ActiveRecord::Base
 
   attr_accessible :start_time, :end_time, :user
   belongs_to :user

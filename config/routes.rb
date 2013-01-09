@@ -14,7 +14,7 @@ Calendar::Application.routes.draw do
 
   resources :users, :except => [:index] do
     resources :appointment_types
-    resources :unavailabilities
+    resources :busy_times
   end
 
   resources :signups, :only => [:new, :create]

@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many    :appointment_types
   has_many    :appointments, :order => 'appointments.start_time ASC'
   has_many    :availabilities
-  has_many    :unavailabilities
+  has_many    :busy_times
 
   before_validation :set_defaults
 

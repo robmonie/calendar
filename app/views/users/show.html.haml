@@ -23,23 +23,23 @@
   = link_to '<i class="icon-plus"></i> Add Appointment Type'.html_safe, new_user_appointment_type_path(@user), :class => 'add-appointment-type btn btn-small'
 
 .section
-  %h2 Unavailability
+  %h2 Busy Times
   %p Manage days/times when you will be unavailable. Clients will not be able to book during these periods.
-  -if @user.unavailabilities.in_future.length
-    %ul.unavailabilities{'data-user-id' => @user.id}
-      - @user.unavailabilities.in_future.each do |unavailability|
+  -if @user.busy_times.in_future.length
+    %ul.busy-times{'data-user-id' => @user.id}
+      - @user.busy_times.in_future.each do |busy_time|
         %li
-          %a{:href => edit_user_unavailability_path(@user, unavailability), :class => 'edit'}
+          %a{:href => edit_user_busy_time_path(@user, busy_time), :class => 'edit'}
             %div
-              %div From: #{unavailability.start_time.in_time_zone(unavailability.user.timezone).strftime('%a, %d %b')} - #{unavailability.start_time.in_time_zone(unavailability.user.timezone).strftime('%I:%M %p')}
-              %div Until: #{unavailability.end_time.in_time_zone(unavailability.user.timezone).strftime('%a, %d %b')} - #{unavailability.end_time.in_time_zone(unavailability.user.timezone).strftime('%I:%M %p')}
-          = link_to '<i class="icon-trash icon-white"></i> Delete'.html_safe, user_unavailability_path(@user, unavailability),
+              %div From: #{busy_time.start_time.in_time_zone(busy_time.user.timezone).strftime('%a, %d %b')} - #{busy_time.start_time.in_time_zone(busy_time.user.timezone).strftime('%I:%M %p')}
+              %div Until: #{busy_time.end_time.in_time_zone(busy_time.user.timezone).strftime('%a, %d %b')} - #{busy_time.end_time.in_time_zone(busy_time.user.timezone).strftime('%I:%M %p')}
+          = link_to '<i class="icon-trash icon-white"></i> Delete'.html_safe, user_busy_time_path(@user, busy_time),
             :method => 'destroy', :title => 'Delete', :class => 'delete btn btn-danger'
 
   -else
-    .alert.alert-info You don't have any future times of unavailability.
+    .alert.alert-info You don't have any future busy times.
 
-  = link_to '<i class="icon-plus"></i> Add Unavailability'.html_safe, new_user_unavailability_path(@user), :class => 'add-unavailability btn btn-small'
+  = link_to '<i class="icon-plus"></i> Add Busy `Time'.html_safe, new_user_busy_time_path(@user), :class => 'add-busy-time btn btn-small'
 
 
 - content_for :javascript, "$(function() { CalendarAdmin.userPage.init() });"

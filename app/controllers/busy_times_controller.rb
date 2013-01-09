@@ -1,4 +1,4 @@
-class UnavailabilitiesController < ApplicationController
+class BusyTimesController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :load_user
@@ -11,7 +11,7 @@ class UnavailabilitiesController < ApplicationController
   page_name "appointment-type"
 
   def index
-    @unavailabilities = @user.unavailabilities
+    @busy_times = @user.busy_times
     respond_to do |format|
       format.html
     end
@@ -22,14 +22,14 @@ class UnavailabilitiesController < ApplicationController
     start_time = DateTime.now.beginning_of_day
     end_time = DateTime.now.end_of_day
 
-    @unavailability = @user.unavailabilities.build(:start_time => start_time, :end_time => end_time)
+    @busy_time = @user.busy_times.build(:start_time => start_time, :end_time => end_time)
   end
 
   def create
-    @unavailability = @user.unavailabilities.build(params[:unavailability])
+    @busy_time = @user.busy_times.build(params[:busy_time])
     respond_to do |format|
-      if @unavailability.save
-        format.html { redirect_to(@user, :notice => 'Unavailability was successfully created.') }
+      if @busy_time.save
+        format.html { redirect_to(@user, :notice => 'BusyTime was successfully created.') }
       else
         format.html { render :action => "edit" }
       end
@@ -38,8 +38,8 @@ class UnavailabilitiesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @unavailability.update_attributes(params[:unavailability])
-        format.html  { redirect_to(@user, :notice => 'Unavailability was successfully updated.') }
+      if @busy_time.update_attributes(params[:busy_time])
+        format.html  { redirect_to(@user, :notice => 'BusyTime was successfully updated.') }
       else
         format.html  { render :action => "edit" }
       end
@@ -53,8 +53,8 @@ class UnavailabilitiesController < ApplicationController
   end
 
   def destroy
-    if @unavailability.destroy
-      flash[:notice] = "Unavailability was successfully deleted"
+    if @busy_time.destroy
+      flash[:notice] = "BusyTime was successfully deleted"
       respond_with true
     else
       respond_with false

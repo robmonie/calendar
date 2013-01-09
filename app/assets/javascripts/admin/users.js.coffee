@@ -7,8 +7,8 @@ namespace "CalendarAdmin.userPage", (exports) ->
   exports.init = ->
     initAddAppointmentType()
     initEditAppointmentType()
-    initAddUnavailability()
-    initEditUnavailability()
+    initAddBusyTime()
+    initEditBusyTime()
 
   initAddAppointmentType = ->
     $(".add-appointment-type").on('click', ->
@@ -31,22 +31,22 @@ namespace "CalendarAdmin.userPage", (exports) ->
       return false
     )
 
-  initAddUnavailability = ->
-    $(".add-unavailability").on('click', ->
+  initAddBusyTime = ->
+    $(".add-busy-time").on('click', ->
       href = $(this).attr('href')
       showInModal(href) if not showingModal
       return false
     )
 
 
-  initEditUnavailability = ->
-    $("ul.unavailabilities li a").on('click', ->
+  initEditBusyTime = ->
+    $("ul.busy-times li a").on('click', ->
       href = $(this).attr('href')
       method = $(this).attr('data-method')
       if method == 'destroy'
         CalendarAdmin.uiHelpers.confirmDelete(href,
-          "Delete Unavailability",
-          "Are you sure you want to delete this unavailability?")
+          "Delete BusyTime",
+          "Are you sure you want to delete this busy time?")
       else
         showInModal(href) if not showingModal
       return false
