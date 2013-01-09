@@ -25,5 +25,4 @@ AppointmentType.blueprint do
   description 'description'
   duration 30
   price 100
-
 end

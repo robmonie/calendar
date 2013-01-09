@@ -1,0 +1,8 @@
+.modal-header
+  %a.close{'data-dismiss' => "modal"} ×
+  %h3 Add Unavailability
+.modal-body
+  = render 'form'
+.modal-footer
+  %a{'href' => "#", 'class' => "btn btn-primary create"} Create
+  %a{'href' => "#", 'class' => "btn cancel"} Cancel

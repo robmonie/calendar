@@ -1,26 +1,46 @@
 .page-header
   %h1 Profile for #{@user.first_name} #{@user.last_name}
 
+.section
+  %h2 Appointment Types
+  %p Appointment types can be selected by clients when they book online
+  -if @user.appointment_types.length
+    %ul.appointment-types{'data-user-id' => @user.id}
+      - @user.appointment_types.each do |appointment_type|
+        %li
+          %a{:href => edit_user_appointment_type_path(@user, appointment_type), :class => 'edit'}
+            %h4 #{appointment_type.name}
+            %div #{appointment_type.description}
+            %div
+              %span Duration: #{appointment_type.duration} mins
+              %span Price: #{number_to_currency(appointment_type.price)}
+          = link_to '<i class="icon-trash icon-white"></i> Delete'.html_safe, user_appointment_type_path(@user, appointment_type),
+            :method => 'destroy', :title => 'Delete', :class => 'delete btn btn-danger'
 
-%h2 Appointment Types
-%p Appointment types can be selected by clients when they book online
--if @user.appointment_types.length
-  %ul.appointment-types{'data-user-id' => @user.id}
-    - @user.appointment_types.each do |appointment_type|
-      %li
-        %a{:href => edit_user_appointment_type_path(@user, appointment_type), :class => 'edit'}
-          %h4 #{appointment_type.name}
-          %div #{appointment_type.description}
-          %div
-            %span Duration: #{appointment_type.duration} mins
-            %span Price: #{number_to_currency(appointment_type.price)}
-        = link_to '<i class="icon-trash icon-white"></i> Delete'.html_safe, user_appointment_type_path(@user, appointment_type),
-          :method => 'destroy', :title => 'Delete', :class => 'delete btn btn-danger'
+  -else
+    .alert.alert-info You have not created any appointment types yet. You'll need to create at least one type of appointment in order to take bookings online
 
--else
-  .alert.alert-info You have not created any appointment types yet. You'll need to create at least one type of appointment in order to take bookings online
+  = link_to '<i class="icon-plus"></i> Add Appointment Type'.html_safe, new_user_appointment_type_path(@user), :class => 'add-appointment-type btn btn-small'
 
-= link_to '<i class="icon-plus"></i> Add Appointment Type'.html_safe, new_user_appointment_type_path(@user), :class => 'add-appointment-type btn btn-small'
+.section
+  %h2 Unavailability
+  %p Manage days/times when you will be unavailable. Clients will not be able to book during these periods.
+  -if @user.unavailabilities.in_future.length
+    %ul.unavailabilities{'data-user-id' => @user.id}
+      - @user.unavailabilities.in_future.each do |unavailability|
+        %li
+          %a{:href => edit_user_unavailability_path(@user, unavailability), :class => 'edit'}
+            %div
+              %div From: #{unavailability.start_time.in_time_zone(unavailability.user.timezone).strftime('%a, %d %b')} - #{unavailability.start_time.in_time_zone(unavailability.user.timezone).strftime('%I:%M %p')}
+              %div Until: #{unavailability.end_time.in_time_zone(unavailability.user.timezone).strftime('%a, %d %b')} - #{unavailability.end_time.in_time_zone(unavailability.user.timezone).strftime('%I:%M %p')}
+          = link_to '<i class="icon-trash icon-white"></i> Delete'.html_safe, user_unavailability_path(@user, unavailability),
+            :method => 'destroy', :title => 'Delete', :class => 'delete btn btn-danger'
+
+  -else
+    .alert.alert-info You don't have any future times of unavailability.
+
+  = link_to '<i class="icon-plus"></i> Add Unavailability'.html_safe, new_user_unavailability_path(@user), :class => 'add-unavailability btn btn-small'
+
 
 - content_for :javascript, "$(function() { CalendarAdmin.userPage.init() });"
 

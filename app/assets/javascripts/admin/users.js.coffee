@@ -2,11 +2,13 @@
 namespace "CalendarAdmin.userPage", (exports) ->
 
   showingModal = false
-  userId = $("ul.appointment-types").attr('data-user-id')
+  # userId = $("ul.appointment-types").attr('data-user-id')
 
   exports.init = ->
     initAddAppointmentType()
     initEditAppointmentType()
+    initAddUnavailability()
+    initEditUnavailability()
 
   initAddAppointmentType = ->
     $(".add-appointment-type").on('click', ->
@@ -28,6 +30,28 @@ namespace "CalendarAdmin.userPage", (exports) ->
         showInModal(href) if not showingModal
       return false
     )
+
+  initAddUnavailability = ->
+    $(".add-unavailability").on('click', ->
+      href = $(this).attr('href')
+      showInModal(href) if not showingModal
+      return false
+    )
+
+
+  initEditUnavailability = ->
+    $("ul.unavailabilities li a").on('click', ->
+      href = $(this).attr('href')
+      method = $(this).attr('data-method')
+      if method == 'destroy'
+        CalendarAdmin.uiHelpers.confirmDelete(href,
+          "Delete Unavailability",
+          "Are you sure you want to delete this unavailability?")
+      else
+        showInModal(href) if not showingModal
+      return false
+    )
+
 
 
   showInModal = (url) ->

@@ -18,6 +18,7 @@ class Ability
     can [:read, :update], Business, :id => @user.business_id
     can [:read, :update], User, :id => @user.id
     can [:read, :create, :update, :destroy], AppointmentType, :user_id => @user.id
+    can [:read, :create, :update, :destroy], Unavailability, :user_id => @user.id
     can [:read, :create, :update, :destroy], Appointment, :user_id => @user.id
     can [:read, :create, :update], Client, :business_id => @user.business.id
   end
@@ -26,6 +27,7 @@ class Ability
     can :read, Business, :id => @user.business_id
     can [:read, :update], User, :id => @user.id
     can [:read, :create, :update, :destroy], AppointmentType, :user_id => @user.id
+    can [:read, :create, :update, :destroy], Unavailability, :user_id => @user.id
     can [:read, :create, :update, :destroy], Appointment, :user_id => @user.id
     can [:read, :create, :update], Client, :business_id => @user.business.id
   end
