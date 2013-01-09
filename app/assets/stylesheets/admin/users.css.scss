@@ -31,12 +31,10 @@
   }
 
   li a.delete{
-    display: none;
+    // display: none;
     position: absolute;
     right: 25px;
     top: 25px;
   }
-  li:hover a.delete {
-    display: block;
-  }
+
 }

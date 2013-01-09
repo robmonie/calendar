@@ -14,7 +14,7 @@
             %div
               %span Duration: #{appointment_type.duration} mins
               %span Price: #{number_to_currency(appointment_type.price)}
-          = link_to '<i class="icon-trash icon-white"></i> Delete'.html_safe, user_appointment_type_path(@user, appointment_type),
+          = link_to '<i class="icon-trash icon-white"></i>'.html_safe, user_appointment_type_path(@user, appointment_type),
             :method => 'destroy', :title => 'Delete', :class => 'delete btn btn-danger'
 
   -else
@@ -33,7 +33,7 @@
             %div
               %div From: #{busy_time.start_time.in_time_zone(busy_time.user.timezone).strftime('%a, %d %b')} - #{busy_time.start_time.in_time_zone(busy_time.user.timezone).strftime('%I:%M %p')}
               %div Until: #{busy_time.end_time.in_time_zone(busy_time.user.timezone).strftime('%a, %d %b')} - #{busy_time.end_time.in_time_zone(busy_time.user.timezone).strftime('%I:%M %p')}
-          = link_to '<i class="icon-trash icon-white"></i> Delete'.html_safe, user_busy_time_path(@user, busy_time),
+          = link_to '<i class="icon-trash icon-white"></i>'.html_safe, user_busy_time_path(@user, busy_time),
             :method => 'destroy', :title => 'Delete', :class => 'delete btn btn-danger'
 
   -else

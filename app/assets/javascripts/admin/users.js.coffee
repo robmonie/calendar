@@ -19,7 +19,7 @@ namespace "CalendarAdmin.userPage", (exports) ->
 
 
   initEditAppointmentType = ->
-    $("ul.appointment-types li a").on('click', ->
+    $(".appointment-types").on('click', 'a', ->
       href = $(this).attr('href')
       method = $(this).attr('data-method')
       if method == 'destroy'
@@ -40,7 +40,7 @@ namespace "CalendarAdmin.userPage", (exports) ->
 
 
   initEditBusyTime = ->
-    $("ul.busy-times li a").on('click', ->
+    $(".busy-times").on('click', 'a', ->
       href = $(this).attr('href')
       method = $(this).attr('data-method')
       if method == 'destroy'
