@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails',  '3.1.3'
+gem 'rails',  '3.1.10'
 gem 'thin'
 gem 'pg',           '0.11.0'
 gem 'haml',         '3.1.4'
@@ -27,8 +27,8 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'google-api-client',  '~> 0.4.2'
-gem 'httpadapter',        '~> 1.0.1'
+# gem 'google-api-client',  '~> 0.4.2'
+# gem 'httpadapter',        '~> 1.0.1'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
