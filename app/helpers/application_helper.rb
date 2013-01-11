@@ -28,8 +28,5 @@ module ApplicationHelper
     end
   end
 
-  def google_connect_link
-    "https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=741011956518.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth2callback&access_type=offline&scope=https%3A%2F%2Fwww.google.com%2Fcalendar%2Ffeeds/&state=tba"
-  end
 
 end

@@ -29,34 +29,6 @@ describe "the signup process", :type => :request do
 
   end
 
-  context "connecting to google" do
-
-    it "connects with google calendar and shows connection status", :js => true do
-      visit new_signup_path
-      fill_in 'Business name', :with => "My Business"
-      fill_in 'First name', :with => "John"
-      fill_in 'Last name', :with => "Doe"
-      fill_in 'Email', :with => "john@example.com"
-      fill_in 'Password', :with => "password"
-      fill_in 'Password confirmation', :with => "password"
-      click_button "Sign up"
-
-      page.find('.google-connect').click
-
-      fill_in 'Email', :with => 'dragonflycalendar2@gmail.com'
-      fill_in 'Password', :with => 'filter2002'
-      puts User.first.email
-      click_button 'Sign in'
-
-      click_button 'Allow access'
-      puts User.first.email
-      page.find('.google-connect').should have_content "You're connected to your google calendar"
-      visit "https://accounts.google.com/IssuedAuthSubTokens"
-      click_link "Revoke Access"
-    end
-
-  end
-
   context "sign in / sign out process" do
 
     before :each do
