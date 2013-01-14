@@ -34,6 +34,8 @@ Calendar::Application.routes.draw do
 
   match 'pages/ping' => 'pages#ping'
 
+  match '*clinic' => 'clinics#index'
+
   root :to => "appointments#index"
 
   # The priority is based upon order of creation:

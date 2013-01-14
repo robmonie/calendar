@@ -1,0 +1,24 @@
+$header-height: 60px
+$nav-width: 200px
+
+body
+  background: url(asset-path("nav_bg.jpg", image))
+
+#header
+  height: $header-height
+
+
+#navigation
+  position: absolute
+  top: $header-height
+  left: 0
+  bottom: 0
+  width: $nav-width
+
+#main
+  position: absolute
+  top: $header-height
+  left: $nav-width
+  right: 0
+  bottom: 0
+

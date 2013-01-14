@@ -1,0 +1,9 @@
+#= require jquery
+#= require underscore
+#= require jquery_ui_custom
+#= require ui_timepicker
+#= require xdate
+#= require handlebars
+#= require ember
+#= require ember_data
+#= require ember_localstorage_adapter

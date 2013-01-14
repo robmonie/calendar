@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails',  '3.1.10'
+gem 'rails',  '3.2.11'
 gem 'thin'
 gem 'pg',           '0.11.0'
 gem 'haml',         '3.1.4'
@@ -12,7 +12,7 @@ gem 'ember-rails',  '0.2.4'
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
-gem 'compass',      :git => "git://github.com/chriseppstein/compass.git", :branch => "master", :ref => 'be7b41947963f2df98a7cddf918a1a912cacf182'
+
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -21,14 +21,13 @@ gem 'compass',      :git => "git://github.com/chriseppstein/compass.git", :branc
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.1.5'
-  gem 'coffee-rails', '~> 3.1.1'
+  gem 'compass-rails', '1.0.3'
+  gem 'sass-rails',   '~> 3.2.5'
+  gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier', '>= 1.0.3'
 end
 
 gem 'jquery-rails'
-# gem 'google-api-client',  '~> 0.4.2'
-# gem 'httpadapter',        '~> 1.0.1'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
