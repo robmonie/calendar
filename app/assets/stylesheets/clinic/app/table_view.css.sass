@@ -1,0 +1,64 @@
+$toolbar-bg: #dadada
+$toolbar-text: #333
+$toolbar-height: 45px
+$table-row-color: #eee
+$table-header-height: 36px
+
+.table-view-container
+  position: absolute
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+  ul.toolbar
+    height: $toolbar-height
+    background: $toolbar-bg
+    border-bottom: darken($toolbar-bg, 30)
+    @include box-shadow(rgba(0, 0, 0, 0.5) 0px 0px 6px)
+
+    li
+      margin: 6px
+      padding: 7px 12px
+      color: $toolbar-text
+      @include border-radius(5px)
+      cursor: pointer
+      &:hover
+        background: darken($toolbar-bg, 10)
+        color: darken($toolbar-text, 10)
+        @include box-shadow(inset 0 0 3px rgba(0, 0, 0, 0.2))
+
+  .table-view
+    position: absolute
+    top: $toolbar-height
+    bottom: 0
+    left: 0
+    right: 0
+
+    .header, .body
+      list-style: none
+      margin: 0
+      padding: 0
+      .cell
+        display: inline-block
+        padding: 10px 10px
+        overflow: hidden
+    .header
+      background: #bbb
+      height: $table-header-height
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      li
+        display: inline-block
+    .body
+      position: absolute
+      top: $table-header-height
+      bottom: 0
+      left: 0
+      right: 0
+      overflow: scroll
+      li
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+        &:hover
+          background: lighten($table-row-color, 20)

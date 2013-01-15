@@ -3,7 +3,7 @@ Calendar.AppointmentsRoute = Ember.Route.extend
     Calendar.Appointment.find()
 
   setupController: (controller, model) ->
-    @controllerFor('appointmentsList').set('content', model)
+    @controllerFor('appointmentsTable').set('content', model)
 
   events:
     toolbarLink: (linkTo) ->
