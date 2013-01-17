@@ -1,0 +1,79 @@
+$label-width: 100px
+$label-right-margin: 10px
+
+.standard-form
+  list-style: none
+  margin: 0
+  padding: 0
+
+  &>li
+    padding: 10px 0
+    label
+      width: $label-width
+      float: left
+      margin-right: $label-right-margin
+
+    input, select
+      float: left
+
+
+  &>li:after
+    visibility: hidden
+    display: block
+    font-size: 0
+    content: ""
+    clear: both
+    height: 0
+
+  .actions
+    margin-top: 20px
+    ul
+      list-style: none
+      margin: 0 0 0 $label-width + $label-right-margin
+      padding: 0
+      li
+        display: inline-block
+        margin-right: 10px
+
+input, select
+  padding: 5px 7px
+
+button, a.btn
+  border-radius: 3px
+  padding: 7px 15px 8px 15px
+  text-align: center
+  @include type-setter(0.9, 0.9, normal)
+
+button
+  padding: 8px 15px 10px 15px
+
+
+button.primary, a.btn.primary
+  border: 1px solid #63A62F
+  border-bottom: 1px solid #5B992B
+  @include text-shadow(0 -1px 0 #4C9021)
+  @include box-shadow(inset 0 1px 0 0 #96CA6D)
+  @include background-image(linear-gradient(top, #7FBF4D, #63A62F))
+  color: #fff
+
+  &:hover
+    border: 1px solid lighten(#63A62F, 10)
+    border-bottom: 1px solid lighten(#5B992B, 10)
+    @include text-shadow(0 -1px 0 lighten(#4C9021, 10))
+    @include box-shadow(inset 0 1px 0 0 lighten(#96CA6D, 10))
+    @include background-image(linear-gradient(top, lighten(#7FBF4D, 10), lighten(#63A62F, 10)))
+
+button.secondary, a.btn.secondary
+  border: 1px solid #ccc
+  border-bottom: 1px solid #bbb
+  @include text-shadow(0 -1px 0 #eee)
+  @include box-shadow(inset 0 1px 0 0 #fafafa)
+  @include background-image(linear-gradient(top, #eee, #ccc))
+  color: #333
+
+  &:hover
+    border: 1px solid lighten(#ccc, 5)
+    border-bottom: 1px solid lighten(#bbb, 5)
+    @include text-shadow(0 -1px 0 lighten(#eee, 5))
+    @include box-shadow(inset 0 1px 0 0 lighten(#fafafa, 5))
+    @include background-image(linear-gradient(top, lighten(#eee, 5), lighten(#ccc, 5)))

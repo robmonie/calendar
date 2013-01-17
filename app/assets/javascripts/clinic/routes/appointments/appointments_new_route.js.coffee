@@ -1,7 +1,7 @@
 Calendar.AppointmentsNewRoute = Ember.Route.extend
 
   model: ->
-    Calendar.Appointment.createRecord(startTime: new Date())
+    Calendar.Appointment.createRecord()
 
   setupController: (controller, model) ->
     controller.set('content', model)

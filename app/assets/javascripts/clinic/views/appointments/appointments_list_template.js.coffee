@@ -1,4 +1,4 @@
-Ember.TEMPLATES['appointments_table'] = Ember.Handlebars.compile """
+Ember.TEMPLATES['appointments_list'] = Ember.Handlebars.compile """
 
     <ul class="header">
       <li class="cell start-time">Start</li>

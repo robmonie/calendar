@@ -1,0 +1,1 @@
+Calendar.AppointmentsListController = Ember.ArrayController.extend()

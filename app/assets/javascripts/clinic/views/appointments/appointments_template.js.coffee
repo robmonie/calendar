@@ -1,7 +1,7 @@
 Ember.TEMPLATES['appointments'] = Ember.Handlebars.compile """
-  <div class="table-view-container">
+  <div class="list-container">
     {{view Calendar.AppointmentsToolbarView}}
-    {{view Calendar.AppointmentsTableView}}
+    {{view Calendar.AppointmentsListView}}
   </div>
   <div id="editor" {{bindAttr class="isEditing"}}>
     <div class="pad">

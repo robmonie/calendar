@@ -1,9 +1,15 @@
 Calendar.DateTimeField = Ember.TextField.extend
 
+  classNames: ['date-time']
   stepMinute: 5
 
   didInsertElement: ->
-    @$().datetimepicker(stepMinute: @get('stepMinute'))
+    @$().datetimepicker
+      dateFormat: Calendar.DATE_FORMAT
+      timeFormat: Calendar.TIME_FORMAT
+      stepMinute: @get('stepMinute')
+      # addSliderAccess: true
+      # sliderAccessArgs: { touchonly: true }
 
   willDestroyElement: ->
     @$().datetimepicker('destroy')
