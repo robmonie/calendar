@@ -1,15 +1,17 @@
 #editor
+  z-index: 4
   position: absolute
   width: 0
   right: 0
   top: 0
   bottom: 0
   background: #fff
-  border-left: 2px solid #aaa
+  border-left: 10px solid #E3F5D4
+  @include box-shadow(rgba(0, 0, 0, 0.2) -2px 0px 15px)
   @include opacity(0)
   @include transition(all, 0.5s)
   .pad
-    padding: 20px
+    padding: 0 30px
   &.is-editing
     @include opacity(1)
     width: 600px

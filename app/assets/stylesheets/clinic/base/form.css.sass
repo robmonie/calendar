@@ -1,6 +1,7 @@
 $label-width: 100px
 $label-right-margin: 10px
-
+$field-border-color: #bbb
+// STANDARD FORM LAYOUT ---
 .standard-form
   list-style: none
   margin: 0
@@ -13,7 +14,7 @@ $label-right-margin: 10px
       float: left
       margin-right: $label-right-margin
 
-    input, select
+    input, select, textarea
       float: left
 
 
@@ -35,9 +36,38 @@ $label-right-margin: 10px
         display: inline-block
         margin-right: 10px
 
-input, select
-  padding: 5px 7px
+  // FIELDS ---
 
+  input, select, textarea
+    padding: 7px 10px
+
+  input, textarea
+    width: 400px
+    border: 1px solid $field-border-color
+
+  textarea
+    height: 150px
+
+  .date-time-field
+    width: 150px
+    cursor: pointer
+
+  .number
+    width: 30px
+
+  .price
+    width: 60px
+
+  .add-on
+    @include type-setter(0.7, 2, normal)
+    background: #eee
+    border: 1px solid $field-border-color
+    border-left: none
+    display: inline-block
+    padding: 0 5px
+    @include border-radius(0px 5px 5px 0px)
+
+// BUTTONS ---
 button, a.btn
   border-radius: 3px
   padding: 7px 15px 8px 15px
@@ -46,7 +76,6 @@ button, a.btn
 
 button
   padding: 8px 15px 10px 15px
-
 
 button.primary, a.btn.primary
   border: 1px solid #63A62F

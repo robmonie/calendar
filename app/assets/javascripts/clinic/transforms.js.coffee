@@ -7,6 +7,7 @@ Calendar.transforms =
         if date
           dateString = $.datepicker.formatDate(Calendar.DATE_FORMAT, date)
           timeString = $.datepicker.formatTime(Calendar.TIME_FORMAT, date)
+          dateString + " " + timeString
         else
           ""
       else

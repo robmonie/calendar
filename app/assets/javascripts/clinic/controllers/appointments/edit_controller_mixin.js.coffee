@@ -1,9 +1,10 @@
 #= require clinic/transforms
-Calendar.AppointmentsNewController = Ember.ObjectController.extend
+Calendar.AppointmentsEditControllerMixin = Ember.Mixin.create
 
-  clients: []
+  clients: null
   startTime: Calendar.transforms.dateString('content.startTime')
   endTime: Calendar.transforms.dateString('content.endTime')
 
   save: ->
     Calendar.store.commit()
+    @transitionToRoute('appointments')

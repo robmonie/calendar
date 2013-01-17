@@ -7,7 +7,7 @@ Calendar.AppointmentsRoute = Ember.Route.extend
 
   events:
     toolbarLink: (linkTo) ->
-      @transitionTo(linkTo.replace('/', '.'))
+      @transitionTo(linkTo)
 
     toolbarAction: (actionName) ->
       @[actionName]()

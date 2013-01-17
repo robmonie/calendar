@@ -1,6 +1,6 @@
 Calendar.DateTimeField = Ember.TextField.extend
 
-  classNames: ['date-time']
+  classNames: ['date-time-field']
   stepMinute: 5
 
   didInsertElement: ->

@@ -2,5 +2,5 @@
 Calendar.AppointmentTypesToolbarView = Calendar.ToolbarView.extend
 
   items: [
-    { label: 'New Appointment Type', linkTo: 'appointmentTypes/new' }
+    { label: 'New Appointment Type', linkTo: 'appointmentTypes.new' }
   ]
