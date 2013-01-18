@@ -1,4 +1,4 @@
-Ember.TEMPLATES['appointment_types/new'] = Ember.Handlebars.compile """
+Ember.TEMPLATES['appointment_type_edit'] = Ember.Handlebars.compile """
 
   <ul class="standard-form">
     <li><h2>Appointment Type</h2></li>
@@ -20,7 +20,7 @@ Ember.TEMPLATES['appointment_types/new'] = Ember.Handlebars.compile """
           <button {{action save}} class="primary">Save</button>
         </li>
         <li>
-          {{#linkTo 'appointmentTypes' class="btn secondary"}}Close{{/linkTo}}
+          <button {{action close}} class="secondary">Close</button>
         </li>
       </ul>
     </li>

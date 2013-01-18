@@ -7,11 +7,13 @@ Ember.TEMPLATES['appointment_types_list'] = Ember.Handlebars.compile """
     </ul>
 
     <ul class="body">
-      {{#each controller}}
+      {{#each appointmentType in controller}}
         <li>
-          <div class="cell name">{{name}}</div>
-          <div class="cell duration">{{duration}}</div>
-          <div class="cell price">{{price}}</div>
+          {{#linkTo 'appointmentTypes.edit' appointmentType}}
+            <div class="cell name">{{appointmentType.name}}</div>
+            <div class="cell duration">{{appointmentType.duration}}</div>
+            <div class="cell price">{{appointmentType.price}}</div>
+          {{/linkTo}}
         </li>
       {{/each}}
     </ul>

@@ -13,7 +13,7 @@ $table-header-height: 46px
   ul.toolbar
     height: $toolbar-height
     background: $toolbar-bg
-    border-bottom: darken($toolbar-bg, 20)
+    @include box-shadow(inset 0 0 1px rgba(0, 0, 0, 0.5))
     z-index: 3
     li
       margin: 6px
@@ -64,7 +64,7 @@ $table-header-height: 46px
       li > a
         display: block
         border-bottom: 1px solid rgba(0, 0, 0, 0.1)
-        &.active
-          background: #E3F5D4
         &:hover
           background: lighten($table-row-color, 20)
+        &.active
+          background: #E3F5D4

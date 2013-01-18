@@ -27,7 +27,7 @@ Ember.TEMPLATES['appointment_edit'] = Ember.Handlebars.compile """
           <button {{action save}} class="primary">Save</button>
         </li>
         <li>
-          {{#linkTo 'appointments' class="btn secondary"}}Close{{/linkTo}}
+          <button {{action close}} class="secondary">Close</button>
         </li>
       </ul>
     </li>

@@ -1,5 +1,6 @@
-Calendar.AppointmentTypesNewController = Ember.ObjectController.extend
+#= require ../edit_controller_mixin
+#= require ./edit_controller_mixin
+Calendar.AppointmentTypesNewController = Ember.ObjectController.extend(Calendar.EditControllerMixin, Calendar.AppointmentTypesEditControllerMixin)
 
-  save: ->
-    Calendar.store.commit()
-    @transitionToRoute('appointmentTypes')
+
+
