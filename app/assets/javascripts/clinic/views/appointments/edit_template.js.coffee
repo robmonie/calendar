@@ -1,36 +1,37 @@
 Ember.TEMPLATES['appointment_edit'] = Ember.Handlebars.compile """
-
-  <ul class="standard-form">
-    <li>
-      <h2>Appointment</h2>
-    </li>
-    <li>
-      <label>Start</label>{{view Calendar.DateTimeField valueBinding="startTime"}}
-    </li>
-    <li>
-      <label>End</label>{{view Calendar.DateTimeField valueBinding="endTime"}}
-    </li>
-    <li>
-      <label>Client</label>{{view Ember.Select
-        contentBinding="clients"
-        optionValuePath="content.id"
-        optionLabelPath="content.name"
-        selectionBinding="client"
-        prompt="Select client"}}
-    </li>
-    <li>
-      <label>Comments</label>{{view Ember.TextArea valueBinding="comments"}}
-    </li>
-    <li class="actions">
-      <ul>
+  <div class="mask" {{bindAttr class="isDirty"}}></div>
+  <div id="editor" {{bindAttr class="isEditing"}}>
+    <div class="pad">
+      <div class="unsaved-changes" {{bindAttr class="isDirty"}}><i></i>You have unsaved changes</div>
+      <ul class="standard-form">
         <li>
-          <button {{action save}} class="primary">Save</button>
+          <h2>Appointment</h2>
         </li>
         <li>
-          <button {{action close}} class="secondary">Close</button>
+          {{view Calendar.DateTimeField label="Start Date/Time" valueBinding="startTime" required="true"}}
+        </li>
+        <li>
+          {{view Calendar.DateTimeField label="End Date/Time" valueBinding="endTime" required="true"}}
+        </li>
+        <li>
+          {{view Calendar.Select
+            label="Client"
+            contentBinding="clients"
+            optionValuePath="content.id"
+            optionLabelPath="content.name"
+            selectionBinding="client"
+            prompt="Select client"
+            required="true"
+            }}
+        </li>
+        <li>
+          <label>Comments</label>{{view Ember.TextArea valueBinding="comments"}}
+        </li>
+        <li>
+        {{view Calendar.StandardFormActions}}
         </li>
       </ul>
-    </li>
-  </ul>
+    </div>
+  </div>
 
 """

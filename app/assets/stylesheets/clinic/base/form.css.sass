@@ -1,6 +1,9 @@
 $label-width: 100px
 $label-right-margin: 10px
 $field-border-color: #bbb
+$tip-text-color: #7ABCC3
+$error-text-color: #BB411F
+
 // STANDARD FORM LAYOUT ---
 .standard-form
   list-style: none
@@ -14,8 +17,14 @@ $field-border-color: #bbb
       float: left
       margin-right: $label-right-margin
 
-    input, select, textarea
+    .control-label
       float: left
+
+    .help-block
+      margin-left: $label-width + $label-right-margin
+      @include type-setter(0.8, 0.8, normal)
+      padding: 6px 0
+      color: $tip-text-color
 
 
   &>li:after
@@ -28,13 +37,12 @@ $field-border-color: #bbb
 
   .actions
     margin-top: 20px
-    ul
-      list-style: none
-      margin: 0 0 0 $label-width + $label-right-margin
-      padding: 0
-      li
-        display: inline-block
-        margin-right: 10px
+    list-style: none
+    margin: 0 0 0 $label-width + $label-right-margin
+    padding: 0
+    li
+      display: inline-block
+      margin-right: 10px
 
   // FIELDS ---
 
@@ -52,10 +60,10 @@ $field-border-color: #bbb
     width: 150px
     cursor: pointer
 
-  .number
+  .number input
     width: 30px
 
-  .price
+  .price input
     width: 60px
 
   .add-on
@@ -66,6 +74,34 @@ $field-border-color: #bbb
     display: inline-block
     padding: 0 5px
     @include border-radius(0px 5px 5px 0px)
+
+  .error
+    label
+      color: $error-text-color
+    .help-block
+      color: $error-text-color
+    select, input, textarea
+      background: lighten($error-text-color, 55)
+
+.unsaved-changes
+  opacity: 0
+  background: $tip-text-color
+  color: #fff
+  @include border-radius(3px)
+  @include type-setter(0.7, 1, normal)
+  float: right
+  display: inline-block
+  padding: 5px 10px 5px 2px
+  margin-left: 20px
+  @include transition(all, 1s)
+  &.is-dirty
+    opacity: 1
+  i
+    float: left
+    display: block
+    width: 23px
+    height: 16px
+    background: url(asset-path("glyphicons-halflings-white.png", image)) -116px 0
 
 // BUTTONS ---
 button, a.btn

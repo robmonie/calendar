@@ -1,29 +1,26 @@
 Ember.TEMPLATES['appointment_type_edit'] = Ember.Handlebars.compile """
-
-  <ul class="standard-form">
-    <li><h2>Appointment Type</h2></li>
-    <li>
-      <label>Name</label>{{view Ember.TextField valueBinding="name"}}
-    </li>
-     <li>
-      <label>Description</label>{{view Ember.TextArea valueBinding="description"}}
-    </li>
-     <li>
-      <label>Duration</label>{{view Ember.TextField valueBinding="duration" class="number"}}<span class="add-on">mins</span>
-    </li>
-     <li>
-      <label>Price ($)</label>{{view Ember.TextField valueBinding="price" class="price"}}
-    </li>
-    <li class="actions">
-      <ul>
+  <div class="mask" {{bindAttr class="isDirty"}}></div>
+  <div id="editor" {{bindAttr class="isEditing"}}>
+    <div class="pad">
+      <div class="unsaved-changes" {{bindAttr class="isDirty"}}><i></i>You have unsaved changes</div>
+      <ul class="standard-form">
+        <li><h2>Appointment Type</h2></li>
         <li>
-          <button {{action save}} class="primary">Save</button>
+          {{view Calendar.TextField valueBinding="name" label="Name" hint="Clients will see this name online" required="true"}}
+        </li>
+         <li>
+          {{view Calendar.TextArea label="Description" valueBinding="description" required="true"}}
+        </li>
+         <li>
+          {{view Calendar.TextField label="Duration" valueBinding="duration" required="true" hint="In minutes" class="number"}}
         </li>
         <li>
-          <button {{action close}} class="secondary">Close</button>
+          {{view Calendar.TextField label="Price ($)" valueBinding="price" required="true" class="price"}}
+        </li>
+        <li>
+          {{view Calendar.StandardFormActions}}
         </li>
       </ul>
-    </li>
-  </ul>
-
+    </div>
+  </div>
 """

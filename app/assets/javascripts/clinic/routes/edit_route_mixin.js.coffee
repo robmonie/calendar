@@ -1,8 +1,17 @@
 Calendar.EditRouteMixin = Ember.Mixin.create
 
   setupController: (controller, model) ->
-    controller.set('content', model)
-    @controllerFor(@get('baseRoute')).set('isEditing', true)
+
+    currentModel = controller.get('content')
+    if currentModel && currentModel.get('isDirty')
+      @transitionTo(@templateName, currentModel)
+    else
+      controller.set('content', model)
+      controller.set('isEditing', true)
+      @setupControllerExtras(controller, model)
+
+  #implement in consumers of this mixin to provide extra controller setup
+  setupControllerExtras: ->
 
   exit: ->
-    @controllerFor(@get('baseRoute')).set('isEditing', false)
+    @controllerFor(@templateName).set('isEditing', false)

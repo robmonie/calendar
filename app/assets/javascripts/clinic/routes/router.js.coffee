@@ -6,4 +6,4 @@ Calendar.Router.map (match) ->
 
   match('/appointment_types').to 'appointmentTypes', (match) ->
     match('new').to('new')
-    match('/:id').to('edit')
+    match('/:appointment_type_id').to('edit')
