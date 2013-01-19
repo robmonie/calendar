@@ -1,7 +1,7 @@
 #= require ../edit_route_mixin
 Calendar.AppointmentTypesNewRoute = Ember.Route.extend Calendar.EditRouteMixin,
 
-  baseRoute: 'appointmentTypes'
+  indexRoute: 'appointmentTypes'
 
   model: ->
     Calendar.AppointmentType.createRecord()

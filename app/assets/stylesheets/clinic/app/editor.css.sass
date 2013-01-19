@@ -6,15 +6,15 @@ $padding: 30px
   position: absolute
   top: 0
   bottom: 0
+  right: 0
   width: 0
-  opacity: 0
+  background: rgba(0, 0, 0, 0.5)
   @include transition(all, 1s)
+  opacity: 0
   &.is-dirty
+    opacity: 1
     width: auto
     left: 0
-    right: 0
-    opacity: 1
-    background: rgba(0, 0, 0, 0.5)
 
 #editor
   z-index: 5

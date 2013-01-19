@@ -7,9 +7,8 @@ Calendar.Validator = Ember.Object.extend({
     validationGroup = host.nearestWithProperty("isValidationGroup"); //nearestInstanceOf doesn't seemt to work with mixin ?
 
     if (validationGroup) {
-      // validationGroup = nearestWithValidationGroup.get('validationGroup');
       this.set('validationGroup', validationGroup);
-      validationGroup.notifyValidity(this, false);
+      validationGroup.notifyValidity(this, true);
     }
 
     this.set('rules', rules = []);
@@ -54,7 +53,14 @@ Calendar.Validator = Ember.Object.extend({
 
   },
 
+  validateAgainstHostField: function() {
+    this.set('host.hasHadFocus', true);
+    console.log(this.get('host.value') || this.get('host.selection'));
+    this.validate(this.get('host.value') || this.get('host.selection'));
+  },
+
   validate: (function(value) {
+
     var errorMessages, errors, requiredRule, rule, rules, _i, _len;
     errors = this.get('errors');
     rules = this.get('rules');
@@ -87,8 +93,8 @@ Calendar.Validator = Ember.Object.extend({
   notifyValidity: (function() {
     var validationGroup;
     if (validationGroup = this.get('validationGroup')) {
-      validationGroup.notifyValidity(this, this.get('host.errorMessages.length') === 0);
+      validationGroup.notifyValidity(this, this.get('host.isValid'));
     }
-  }).observes('host.errorMessages')
+  }).observes('host.isValid')
 
 });

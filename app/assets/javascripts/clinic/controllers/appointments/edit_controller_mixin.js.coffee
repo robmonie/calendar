@@ -5,5 +5,4 @@ Calendar.AppointmentsEditControllerMixin = Ember.Mixin.create
   startTime: Calendar.transforms.dateString('content.startTime')
   endTime: Calendar.transforms.dateString('content.endTime')
 
-  saveTargetRoute: 'appointments'
-  closeTargetRoute: 'appointments'
+  indexRoute: 'appointments'

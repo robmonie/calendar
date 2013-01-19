@@ -4,32 +4,36 @@ Calendar.ValidationGroup = Ember.Mixin.create({
 
   init: function() {
     this._super();
-    return this._validity = {};
+    this._validityMap = {};
+  },
+
+  afterRender: function() {
+    this.controller.set('validationGroup', this);
   },
 
   notifyValidity: function(validatable, validity) {
-    if (this._validity[validatable] !== validity) {
-      this._validity[validatable] = validity;
-      return this.set('lastUpdated', new Date());
-    }
+    this._validityMap[validatable] = {validity: validity, validatable: validatable};
+    this.set('lastUpdated', new Date().getTime() + validity.toString());
   },
 
   unregister: function(validatable) {
-    return delete this._validity[validatable];
+    delete this._validityMap[validatable];
+  },
+
+  validate: function() {
+    _.each(_.values(this._validityMap), function(item) {
+      item.validatable.validateAgainstHostField();
+    });
   },
 
   isValid: (function() {
-    var k, valid = true, validity;
-    valid = true;
-    validity = this._validity;
+    return _.all(_.values(this._validityMap), function(item) {
+      return item.validity;
+    });
+  }).property('lastUpdated').cacheable(),
 
-    for (k in validity) {
-      if (!validity[k]) {
-        valid = false;
-        break;
-      }
-    }
-    return valid;
-  }).property('lastUpdated').cacheable()
+  isInvalid: (function() {
+    return ! this.get('isValid')
+  }).property('isValid').cacheable()
 
 });

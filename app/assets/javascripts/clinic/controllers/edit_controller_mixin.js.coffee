@@ -1,8 +1,12 @@
 Calendar.EditControllerMixin = Ember.Mixin.create
 
   save: ->
+    if validationGroup = @get('validationGroup')
+      validationGroup.validate()
+      return unless validationGroup.get('isValid')
+
     Calendar.store.commit()
-    @transitionToRoute(@get('saveTargetRoute'))
+    @transitionToRoute(@get('indexRoute'))
 
   close: ->
     model = @get('content')
@@ -11,5 +15,5 @@ Calendar.EditControllerMixin = Ember.Mixin.create
     else if model.get('isDirty')
       Calendar.store.defaultTransaction.rollback()
 
-    @transitionToRoute(@get('closeTargetRoute'))
-
+    @controllerFor(@get('indexRoute')).set('isDirty', false)
+    @transitionToRoute(@get('indexRoute'))

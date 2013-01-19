@@ -1,7 +1,7 @@
 #= require ../edit_route_mixin
 Calendar.AppointmentsEditRoute = Ember.Route.extend Calendar.EditRouteMixin,
 
-  baseRoute: 'appointments'
+  indexRoute: 'appointments'
 
   setupControllerExtras: (controller, model) ->
     controller.set('clients', Calendar.Client.find())
