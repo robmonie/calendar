@@ -78,6 +78,17 @@ Calendar.validatorRegistry.addValidator('email', {
 );
 
 /**
+* Validates that a value is  number
+*/
+Calendar.validatorRegistry.addValidator('number', {
+    isValid: function(value) {
+      return !isNaN(Number(value))
+    },
+    message: "{label} must be a number"
+  }
+);
+
+/**
 * Validates the max length of a string.
 * If creating directly, instantiate with:
 * @property max

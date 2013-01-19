@@ -9,10 +9,10 @@ Ember.TEMPLATES['appointment_type_edit'] = Ember.Handlebars.compile """
         {{view Calendar.TextArea label="Description" valueBinding="description" required="true"}}
       </li>
        <li>
-        {{view Calendar.TextField label="Duration" valueBinding="duration" required="true" hint="In minutes" class="number"}}
+        {{view Calendar.TextField label="Duration" valueBinding="duration" required="true" validators="number" hint="In minutes" class="number"}}
       </li>
       <li>
-        {{view Calendar.TextField label="Price ($)" valueBinding="price" required="true" class="price"}}
+        {{view Calendar.TextField label="Price ($)" valueBinding="price" required="true" validators="number" class="price"}}
       </li>
       <li>
         {{view Calendar.StandardFormActions}}

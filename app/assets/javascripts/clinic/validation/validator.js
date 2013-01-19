@@ -55,11 +55,10 @@ Calendar.Validator = Ember.Object.extend({
 
   validateAgainstHostField: function() {
     this.set('host.hasHadFocus', true);
-    console.log(this.get('host.value') || this.get('host.selection'));
     this.validate(this.get('host.value') || this.get('host.selection'));
   },
 
-  validate: (function(value) {
+  validate: function(value) {
 
     var errorMessages, errors, requiredRule, rule, rules, _i, _len;
     errors = this.get('errors');
@@ -79,8 +78,9 @@ Calendar.Validator = Ember.Object.extend({
         }
       }
     }
-    return this.get('host').set('errorMessages', errorMessages);
-  }),
+
+    return this.set('host.errorMessages', errorMessages);
+  },
 
   destroy: function() {
     var validationGroup;
