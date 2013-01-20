@@ -42,6 +42,8 @@ $table-header-height: 46px
         display: inline-block
         padding: 15px
         overflow: hidden
+        white-space: nowrap
+        text-overflow: ellipsis
     .header
       @include box-shadow(rgba(0, 0, 0, 0.2) 0px 3px 5px)
       height: $table-header-height
@@ -61,11 +63,14 @@ $table-header-height: 46px
       right: 0
       overflow: scroll
       z-index: 1
-      li > a
-        display: block
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1)
-        &:hover
-          background: #fff
-          color: #222
-        &.active
-          background: #E3F5D4
+      li
+        overflow: hidden
+        white-space: nowrap
+        &> a
+          display: block
+          border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+          &:hover
+            background: #fff
+            color: #222
+          &.active
+            background: #E3F5D4

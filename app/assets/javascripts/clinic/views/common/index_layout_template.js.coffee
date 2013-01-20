@@ -1,8 +1,5 @@
-Ember.TEMPLATES['appointments'] = Ember.Handlebars.compile """
-  <div class="list-container">
-    {{view Calendar.AppointmentsToolbarView}}
-    {{view Calendar.AppointmentsListView}}
-  </div>
+Ember.TEMPLATES['index_layout'] = Ember.Handlebars.compile """
+  {{yield}}
   <div class="mask" {{bindAttr class="editController.isDirty"}}></div>
   <div id="editor" {{bindAttr class="isEditing"}}>
     <div class="pad">
