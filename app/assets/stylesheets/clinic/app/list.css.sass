@@ -80,13 +80,19 @@ $table-header-height: 46px
       top: $table-header-height
       left: 0
       right: 0
-      height: 30px
+      height: 0
       background: #E5F5BD
       z-index: 2
       padding: 10px
       line-height: 30px
       border-top: 1px solid #aaa
+      opacity: 0
       @include box-shadow(rgba(0, 0, 0, 0.2) 0px 3px 5px)
+      @include transition(all, 0.5s)
+      overflow: hidden
+      &.deletion-commit-scheduled
+        height: 30px
+        opacity: 1
       span
         display: inline-block
         margin-right: 20px
