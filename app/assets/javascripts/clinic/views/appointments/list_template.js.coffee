@@ -7,6 +7,8 @@ Ember.TEMPLATES['appointments_list'] = Ember.Handlebars.compile """
       <li class="cell comments">Comments</li>
     </ul>
 
+    {{view Calendar.UndoDeleteMessageView message="You have just deleted an Appointment"}}
+
     <ul class="body">
       {{#each appointment in controller}}
         <li>

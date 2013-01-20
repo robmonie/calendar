@@ -6,7 +6,7 @@ Calendar.transforms =
         date = @get('content.' + key)
         if date
           dateString = $.datepicker.formatDate(Calendar.DATE_FORMAT, date)
-          timeString = $.datepicker.formatTime(Calendar.TIME_FORMAT, date)
+          timeString = $.datepicker.formatTime(Calendar.TIME_FORMAT, { hour: date.getHours(), minute: date.getMinutes() })
           dateString + " " + timeString
         else
           ""

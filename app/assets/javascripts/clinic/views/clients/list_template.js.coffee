@@ -6,6 +6,8 @@ Ember.TEMPLATES['clients_list'] = Ember.Handlebars.compile """
       <li class="cell email">Email</li>
     </ul>
 
+    {{view Calendar.UndoDeleteMessageView message="You have just deleted a Client"}}
+
     <ul class="body">
       {{#each client in controller}}
         <li>

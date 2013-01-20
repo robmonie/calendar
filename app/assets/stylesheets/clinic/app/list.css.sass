@@ -74,3 +74,22 @@ $table-header-height: 46px
             color: #222
           &.active
             background: #E3F5D4
+
+    .undo-delete-message
+      position: absolute
+      top: $table-header-height
+      left: 0
+      right: 0
+      height: 30px
+      background: #E5F5BD
+      z-index: 2
+      padding: 10px
+      line-height: 30px
+      border-top: 1px solid #aaa
+      @include box-shadow(rgba(0, 0, 0, 0.2) 0px 3px 5px)
+      span
+        display: inline-block
+        margin-right: 20px
+      button
+        @include type-setter(0.8, 0.7, normal)
+

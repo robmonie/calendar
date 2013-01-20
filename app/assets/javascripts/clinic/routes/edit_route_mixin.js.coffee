@@ -14,4 +14,5 @@ Calendar.EditRouteMixin = Ember.Mixin.create
   setupControllerExtras: ->
 
   exit: ->
+    Calendar.store.defaultTransaction.rollback() # in case we exit via browser history
     @controllerFor(@get('indexRoute')).set('editController', null)

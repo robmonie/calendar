@@ -17,3 +17,8 @@ Calendar.EditControllerMixin = Ember.Mixin.create
 
     @controllerFor(@get('indexRoute')).set('isDirty', false)
     @transitionToRoute(@get('indexRoute'))
+
+  delete: ->
+    @get('content').deleteRecord()
+    @controllerFor(@get('indexRoute')).set('deletionCommitScheduled', true)
+    @transitionToRoute(@get('indexRoute'))

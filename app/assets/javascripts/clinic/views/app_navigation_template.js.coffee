@@ -4,7 +4,6 @@ Ember.TEMPLATES['app_navigation'] = Ember.Handlebars.compile """
     <li>{{#linkTo "clients"}}Clients{{/linkTo}}</li>
     <li><h2>Preferences</h2></li>
     <li>{{#linkTo "appointmentTypes"}}Appointment types{{/linkTo}}</li>
-    <li>{{#linkTo "appointments"}}Availability{{/linkTo}}</li>
-    <li>{{#linkTo "appointments"}}Busy time{{/linkTo}}</li>
+    <li>{{#linkTo "availabilities"}}Availability{{/linkTo}}</li>
   </ul>
 """
