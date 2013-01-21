@@ -4,10 +4,20 @@ window.Calendar = Ember.Application.create
     rootUrl: '/clinic/'
     # location: 'history'
 
+DS.RESTAdapter.configure("plurals", {
+  availability: "availabilities"
+})
+
+
 Calendar.store = DS.Store.create
   revision: 11
-  adapter: DS.LSAdapter.create
-    namespace: 'calendar'
+  adapter: DS.RESTAdapter.create
+    namespace: 'rest'
+
+
+
+  # adapter: DS.LSAdapter.create
+  #   namespace: 'calendar'
 
 
 # Calendar.set('timezone', '+1200')

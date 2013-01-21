@@ -32,6 +32,13 @@ Calendar::Application.routes.draw do
     end
   end
 
+  namespace :rest do
+    resources :appointments, :except => :edit
+    resources :appointment_types, :except => :edit
+    resources :availabilities, :except => :edit
+    resources :clients, :except => :edit
+  end
+
   match 'pages/ping' => 'pages#ping'
 
   match '*clinic' => 'clinics#index'

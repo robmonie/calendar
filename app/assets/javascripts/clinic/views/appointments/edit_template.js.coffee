@@ -31,7 +31,6 @@ Ember.TEMPLATES['appointment_edit'] = Ember.Handlebars.compile """
             {{/if}}
             between {{date overlappingAppointment.startTime format="hh:mm tt"}} - {{date overlappingAppointment.endTime format="hh:mm tt"}}
           </div>
-
         {{/if}}
       </li>
       <li>
