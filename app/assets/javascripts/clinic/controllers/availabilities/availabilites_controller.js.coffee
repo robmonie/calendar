@@ -1,6 +1,6 @@
-#= require ../scheduled_deletion_commit_controller_mixin
+#= require ../scheduled_transaction_commit_controller_mixin
 
-Calendar.AvailabilitiesController = Ember.ArrayController.extend Calendar.ScheduledDeletionCommitControllerMixin,
+Calendar.AvailabilitiesController = Ember.ArrayController.extend Calendar.ScheduledTransactionCommitControllerMixin,
 
   templateName: 'availabilities'
   editController: null

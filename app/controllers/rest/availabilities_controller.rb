@@ -29,4 +29,12 @@ class Rest::AvailabilitiesController < Rest::BaseController
     end
   end
 
+  def destroy
+    if @availability.destroy
+      head :no_content
+    else
+      head :bad_request
+    end
+  end
+
 end

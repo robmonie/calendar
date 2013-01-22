@@ -1,5 +1,7 @@
 class Rest::AppointmentTypesController < Rest::BaseController
 
+  include ActiveModel::ForbiddenAttributesProtection
+
   load_and_authorize_resource
 
   def index
@@ -26,6 +28,14 @@ class Rest::AppointmentTypesController < Rest::BaseController
       render :json => @appointment_type
     else
       #What to do here ?
+    end
+  end
+
+  def destroy
+    if @appointment_type.destroy
+      head :no_content
+    else
+      head :bad_request
     end
   end
 

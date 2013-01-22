@@ -1,5 +1,5 @@
-#= require ../scheduled_deletion_commit_controller_mixin
-Calendar.AppointmentsController = Ember.ArrayController.extend Calendar.ScheduledDeletionCommitControllerMixin,
+#= require ../scheduled_transaction_commit_controller_mixin
+Calendar.AppointmentsController = Ember.ArrayController.extend Calendar.ScheduledTransactionCommitControllerMixin,
 
   templateName: 'appointments'
   editController: null

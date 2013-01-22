@@ -29,5 +29,13 @@ class Rest::AppointmentsController < Rest::BaseController
     end
   end
 
+  def destroy
+    if @appointment.destroy
+      head :no_content
+    else
+      head :bad_request
+    end
+  end
+
 
 end

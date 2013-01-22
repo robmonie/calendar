@@ -8,13 +8,28 @@ DS.RESTAdapter.configure("plurals", {
   availability: "availabilities"
 })
 
+DS.RESTAdapter.configure('Calendar.Appointment', {
+  sideloadAs: 'appointments'
+})
+DS.RESTAdapter.configure('Calendar.AppointmentType', {
+  sideloadAs: 'appointment_types'
+})
+
+DS.RESTAdapter.configure('Calendar.Availability', {
+  sideloadAs: 'availabilities'
+})
+
+DS.RESTAdapter.configure('Calendar.Client', {
+  sideloadAs: 'clients'
+})
+
+
+
 
 Calendar.store = DS.Store.create
   revision: 11
   adapter: DS.RESTAdapter.create
     namespace: 'rest'
-
-
 
   # adapter: DS.LSAdapter.create
   #   namespace: 'calendar'
