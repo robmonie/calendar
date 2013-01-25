@@ -18,7 +18,9 @@ Ember.TEMPLATES['appointment_types_list'] = Ember.Handlebars.compile """
           {{/linkTo}}
         </li>
       {{else}}
-        <li class="empty-message">You have no appointment types defined. {{#linkTo 'appointmentTypes.new'}}Create one.{{/linkTo}}</li>
+        {{#unless content.isUpdating}}
+          <li class="empty-message">You have no appointment types defined. {{#linkTo 'appointmentTypes.new'}}Create one.{{/linkTo}}</li>
+        {{/unless}}
       {{/each}}
     </ul>
 """

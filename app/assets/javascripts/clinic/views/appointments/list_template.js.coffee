@@ -20,7 +20,9 @@ Ember.TEMPLATES['appointments_list'] = Ember.Handlebars.compile """
           {{/linkTo}}
         </li>
       {{else}}
-        <li class="empty-message">You have no appointments. {{#linkTo 'appointments.new'}}Create one.{{/linkTo}}</li>
+        {{#unless content.isUpdating}}
+          <li class="empty-message">You have no appointments. {{#linkTo 'appointments.new'}}Create one.{{/linkTo}}</li>
+        {{/unless}}
       {{/each}}
     </ul>
 """

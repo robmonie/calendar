@@ -18,7 +18,9 @@ Ember.TEMPLATES['clients_list'] = Ember.Handlebars.compile """
           {{/linkTo}}
         </li>
       {{else}}
-        <li class="empty-message">You have no clients. {{#linkTo 'clients.new'}}Create one.{{/linkTo}}</li>
+        {{#unless content.isUpdating}}
+          <li class="empty-message">You have no clients. {{#linkTo 'clients.new'}}Create one.{{/linkTo}}</li>
+        {{/unless}}
       {{/each}}
     </ul>
 """
