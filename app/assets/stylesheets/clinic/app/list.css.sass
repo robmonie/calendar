@@ -74,6 +74,13 @@ $table-header-height: 46px
             color: #222
           &.active
             background: #E3F5D4
+        &.empty-message
+          padding: 40px
+          @include type-setter(2.6, 2.6, bold)
+          color: #bbb
+          @include text-shadow(rgba(255, 255, 255, 1) 0px 2px 3px)
+          a
+            display: inline
 
     .undo-delete-message
       position: absolute

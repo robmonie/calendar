@@ -17,6 +17,8 @@ Ember.TEMPLATES['availabilities_list'] = Ember.Handlebars.compile """
             <div class="cell end">{{zeroPad availability.endHour length="2"}}:{{zeroPad availability.endMinute length="2"}}</div>
           {{/linkTo}}
         </li>
+      {{else}}
+        <li class="empty-message">You have no availabilities. {{#linkTo 'availabilities.new'}}Create one.{{/linkTo}}</li>
       {{/each}}
     </ul>
 """

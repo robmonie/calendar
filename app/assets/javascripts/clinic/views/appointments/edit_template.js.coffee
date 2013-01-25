@@ -47,7 +47,7 @@ Ember.TEMPLATES['appointments/edit'] = Ember.Handlebars.compile """
         <label>Comments</label>{{view Ember.TextArea valueBinding="comments"}}
       </li>
       <li>
-        {{view Calendar.StandardFormActions}}
+        {{partial "standard_form_actions"}}
       </li>
     </ul>
 """

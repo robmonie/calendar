@@ -15,7 +15,7 @@ Ember.TEMPLATES['appointment_types/edit'] = Ember.Handlebars.compile """
         {{view Calendar.TextField label="Price ($)" valueBinding="price" required="true" validators="number" class="price"}}
       </li>
       <li>
-        {{view Calendar.StandardFormActions}}
+        {{partial "standard_form_actions"}}
       </li>
     </ul>
 

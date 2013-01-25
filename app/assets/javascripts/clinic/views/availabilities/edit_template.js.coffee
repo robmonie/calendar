@@ -55,7 +55,7 @@ Ember.TEMPLATES['availabilities/edit'] = Ember.Handlebars.compile """
           }}
       </li>
       <li>
-        {{view Calendar.StandardFormActions}}
+        {{partial "standard_form_actions"}}
       </li>
     </ul>
 """

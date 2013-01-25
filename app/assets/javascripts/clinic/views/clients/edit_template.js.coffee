@@ -13,7 +13,7 @@ Ember.TEMPLATES['clients/edit'] = Ember.Handlebars.compile """
         {{view Calendar.TextField label="Email" valueBinding="email"}}
       </li>
       <li>
-        {{view Calendar.StandardFormActions}}
+        {{partial "standard_form_actions"}}
       </li>
     </ul>
 """
