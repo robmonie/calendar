@@ -1,4 +1,4 @@
-Ember.TEMPLATES['client_edit'] = Ember.Handlebars.compile """
+Ember.TEMPLATES['clients/edit'] = Ember.Handlebars.compile """
     <ul class="standard-form">
       <li>
         <h2>Client</h2>

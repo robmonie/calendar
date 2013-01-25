@@ -1,4 +1,4 @@
-Ember.TEMPLATES['appointment_type_edit'] = Ember.Handlebars.compile """
+Ember.TEMPLATES['appointment_types/edit'] = Ember.Handlebars.compile """
 
     <ul class="standard-form">
       <li><h2>Appointment Type</h2></li>
