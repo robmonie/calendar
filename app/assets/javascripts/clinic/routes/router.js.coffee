@@ -1,17 +1,19 @@
-Calendar.Router.map (match) ->
+Calendar.Router.map ->
 
-  match('/appointments').to 'appointments', (match) ->
-    match('new').to('new')
-    match('/:appointment_id').to('edit')
+  @resource 'appointments', { path: '/appointments'}, ->
+    @route 'new'
+    @route 'edit', { path: "/:appointment_id" }
 
-  match('/appointment_types').to 'appointmentTypes', (match) ->
-    match('new').to('new')
-    match('/:appointment_type_id').to('edit')
 
-  match('/clients').to 'clients', (match) ->
-    match('new').to('new')
-    match('/:client_id').to('edit')
+  @resource 'appointmentTypes', { path: '/appointment_types'}, ->
+    @route 'new'
+    @route 'edit', { path: "/:appointment_type_id" }
 
-  match('/availabilities').to 'availabilities', (match) ->
-    match('new').to('new')
-    match('/:availability_id').to('edit')
+  @resource 'clients', { path: '/clients'}, ->
+    @route 'new'
+    @route 'edit', { path: "/:client_id" }
+
+  @resource 'availabilities', { path: '/availabilities'}, ->
+    @route 'new'
+    @route 'edit', { path: "/:availability_id" }
+
