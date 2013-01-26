@@ -1,4 +1,4 @@
-class Api::DatesController < Api::BaseController
+class Api::Public::DatesController < Api::Public::BaseController
 
   before_filter :load_user
 

@@ -1,4 +1,4 @@
-class Api::TimeslotsController < Api::BaseController
+class Api::Public::TimeslotsController < Api::Public::BaseController
 
   before_filter :load_user
 

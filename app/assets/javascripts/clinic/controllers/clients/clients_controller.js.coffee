@@ -3,6 +3,8 @@ Calendar.ClientsController = Ember.ArrayController.extend Calendar.ScheduledTran
 
   templateName: 'clients'
   editController: null
+  sortProperties: ['name']
+
 
   isEditing: (->
     @get('editController') != null

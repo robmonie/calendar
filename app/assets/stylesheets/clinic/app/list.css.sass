@@ -1,7 +1,8 @@
 $toolbar-bg: #eee
 $toolbar-text: #666
 $toolbar-height: 45px
-$table-row-color: #eee
+$table-row-bg: #eee
+$table-row-text: #666
 $table-header-height: 46px
 
 .list-container
@@ -34,7 +35,7 @@ $table-header-height: 46px
     left: 0
     right: 0
 
-    .header, .body
+    .header, .body, .grouped-items
       list-style: none
       margin: 0
       padding: 0
@@ -64,15 +65,17 @@ $table-header-height: 46px
       right: 0
       overflow: scroll
       z-index: 1
-      li.cell
+      padding-bottom: 30px
+      li
         overflow: hidden
         white-space: nowrap
         &> a
           display: block
           border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+          color: $table-row-text
           &:hover
             background: #fff
-            color: #222
+            color: darken($table-row-text, 20)
           &.active
             background: #E3F5D4
       li.empty-message
@@ -84,6 +87,29 @@ $table-header-height: 46px
         a:hover
           color: rgba(0, 0, 0, 0.6)
 
+      .group-header
+        background: darken($table-row-bg, 5)
+        @include type-setter(1.2, 1.2, normal)
+        line-height: 8px
+        color: darken($table-row-text, 5)
+        padding: 15px
+        span
+          display: inline-block
+        .count
+          background: rgba(0, 0, 0, 0.2)
+          @include border-radius(20px)
+          @include type-setter(0.8, 0.8, normal)
+          @include box-shadow(1px 1px 1px rgba(255, 255, 255, 0.5))
+          width: 30px
+          height: 30px
+          line-height: 30px
+          text-align: center
+          margin-right: 20px
+
+      .is-today
+        .group-header
+          background: darken($table-row-bg, 40)
+          color: #fff
 
     .undo-delete-message
       position: absolute

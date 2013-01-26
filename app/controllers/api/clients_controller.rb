@@ -1,18 +1,40 @@
 class Api::ClientsController < Api::BaseController
 
-  before_filter :load_business
+  load_and_authorize_resource
 
-
-  def show
-    @client = @business.clients.find(params[:id])
-    authorize! :show, @client
-    respond_with @client
+  def index
+    @clients = current_user.business.clients
+    render :json => @clients
   end
 
-  private
+  def show
+    render :json => @client
+  end
 
-  def load_business
-    @business = Business.find(params[:business_id])
+  def create
+    @client.business = current_user.business
+    if @client.save
+      render :json => @client
+    else
+      #What to do here ?
+    end
+  end
+
+  def update
+    @client.update_attributes(params[:client])
+    if @client.save
+      render :json => @client
+    else
+      #What to do here ?
+    end
+  end
+
+  def destroy
+    if @client.destroy
+      head :no_content
+    else
+      head :bad_request
+    end
   end
 
 end

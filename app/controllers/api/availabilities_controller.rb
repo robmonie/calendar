@@ -1,4 +1,4 @@
-class Rest::AvailabilitiesController < Rest::BaseController
+class Api::AvailabilitiesController < Api::BaseController
 
   load_and_authorize_resource
 

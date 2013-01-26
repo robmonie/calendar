@@ -24,15 +24,12 @@ DS.RESTAdapter.configure('Calendar.Client', {
 })
 
 
-
-
 Calendar.store = DS.Store.create
   revision: 11
   adapter: DS.RESTAdapter.create
-    namespace: 'rest'
+    namespace: 'api'
 
-  # adapter: DS.LSAdapter.create
-  #   namespace: 'calendar'
+Calendar.mediator = Ember.Object.createWithMixins(Ember.Evented)
 
 
 # Calendar.set('timezone', '+1200')

@@ -1,4 +1,5 @@
 Ember.TEMPLATES['appointments/edit'] = Ember.Handlebars.compile """
+
     <ul class="standard-form appointment">
       <li>
         <h2>Appointment</h2>
@@ -43,6 +44,17 @@ Ember.TEMPLATES['appointments/edit'] = Ember.Handlebars.compile """
           prompt="Select client"
           }}
       </li>
+      {{#if client}}
+        <li>
+          {{view Calendar.TextField label="Client Name" valueBinding="client.name" required="true" autoFocus="true"}}
+        </li>
+        <li>
+          {{view Calendar.TextField label="Client Phone" valueBinding="client.phone" required="true" class="phone"}}
+        </li>
+        <li>
+          {{view Calendar.TextField label="Client Email" valueBinding="client.email" validators="email"}}
+        </li>
+      {{/if}}
       <li>
         <label>Comments</label>{{view Ember.TextArea valueBinding="comments"}}
       </li>

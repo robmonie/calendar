@@ -13,5 +13,5 @@ Calendar.AppointmentsRoute = Ember.Route.extend
     toolbarAction: (actionName) ->
       @[actionName]()
 
-
-
+  showToday: ->
+    Calendar.mediator.trigger('showToday')

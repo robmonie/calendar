@@ -1,4 +1,4 @@
-class Api::UsersController < Api::BaseController
+class Api::Public::UsersController < Api::Public::BaseController
 
   before_filter :load_business
 

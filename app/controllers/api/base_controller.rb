@@ -1,5 +1,8 @@
 class Api::BaseController < ActionController::Base
 
-  respond_to :json
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to new_user_session_url
+  end
+
 
 end

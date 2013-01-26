@@ -1,10 +1,10 @@
 Ember.TEMPLATES['toolbar'] = Ember.Handlebars.compile """
-  {{#each view.items}}
-    {{#if action}}
-      <li {{action 'toolbarAction' action}}>{{label}}</li>
+  {{#each item in view.items}}
+    {{#if item.action}}
+      <li {{action 'toolbarAction' item.action}} class="{{item.classNames}}">{{item.label}}</li>
     {{/if}}
-    {{#if linkTo}}
-      <li {{action 'toolbarLink' linkTo}}>{{label}}</li>
+    {{#if item.linkTo}}
+      <li {{action 'toolbarLink' item.linkTo}} class="{{item.classNames}}">{{item.label}}</li>
     {{/if}}
   {{/each}}
 """

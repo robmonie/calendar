@@ -4,6 +4,7 @@ Calendar.AvailabilitiesController = Ember.ArrayController.extend Calendar.Schedu
 
   templateName: 'availabilities'
   editController: null
+  sortProperties: ['weekdayIndex', 'startHour', 'startMinute']
 
   isEditing: (->
     @get('editController') != null

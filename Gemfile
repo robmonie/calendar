@@ -2,13 +2,11 @@ source 'http://rubygems.org'
 
 gem 'rails',  '3.2.11'
 gem 'thin'
-gem 'pg',           '0.11.0'
+gem 'pg',           '0.14.1'
 gem 'haml',         '3.1.4'
 gem 'simple_form',  '2.0.1'
 gem 'devise',       '1.5.3'
 gem 'cancan',       '1.6.7'
-gem 'json_builder', '3.0.6'
-gem 'ember-rails',  '0.2.4'
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"

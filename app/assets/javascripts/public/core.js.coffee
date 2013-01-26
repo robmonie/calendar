@@ -60,11 +60,11 @@ handlePractitionerFieldChange = ->
     appointmentTypeField.html("<option value=''>Loading appointment types...</option>")
     $.ajax
       type: 'GET'
-      url: "/api/users/#{userId}/appointment_types.json"
+      url: "/api/public/users/#{userId}/appointment_types.json"
       dataType: 'json'
       success: (data, textStatus, jqXHR) =>
         optionsHtml = "<option value=''>Select an appointment type</option>"
-        for item in data
+        for item in data.appointment_types
           optionsHtml = optionsHtml + "<option value='#{item.id}'>#{item.name}: $#{Number(item.price).toFixed(2)} (#{item.duration} mins)</option>"
         appointmentTypeField.html(optionsHtml)
         # appointmentTypeField.removeAttr('disabled')
@@ -74,10 +74,10 @@ handlePractitionerFieldChange = ->
 
     $.ajax
       type: 'GET'
-      url: "/api/users/#{userId}/dates.json"
+      url: "/api/public/users/#{userId}/dates.json"
       dataType: 'json'
       success: (data, textStatus, jqXHR) =>
-        dates = data
+        dates = data.dates
 
       failure: (response, statusText, statusMessage) =>
         throw statusMessage
@@ -107,19 +107,20 @@ handleDateFieldChange = ->
     startTimeField.html("<option value=''>Loading times...</option>")
     $.ajax
       type: 'GET'
-      url: "/api/users/#{userId}/timeslots.json"
+      url: "/api/public/users/#{userId}/timeslots.json"
       dataType: 'json'
       data:
         date: dateString
         appointment_type_id: appointmentTypeId
       success: (data, textStatus, jqXHR) =>
+        timeslots = data.timeslots
         optionsHtml = "<option value=''>Select a time</option>"
-        for item in data
+        for item in timeslots
           date = new XDate(item.start_time)
           optionsHtml = optionsHtml + "<option value='#{item.start_time}'>#{date.toString('hh:mm TT')}</option>"
         startTimeField.html(optionsHtml)
 
-        if data.length
+        if timeslots.length
           form.find('.no-appointment-times').hide()
           startTimeField.show()
         else
@@ -142,13 +143,14 @@ handleClientSelectFieldChange = ->
     clientPhoneField.val('')
   else
     req = $.ajax
-      url: "/api/businesses/#{businessId}/clients/#{clientId}"
+      url: "/api/public/businesses/#{businessId}/clients/#{clientId}"
       type: 'GET'
       dataType: 'json'
-    req.done (data)=>
-      clientNameField.val(data.name)
-      clientEmailField.val(data.email)
-      clientPhoneField.val(data.phone)
+    req.done (data) =>
+      client = data.client
+      clientNameField.val(client.name)
+      clientEmailField.val(client.email)
+      clientPhoneField.val(client.phone)
     req.fail (e)->
 
 

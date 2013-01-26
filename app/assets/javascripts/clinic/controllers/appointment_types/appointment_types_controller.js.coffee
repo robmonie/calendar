@@ -3,6 +3,7 @@ Calendar.AppointmentTypesController = Ember.ArrayController.extend Calendar.Sche
 
   templateName: 'appointment_types'
   editController: null
+  sortProperties: ['name']
 
   isEditing: (->
     @get('editController') != null

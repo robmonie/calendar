@@ -20,23 +20,24 @@ Calendar::Application.routes.draw do
   resources :signups, :only => [:new, :create]
 
   namespace :api do
-    resources :businesses do
-      resources :users, :only => [:index]
-      resources :clients, :only => [:show]
-    end
-    resources :users do
-      resources :timeslots, :only => [:index]
-      resources :appointment_types, :only => [:index]
-      resources :appointments, :only => [:create]
-      resources :dates, :only => [:index]
-    end
-  end
 
-  namespace :rest do
     resources :appointments, :except => :edit
     resources :appointment_types, :except => :edit
     resources :availabilities, :except => :edit
     resources :clients, :except => :edit
+
+    namespace :public do
+      resources :businesses do
+        resources :users, :only => [:index]
+        resources :clients, :only => [:show]
+      end
+      resources :users do
+        resources :timeslots, :only => [:index]
+        resources :appointment_types, :only => [:index]
+        resources :appointments, :only => [:create]
+        resources :dates, :only => [:index]
+      end
+    end
   end
 
   match 'pages/ping' => 'pages#ping'
