@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails',  '3.2.11'
 gem 'thin'
-gem 'pg',           '0.14.1'
+gem 'pg',           '0.11.0'
 gem 'haml',         '3.1.4'
 gem 'simple_form',  '2.0.1'
 gem 'devise',       '1.5.3'
