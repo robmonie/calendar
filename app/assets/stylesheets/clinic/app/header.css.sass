@@ -6,3 +6,9 @@
     @include type-setter(1.8, 1.8, normal)
     line-height: $header-height
     color: #eee
+
+@include phone
+  #header
+    .app-name
+      @include type-setter(1.2, 1.2, normal)
+      line-height: $header-height-phone

@@ -1,8 +1,16 @@
 $header-height: 60px
+$header-height-phone: 40px
 $nav-width: 200px
 
 body
   background: url(asset-path("app_bg.jpg", image))
+
+.view-port
+  position: absolute
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
 
 #header
   height: $header-height
@@ -13,6 +21,7 @@ body
   left: 0
   bottom: 0
   width: $nav-width
+
 
 #main
   position: absolute
@@ -34,3 +43,19 @@ ul.horizontal
     display: inline-block
 
 
+@include phone
+
+  #header
+    height: $header-height-phone
+
+  #navigation
+    top: 0
+    left: 0
+    right: 0
+    width: auto
+    overflow: hidden
+    bottom: auto
+
+  #main
+    left: 0
+    top: $header-height-phone

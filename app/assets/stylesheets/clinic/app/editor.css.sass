@@ -1,5 +1,5 @@
 $open-width: 600px
-$padding: 30px
+$padding: 20px
 
 .mask
   z-index: 4
@@ -26,15 +26,21 @@ $padding: 30px
   background: #fff
   border-left: 10px solid #E3F5D4
   @include box-shadow(rgba(0, 0, 0, 0.2) -2px 0px 15px)
-  @include opacity(0)
   @include transition(all, 0.5s)
   overflow-x: hidden
   overflow-y: scroll
   .pad
-    padding: 30px
-    width: $open-width - $padding * 2
+    padding: 10%
+    width: 80%
+
   &.is-editing
-    @include opacity(1)
     width: $open-width
   h2
     margin-top: 0
+
+
+@include phone
+  #editor
+    &.is-editing
+      width: 98%
+
