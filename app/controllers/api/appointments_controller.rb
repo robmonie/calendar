@@ -3,7 +3,7 @@ class Api::AppointmentsController < Api::BaseController
   load_and_authorize_resource
 
   def index
-    @appointments = current_user.appointments
+    @appointments = current_user.appointments.where('start_time > ?', DateTime.now - 60.days)
     render :json => @appointments
   end
 
