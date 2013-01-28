@@ -7,6 +7,12 @@ Calendar.AppointmentsListView = Ember.View.extend
   didInsertElement: ->
     Calendar.mediator.on 'showToday', @, @showToday
     Ember.run.later =>
+      scroller = @$('.scroller')
+      if Modernizr.touch
+        new iScroll(scroller[0])
+      else
+        scroller.css(overflow: 'scroll')
+      #
       @showToday()
     , 200
 

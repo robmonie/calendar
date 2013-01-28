@@ -15,7 +15,7 @@ Calendar.TextField = Calendar.ValidatableField.extend({
     },
 
     didInsertElement: function() {
-      if(this.get('autoFocus')) {
+      if(this.get('autoFocus') && !Modernizr.touch) {
         this.$().focus();
       }
     }

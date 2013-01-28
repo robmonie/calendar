@@ -39,6 +39,8 @@ $table-header-height: 46px
       list-style: none
       margin: 0
       padding: 0
+      overflow: hidden
+      white-space: nowrap
       .cell
         display: inline-block
         padding: 15px
@@ -57,13 +59,13 @@ $table-header-height: 46px
       li
         display: inline-block
         font-weight: bold
-    .body
+    .scroller
       position: absolute
       top: $table-header-height
       bottom: 0
       left: 0
       right: 0
-      overflow: scroll
+      // overflow: scroll
       z-index: 1
       padding-bottom: 30px
       li
@@ -87,51 +89,67 @@ $table-header-height: 46px
         a:hover
           color: rgba(0, 0, 0, 0.6)
 
-      .group-header
-        background: darken($table-row-bg, 5)
-        @include type-setter(1.2, 1.2, normal)
-        line-height: 8px
-        color: darken($table-row-text, 5)
-        padding: 15px
-        span
-          display: inline-block
-        .count
-          background: rgba(0, 0, 0, 0.2)
-          @include border-radius(20px)
-          @include type-setter(0.8, 0.8, normal)
-          @include box-shadow(1px 1px 1px rgba(255, 255, 255, 0.5))
-          width: 30px
-          height: 30px
-          line-height: 30px
-          text-align: center
-          margin-right: 20px
-
-      .is-today
-        .group-header
-          background: darken($table-row-bg, 40)
-          color: #fff
-
-    .undo-delete-message
-      position: absolute
-      top: $table-header-height
-      left: 0
-      right: 0
-      height: 0
-      background: #E5F5BD
-      z-index: 2
-      padding: 10px
+  .group-header
+    background: darken($table-row-bg, 5)
+    @include type-setter(1.2, 1.2, normal)
+    line-height: 8px
+    color: darken($table-row-text, 5)
+    padding: 15px
+    span
+      display: inline-block
+    .count
+      background: rgba(0, 0, 0, 0.2)
+      @include border-radius(20px)
+      @include type-setter(0.8, 0.8, normal)
+      @include box-shadow(1px 1px 1px rgba(255, 255, 255, 0.5))
+      width: 30px
+      height: 30px
       line-height: 30px
-      border-top: 1px solid #aaa
-      opacity: 0
-      @include box-shadow(rgba(0, 0, 0, 0.2) 0px 3px 5px)
-      @include transition(all, 0.5s)
-      overflow: hidden
-      &.is-transaction-commit-scheduled
-        height: 30px
-        opacity: 1
-      span
-        display: inline-block
-        margin-right: 20px
-      button
-        @include type-setter(0.8, 0.7, normal)
+      text-align: center
+      margin-right: 20px
+
+  .is-today
+    .group-header
+      background: darken($table-row-bg, 40)
+      color: #fff
+
+  .undo-delete-message
+    position: absolute
+    top: $table-header-height
+    left: 0
+    right: 0
+    height: 0
+    background: #E5F5BD
+    z-index: 2
+    padding: 10px
+    line-height: 30px
+    border-top: 1px solid #aaa
+    opacity: 0
+    @include box-shadow(rgba(0, 0, 0, 0.2) 0px 3px 5px)
+    @include transition(all, 0.5s)
+    overflow: hidden
+    &.is-transaction-commit-scheduled
+      height: 30px
+      opacity: 1
+    span
+      display: inline-block
+      margin-right: 20px
+    button
+      @include type-setter(0.8, 0.7, normal)
+
+@include phone
+  .list-container
+    @include type-setter(0.9, 0.9, normal)
+
+    .group-header
+      @include type-setter(1, 1, normal)
+      line-height: 8px
+      .count
+        @include type-setter(0.7, 0.7, normal)
+        @include box-shadow(1px 1px 1px rgba(255, 255, 255, 0.5))
+        width: 25px
+        height: 25px
+        line-height: 25px
+        margin-right: 10px
+
 

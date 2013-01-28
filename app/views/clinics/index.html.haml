@@ -1,12 +1,13 @@
 !!!
 %html
   %head
-    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
+    %meta{:name => "viewport", :content => "initial-scale=1.0,maximum-scale=1.0"}
     %title Calendar
     = stylesheet_link_tag "clinic_app"
     = csrf_meta_tags
 
   %body
+    #viewporter
 
   = javascript_include_tag "clinic_vendor"
   = javascript_include_tag "clinic_app"

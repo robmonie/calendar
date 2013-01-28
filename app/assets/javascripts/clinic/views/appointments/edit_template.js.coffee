@@ -1,5 +1,5 @@
 Ember.TEMPLATES['appointments/edit'] = Ember.Handlebars.compile """
-
+    <button {{action close}} class="close-phone secondary" >Close</button>
     <ul class="standard-form appointment">
       <li>
         <h2>Appointment</h2>
@@ -46,7 +46,7 @@ Ember.TEMPLATES['appointments/edit'] = Ember.Handlebars.compile """
       </li>
       {{#if client}}
         <li>
-          {{view Calendar.TextField label="Client Name" valueBinding="client.name" required="true" autoFocus="true"}}
+          {{view Calendar.TextField label="Client Name" valueBinding="client.name" required="true"}}
         </li>
         <li>
           {{view Calendar.TextField label="Client Phone" valueBinding="client.phone" required="true" class="phone"}}

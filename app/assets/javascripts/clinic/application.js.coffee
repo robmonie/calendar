@@ -1,8 +1,8 @@
 window.Calendar = Ember.Application.create
-
+  rootElement: "#viewporter"
   Router: Ember.Router.extend
     rootUrl: '/clinic/'
-    # location: 'history'
+
 
 DS.RESTAdapter.configure("plurals", {
   availability: "availabilities"

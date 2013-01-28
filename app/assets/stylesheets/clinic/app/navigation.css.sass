@@ -8,16 +8,14 @@
 
   h2, a
     display: block
-    padding: 10px 15px
-
+    padding: 15px
   h2
     margin: 0
     color: #bbb
     background: rgba(255, 255, 255, 0.07)
-    @include type-setter(1, 1, normal)
+    @include type-setter(1, 1, bold)
 
   a, a:visited, a:active
-    @include type-setter(0.9, 0.9, normal)
     padding-left: 25px
     border-bottom: 1px solid #000
     border-top: 1px solid #333
@@ -36,6 +34,10 @@
   #navigation
     z-index: 10
     height: $header-height-phone
+
+    a, h2
+      padding: 20px
+
     .nav-toggle
       display: block
       position: absolute

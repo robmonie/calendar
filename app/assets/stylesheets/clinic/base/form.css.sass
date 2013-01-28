@@ -11,7 +11,7 @@ $error-text-color: #BB411F
   padding: 0
 
   &>li
-    padding: 10px 0
+    padding: 0 0 20px 0
     label
       width: $label-width
       float: left
@@ -97,6 +97,9 @@ $error-text-color: #BB411F
     width: 23px
     height: 16px
     background: url(asset-path("glyphicons-halflings-white.png", image)) -116px 0
+
+.close-phone
+  display: none
 
 // BUTTONS ---
 button, a.btn
@@ -191,4 +194,13 @@ button.disabled, button[disabled], button.disabled:hover, button[disabled]:hover
 
     .actions
       margin: 0
+      .close
+        display: none
+
+  .unsaved-changes
+    display: none
+
+  .close-phone
+    display: block
+    float: right
 

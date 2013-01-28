@@ -4,7 +4,7 @@ Ember.TEMPLATES['_standard_form_actions'] = Ember.Handlebars.compile """
       <button {{action save}} class="primary" {{bindAttr disabled="view.parentView.isInvalid"}}>Save</button>
     </li>
     <li>
-      <button {{action close}} class="secondary" >
+      <button {{action close}} class="secondary close" >
         {{#if isDirty}}
           Close without saving
         {{else}}
