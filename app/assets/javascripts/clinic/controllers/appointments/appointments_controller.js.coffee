@@ -22,6 +22,7 @@ Calendar.AppointmentsController = Ember.ArrayController.extend Calendar.Schedule
     asArray = []
     _.each byStartDate, (appointments, startDate) ->
       asArray.push(AppointmentsByDate.create(startDate: startDate, appointments: appointments))
+
     asArray
 
   ).property('length', '@each.startTime').cacheable()

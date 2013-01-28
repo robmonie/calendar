@@ -9,15 +9,30 @@ Calendar.AppointmentsListView = Ember.View.extend
     Ember.run.later =>
       scroller = @$('.scroller')
       if Modernizr.touch
-        new iScroll(scroller[0])
+        @iScroll = new iScroll(scroller[0])
       else
         scroller.css(overflow: 'scroll')
-      #
       @showToday()
     , 200
 
   willDestroyElement: ->
     Calendar.mediator.off 'showToday', @, @showToday
+    @iScroll?.destroy()
 
   showToday: ->
-    @$('.body').scrollTo(@$('.group.is-today'), 300)
+    if @iScroll
+      @iScroll.scrollToElement('.group.is-today', 200)
+    else
+      todayEl = @$('.group.is-today')
+      @$('.body').scrollTo(todayEl, 300) if todayEl.length
+
+
+  #put a binding between the value and the observer to ensure the observer only fires at the end of the event loop
+  appointmentsByStartDateBinding: Ember.Binding.oneWay('controller.byStartDate')
+
+
+  appointmentsDidChange: (->
+    if @iScroll
+      Ember.run.next =>
+        @iScroll.refresh()
+  ).observes('appointmentsByStartDate')

@@ -1,4 +1,5 @@
-Calendar.ClientsListView = Ember.View.extend
+#= require ../common/list_scroller_mixin
+Calendar.ClientsListView = Ember.View.extend Calendar.ListScrollerMixin,
 
   classNames: ['list', 'clients-list']
   templateName: 'clients_list'
