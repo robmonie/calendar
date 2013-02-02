@@ -35,7 +35,7 @@ $padding: 20px
     left: 0
     right: 0
     height: 40px
-    padding: 10px
+    padding: 10px 20px
     background: #fafafa
     border-bottom: 1px solid #eee
 
@@ -44,10 +44,13 @@ $padding: 20px
     @include type-setter(1.4, 1.4, normal)
     line-height: 45px
     color: #666
+    margin: 0
   .unsaved-changes
     position: absolute
     top: 14px
     right: 12px
+    width: 0
+    overflow: hidden
     white-space: nowrap
     color: #fff
     @include border-radius(3px)
@@ -70,7 +73,7 @@ $padding: 20px
         opacity: 1
 
     .close-editor
-      background: transparent url(asset-path("glyphicons.png", image)) 0 -1053px
+      background: transparent url(asset-path("glyphicons.png", image)) -96px -909px
       opacity: 0.7
       border: none
       &:hover
@@ -85,11 +88,10 @@ $padding: 20px
     overflow-x: hidden
     overflow-y: scroll
 
-
   &.is-editing
     width: $open-width
-  h2
-    margin-top: 0
+    .unsaved-changes
+      width: 122px
 
 
 @include phone

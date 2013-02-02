@@ -20,11 +20,25 @@ Calendar.AppointmentsListView = Ember.View.extend
     @iScroll?.destroy()
 
   showToday: ->
-    if @iScroll
-      @iScroll.scrollToElement('.group.is-today', 200)
-    else
-      todayEl = @$('.group.is-today')
-      @$('.body').scrollTo(todayEl, 300) if todayEl.length
+
+    today = $('.group[data-days-from-today="0"]')[0]
+
+    if not today
+      allDays = $('.group[data-days-from-today]')
+
+      daysAfterToday = _.filter allDays, (el) ->
+        Number($(el).data('days-from-today')) > 0
+
+      closestToToday = _.min daysAfterToday, (el) ->
+        Number($(el).data('days-from-today'))
+
+    scrollTo = today || closestToToday
+
+    if scrollTo
+      if @iScroll
+        @iScroll.scrollToElement(scrollTo, 200)
+      else
+        @$('.scroller').scrollTo(scrollTo, 300)
 
 
   #put a binding between the value and the observer to ensure the observer only fires at the end of the event loop

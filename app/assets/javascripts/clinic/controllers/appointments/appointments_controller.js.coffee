@@ -36,6 +36,6 @@ AppointmentsByDate = Ember.Object.extend
   init: ->
     today = new Date()
     @set('today', new Date(today.getFullYear(), today.getMonth(), today.getDate()))
-  isToday: (->
-    String(@get('startDate')) == String(@get('today'))
+  daysFromToday: (->
+    new XDate(@get('today')).diffDays(new XDate(@get('startDate')))
   ).property('startDate').cacheable()

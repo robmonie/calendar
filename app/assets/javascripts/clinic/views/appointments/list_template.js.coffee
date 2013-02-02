@@ -12,12 +12,7 @@ Ember.TEMPLATES['appointments_list'] = Ember.Handlebars.compile """
     <div class="scroller">
       <ul class="body">
         {{#each byStartDate in controller.byStartDate}}
-
-          {{#if byStartDate.isToday}}
-            <li class="group is-today">
-          {{else}}
-            <li class="group">
-          {{/if}}
+          <li class="group" {{bindAttr data-days-from-today="byStartDate.daysFromToday"}}>
             <div class="group-header">
               <span class="count">{{byStartDate.appointments.length}}</span>
               <span class="title">{{date byStartDate.startDate format="ddd dd/MM/yyyy" }}</span>
