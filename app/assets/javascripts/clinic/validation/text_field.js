@@ -4,6 +4,7 @@ Calendar.TextField = Calendar.ValidatableField.extend({
 
     valueBinding: 'parentView.value',
     autoFocusBinding: Ember.Binding.oneWay('parentView.autoFocus'),
+    typeBinding: Ember.Binding.oneWay('parentView.type'),
 
     valueObserver: (function(s, k, v) {
       this.get('parentView.validator').validate(this.get('value'));

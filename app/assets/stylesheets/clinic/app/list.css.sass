@@ -41,7 +41,7 @@ $table-header-height: 46px
       padding: 0
       overflow: hidden
       white-space: nowrap
-      background: #fafafa
+      background: #f6f6f6
       .cell
         display: inline-block
         padding: 15px
@@ -50,6 +50,7 @@ $table-header-height: 46px
         text-overflow: ellipsis
     .header
       @include box-shadow(rgba(0, 0, 0, 0.2) 1px 1px 4px)
+      @include border-radius(4px 0 0 0)
       height: $table-header-height
       position: absolute
       top: 0
@@ -70,6 +71,7 @@ $table-header-height: 46px
       z-index: 1
       padding-bottom: 30px
       background: #fafafa
+      border-left: 1px solid #eee
       li
         overflow: hidden
         white-space: nowrap

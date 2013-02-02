@@ -6,8 +6,11 @@ Calendar.ClientsListView = Ember.View.extend Calendar.ListScrollerMixin,
 
   didInsertElement: ->
     Ember.run.next =>
-      scroller = @$('.scroller')
-      if Modernizr.touch
-        new iScroll(scroller[0])
-      else
-        scroller.css(overflow: 'scroll')
+      @_manageScrolling()
+
+  _manageScrolling: ->
+    scroller = @$('.scroller')
+    if Modernizr.touch
+      new iScroll(scroller[0])
+    else
+      scroller.css(overflow: 'scroll')

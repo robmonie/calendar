@@ -28,7 +28,7 @@ $padding: 20px
   overflow: hidden
   background: #fff
   @include box-shadow(rgba(0, 0, 0, 0.2) -2px 3px 15px)
-  @include transition(all, 0.5s)
+  @include transition(all, 0.3s)
 
   .header
     position: absolute
@@ -38,6 +38,7 @@ $padding: 20px
     padding: 10px 20px
     background: #fafafa
     border-bottom: 1px solid #eee
+    @include box-shadow(rgba(0, 0, 0, 0.2) 0px 1px 3px)
 
   h2
     float: left
@@ -95,7 +96,11 @@ $padding: 20px
 
 
 @include phone
+  .mask
+    display: none
+
   #editor
     &.is-editing
-      width: 98%
+      width: 100%
+
 

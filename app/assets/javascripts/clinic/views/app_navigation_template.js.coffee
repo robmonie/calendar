@@ -1,9 +1,4 @@
 Ember.TEMPLATES['app_navigation'] = Ember.Handlebars.compile """
-  <button class="nav-toggle" {{action "toggleNavigation"}}>
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
-  </button>
   <ul class="unstyled">
     <li class="appointments">{{#linkTo "appointments"}}<i></i>Appointments{{/linkTo}}</li>
     <li class="clients">{{#linkTo "clients"}}<i></i>Clients{{/linkTo}}</li>

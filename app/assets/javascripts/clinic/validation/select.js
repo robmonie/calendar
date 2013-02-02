@@ -14,10 +14,6 @@ Calendar.Select = Calendar.ValidatableField.extend({
       return this.get('parentView.validator').validate(this.get('selection'));
     }).observes('selection'),
 
-    contentObserver: (function() {
-      return this.set('selection', null);
-    }).observes('content', 'content.length'),
-
     focusOut: function() {
       return this.set('parentView.hasHadFocus', true);
     }

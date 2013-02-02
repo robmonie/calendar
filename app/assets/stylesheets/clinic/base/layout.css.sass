@@ -42,6 +42,16 @@ ul.horizontal
 
 @include phone
 
+  #header-main-wrapper
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 0
+    width: 100% //set as fixed on mobiles on load
+    @include transition(all, 0.2s)
+    &.navigation-visible
+      left: 80%
+
   #header
     height: $header-height-phone
 

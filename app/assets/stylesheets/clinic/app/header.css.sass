@@ -1,6 +1,10 @@
 #header
   background: #f4f4f4
   border-bottom: 1px solid #e2e2e2
+  position: relative
+
+  .nav-toggle
+    display: none
 
   .app-name
     margin-left: 20px
@@ -8,8 +12,33 @@
     line-height: $header-height - 1px
     color: #888
 
+
 @include phone
   #header
+    background: #eaeaea
     .app-name
       @include type-setter(1.2, 1.2, normal)
       line-height: $header-height-phone
+      text-align: center
+      color: #666
+
+    .nav-toggle
+      display: block
+      position: absolute
+      left: 6px
+      top: 6px
+      height: $header-height-phone - 12px
+      padding: 5px
+      width: 30px
+      border: 1px solid #cfcfcf
+      // border-color: rgba(255, 255, 255, 0.1) rgba(255, 255, 255, 0.1) rgba(255, 255, 255, 0.15)
+      background: #eee
+      @include background-image(linear-gradient(top, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1)))
+      @include box-shadow(inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.075))
+      .bar
+        display: block
+        background: #777
+        @include border-radius(2px)
+        margin-top: 5px
+        padding: 1px
+
