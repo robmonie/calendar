@@ -3,8 +3,8 @@ Calendar.AppointmentsEditControllerMixin = Ember.Mixin.create
 
   clients: null
   appointments: null
-  startTime: Calendar.transforms.dateString('content.startTime')
-  endTime: Calendar.transforms.dateString('content.endTime')
+  # startTime: Calendar.transforms.dateString('content.startTime')
+  # endTime: Calendar.transforms.dateString('content.endTime')
 
   indexRoute: 'appointments'
 

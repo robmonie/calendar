@@ -1,5 +1,5 @@
 Ember.TEMPLATES['availabilities/edit'] = Ember.Handlebars.compile """
-    <button {{action close}} class="close-phone secondary" >Close</button>
+    {{view Calendar.EditorHeaderView editorTitle="Availability"}}
     <ul class="standard-form">
       <li>
         <h2>Availability</h2>

@@ -1,7 +1,8 @@
-$toolbar-bg: #eee
-$toolbar-text: #666
-$toolbar-height: 45px
-$table-row-bg: #eee
+$toolbar-bg: #fff
+$toolbar-text: #fff
+$toolbar-item-bg: #b4ce9f
+$toolbar-height: 65px
+$table-row-bg: #fafafa
 $table-row-text: #666
 $table-header-height: 46px
 
@@ -13,20 +14,19 @@ $table-header-height: 46px
   right: 0
   ul.toolbar
     height: $toolbar-height
+    padding: 10px 0
     background: $toolbar-bg
-    @include box-shadow(inset 0 0 1px rgba(0, 0, 0, 0.5))
     z-index: 3
     li
       margin: 6px
       padding: 7px 12px
       color: $toolbar-text
-      background: darken($toolbar-bg, 5)
+      background: $toolbar-item-bg
       @include border-radius(3px)
       cursor: pointer
       &:hover
-        background: darken($toolbar-bg, 10)
-        color: darken($toolbar-text, 10)
-        @include box-shadow(inset 0 0 3px rgba(0, 0, 0, 0.2))
+        background: darken($toolbar-item-bg, 10)
+        @include box-shadow(0 0 3px rgba(0, 0, 0, 0.3))
 
   .list
     position: absolute
@@ -49,7 +49,7 @@ $table-header-height: 46px
         white-space: nowrap
         text-overflow: ellipsis
     .header
-      @include box-shadow(rgba(0, 0, 0, 0.2) 0px 3px 5px)
+      @include box-shadow(rgba(0, 0, 0, 0.2) 1px 1px 4px)
       height: $table-header-height
       position: absolute
       top: 0
@@ -60,16 +60,16 @@ $table-header-height: 46px
       li
         display: inline-block
         font-weight: bold
+        color: #888
     .scroller
       position: absolute
       top: $table-header-height
       bottom: 0
       left: 0
       right: 0
-      // overflow: scroll
       z-index: 1
       padding-bottom: 30px
-      background: #eee
+      background: #fafafa
       li
         overflow: hidden
         white-space: nowrap
@@ -77,11 +77,14 @@ $table-header-height: 46px
           display: block
           border-bottom: 1px solid rgba(0, 0, 0, 0.1)
           color: $table-row-text
+          background: $table-row-bg
           &:hover
             background: #fff
             color: darken($table-row-text, 20)
           &.active
             background: #E3F5D4
+            border-top: 1px solid #ddd
+            // border-bottom: 1px solid #ddd
       li.empty-message
         background: #ccc
         padding: 40px
@@ -96,7 +99,7 @@ $table-header-height: 46px
     @include type-setter(1.2, 1.2, normal)
     line-height: 8px
     color: darken($table-row-text, 5)
-    padding: 15px
+    padding: 10px
     span
       display: inline-block
     .count

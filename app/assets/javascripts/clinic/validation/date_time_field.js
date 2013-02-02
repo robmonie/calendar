@@ -1,28 +1,63 @@
 //= require ./validatable_field
+//= require ../transforms
 Calendar.DateTimeField = Calendar.ValidatableField.extend({
   fieldViewClass: Ember.TextField.extend({
 
     classNames: ['date-time-field'],
+    type: Modernizr.touch ? 'datetime' : 'text',
     stepMinute: 5,
 
     didInsertElement: function() {
-      this.$().datetimepicker({
-        dateFormat: Calendar.DATE_FORMAT,
-        timeFormat: Calendar.TIME_FORMAT,
-        stepMinute: this.get('stepMinute')
-        // addSliderAccess: true,
-        // sliderAccessArgs: { touchonly: true },
-      })
+      if(!Modernizr.touch) {
+        this.$().datetimepicker({
+          dateFormat: Calendar.DATE_FORMAT,
+          timeFormat: Calendar.TIME_FORMAT,
+          stepMinute: this.get('stepMinute')
+        })
+      }
     },
 
     willDestroyElement: function() {
-      this.$().datetimepicker('destroy')
+      if(!Modernizr.touch) {
+        this.$().datetimepicker('destroy')
+      }
     },
 
-    valueBinding: 'parentView.value',
-    valueObserver: (function(s, k, v) {
-      this.get('parentView.validator').validate(this.get('value'));
-    }).observes('value'),
+    // valueBinding: 'parentView.value',
+
+    value: function(key, value) {
+      var date, dateString, dateValue, timeString;
+      if (arguments.length === 1) {
+        date = this.get('parentView.value');
+        if (date) {
+          if(Modernizr.touch) {
+            return date.toISOString();
+          } else {
+            dateString = $.datepicker.formatDate(Calendar.DATE_FORMAT, date);
+            timeString = $.datepicker.formatTime(Calendar.TIME_FORMAT, {
+              hour: date.getHours(),
+              minute: date.getMinutes()
+            });
+            return dateString + " " + timeString;
+          }
+        } else {
+          return "";
+        }
+      } else {
+        if(!value) {
+          dateValue = null
+        } else if(Modernizr.touch) {
+          dateValue = new Date(value);
+        } else {
+          dateValue = $.datepicker.parseDateTime(Calendar.DATE_FORMAT, Calendar.TIME_FORMAT, value);
+        }
+        this.set('parentView.value', dateValue);
+      }
+    }.property('parentView.value').cacheable(),
+
+    valueObserver: function() {
+      this.get('parentView.validator').validate(this.get('parentView.value'));
+    }.observes('parentView.value'),
 
     focusOut: function() {
       this.set('parentView.hasHadFocus', true);

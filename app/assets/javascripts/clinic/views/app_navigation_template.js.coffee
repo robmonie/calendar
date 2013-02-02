@@ -5,10 +5,10 @@ Ember.TEMPLATES['app_navigation'] = Ember.Handlebars.compile """
     <span class="bar"></span>
   </button>
   <ul class="unstyled">
-    <li>{{#linkTo "appointments"}}Appointments{{/linkTo}}</li>
-    <li>{{#linkTo "clients"}}Clients{{/linkTo}}</li>
-    <li><h2>Preferences</h2></li>
-    <li>{{#linkTo "appointmentTypes"}}Appointment types{{/linkTo}}</li>
-    <li>{{#linkTo "availabilities"}}Availability{{/linkTo}}</li>
+    <li class="appointments">{{#linkTo "appointments"}}<i></i>Appointments{{/linkTo}}</li>
+    <li class="clients">{{#linkTo "clients"}}<i></i>Clients{{/linkTo}}</li>
+    <li class="preferences"><h2><i></i>Preferences</h2></li>
+    <li class="sub">{{#linkTo "appointmentTypes"}}- Appointment types{{/linkTo}}</li>
+    <li class="sub">{{#linkTo "availabilities"}}- Availability{{/linkTo}}</li>
   </ul>
 """

@@ -1,7 +1,6 @@
 Ember.TEMPLATES['appointment_types/edit'] = Ember.Handlebars.compile """
-    <button {{action close}} class="close-phone secondary" >Close</button>
+    {{view Calendar.EditorHeaderView editorTitle="Appointment Type"}}
     <ul class="standard-form">
-      <li><h2>Appointment Type</h2></li>
       <li>
         {{view Calendar.TextField valueBinding="name" label="Name" hint="Clients will see this name online" required="true" autoFocus="true"}}
       </li>

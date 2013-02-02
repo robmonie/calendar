@@ -22,8 +22,6 @@ Calendar.ValidatableField = Ember.View.extend({
 
   init: function() {
 
-    var options;
-
     this.set('validator', Calendar.Validator.create({
       host: this
     }));

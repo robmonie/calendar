@@ -8,13 +8,15 @@ $padding: 20px
   bottom: 0
   right: 0
   width: 0
-  background: rgba(0, 0, 0, 0.5)
+  margin-left: -$nav-width
+  background: rgba(0, 0, 0, 0.3)
   @include transition(all, 1s)
   opacity: 0
   &.is-dirty
     opacity: 1
     width: auto
     left: 0
+
 
 #editor
   z-index: 5
@@ -23,15 +25,66 @@ $padding: 20px
   right: 0
   top: 0
   bottom: 0
+  overflow: hidden
   background: #fff
-  border-left: 10px solid #E3F5D4
-  @include box-shadow(rgba(0, 0, 0, 0.2) -2px 0px 15px)
+  @include box-shadow(rgba(0, 0, 0, 0.2) -2px 3px 15px)
   @include transition(all, 0.5s)
-  overflow-x: hidden
-  overflow-y: scroll
-  .pad
-    padding: $padding
-    width: $open-width - 2 * $padding
+
+  .header
+    position: absolute
+    left: 0
+    right: 0
+    height: 40px
+    padding: 10px
+    background: #fafafa
+    border-bottom: 1px solid #eee
+
+  h2
+    float: left
+    @include type-setter(1.4, 1.4, normal)
+    line-height: 45px
+    color: #666
+  .unsaved-changes
+    position: absolute
+    top: 14px
+    right: 12px
+    white-space: nowrap
+    color: #fff
+    @include border-radius(3px)
+    @include type-setter(0.7, 1, normal)
+    display: inline-block
+    padding: 2px
+    @include transition(all, 1s)
+    i, span
+      opacity: 0
+      display: inline-block
+    i
+      width: 20px
+      height: 12px
+      background: url(asset-path("glyphicons-halflings-white.png", image)) -116px 0
+    button
+      margin-left: 20px
+    &.is-dirty
+      background: $tip-text-color
+      i, span
+        opacity: 1
+
+    .close-editor
+      background: transparent url(asset-path("glyphicons.png", image)) 0 -1053px
+      opacity: 0.7
+      border: none
+      &:hover
+        opacity: 1
+
+  .standard-form
+    position: absolute
+    top: 61px
+    left: 20px
+    right: 0px
+    bottom: 0px
+    overflow-x: hidden
+    overflow-y: scroll
+
 
   &.is-editing
     width: $open-width

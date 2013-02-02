@@ -8,10 +8,10 @@ $error-text-color: #BB411F
 .standard-form
   list-style: none
   margin: 0
-  padding: 0
+  padding: 0 0 20px 0
 
   &>li
-    padding: 0 0 20px 0
+    padding: 20px 0 0 0
     label
       width: $label-width
       float: left
@@ -41,9 +41,8 @@ $error-text-color: #BB411F
     padding: 0
     li
       display: inline-block
-      margin-right: 10px
-      &.delete
-        float: right
+      margin-right: 20px
+
 
   // FIELDS ---
 
@@ -58,7 +57,7 @@ $error-text-color: #BB411F
     height: 150px
 
   .date-time-field
-    width: 150px
+    width: 180px
     cursor: pointer
 
   .number input
@@ -78,28 +77,6 @@ $error-text-color: #BB411F
     select, input, textarea
       background: lighten($error-text-color, 55)
 
-.unsaved-changes
-  background: $tip-text-color
-  color: #fff
-  @include border-radius(3px)
-  @include type-setter(0.7, 1, normal)
-  float: right
-  display: inline-block
-  padding: 5px 10px 5px 2px
-  margin-left: 20px
-  opacity: 0
-  @include transition(all, 1s)
-  &.is-dirty
-    opacity: 1
-  i
-    float: left
-    display: block
-    width: 23px
-    height: 16px
-    background: url(asset-path("glyphicons-halflings-white.png", image)) -116px 0
-
-.close-phone
-  display: none
 
 // BUTTONS ---
 button, a.btn
@@ -199,8 +176,4 @@ button.disabled, button[disabled], button.disabled:hover, button[disabled]:hover
 
   .unsaved-changes
     display: none
-
-  .close-phone
-    display: block
-    float: right
 

@@ -1,9 +1,6 @@
-$header-height: 60px
+$header-height: 50px
 $header-height-phone: 40px
 $nav-width: 200px
-
-body
-  background: url(asset-path("app_bg.jpg", image))
 
 .view-port
   position: absolute
@@ -13,7 +10,7 @@ body
   right: 0
 
 #header
-  height: $header-height
+  height: $header-height - 1px //account for border
 
 #navigation
   position: absolute

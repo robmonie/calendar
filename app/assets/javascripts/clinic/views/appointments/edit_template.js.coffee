@@ -1,9 +1,6 @@
 Ember.TEMPLATES['appointments/edit'] = Ember.Handlebars.compile """
-    <button {{action close}} class="close-phone secondary" >Close</button>
+    {{view Calendar.EditorHeaderView editorTitle="Appointment"}}
     <ul class="standard-form appointment">
-      <li>
-        <h2>Appointment</h2>
-      </li>
       <li>
         {{view Calendar.Select
           label="Type"
@@ -15,13 +12,13 @@ Ember.TEMPLATES['appointments/edit'] = Ember.Handlebars.compile """
           }}
       </li>
       <li>
-        {{view Calendar.DateTimeField label="Start at" valueBinding="startTime" required="true"}}
+        {{view Calendar.DateTimeField label="Start at" valueBinding="startTime" required=true}}
       </li>
       <li>
         {{#if appointmentType}}
-          {{view Calendar.DisplayField label="End at" valueBinding="endTime" }}
+          {{view Calendar.DateTimeField label="End at" valueBinding="endTime" required=true}}
         {{else}}
-          {{view Calendar.DateTimeField label="End at" valueBinding="endTime" required="true"}}
+          {{view Calendar.DateTimeField label="End at" valueBinding="endTime" required=true}}
         {{/if}}
       </li>
       <li>

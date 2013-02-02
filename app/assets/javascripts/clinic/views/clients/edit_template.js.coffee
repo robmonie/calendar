@@ -1,9 +1,6 @@
 Ember.TEMPLATES['clients/edit'] = Ember.Handlebars.compile """
-    <button {{action close}} class="close-phone secondary" >Close</button>
+    {{view Calendar.EditorHeaderView editorTitle="Client"}}
     <ul class="standard-form">
-      <li>
-        <h2>Client</h2>
-      </li>
       <li>
         {{view Calendar.TextField label="Name" valueBinding="name" required="true" autoFocus="true"}}
       </li>

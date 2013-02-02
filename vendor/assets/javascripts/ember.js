@@ -19756,8 +19756,8 @@ Ember.Handlebars.registerHelper('partial', function(name, options) {
   Ember.assert("Unable to find partial with name '"+name+"'.", template || deprecatedTemplate);
 
   template = template || deprecatedTemplate;
-
-  template(this, { data: options.data });
+  console.log(options)
+  template(this, { data: options.data, hash: options.hash });
 });
 
 })();
