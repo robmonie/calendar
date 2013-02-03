@@ -21,7 +21,7 @@ class Ability
     can [:read, :create, :update, :destroy], Availability, :user_id => @user.id
     can [:read, :create, :update, :destroy], BusyTime, :user_id => @user.id
     can [:read, :create, :update, :destroy], Appointment, :user_id => @user.id
-    can [:read, :create, :update], Client, :business_id => @user.business.id
+    can [:read, :create, :update, :destroy], Client, :business_id => @user.business.id
   end
 
   def authorize_user

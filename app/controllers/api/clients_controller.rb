@@ -30,7 +30,7 @@ class Api::ClientsController < Api::BaseController
   end
 
   def destroy
-    if @client.appointments.length == 0 && @client.destroy
+    if @client.appointments.empty? && @client.destroy
       head :no_content
     else
       head :bad_request
