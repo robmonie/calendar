@@ -59,7 +59,7 @@ Calendar.validatorRegistry.addValidator('required', {
       return false;
     }
   },
-  message: "Please supply a {label}"
+  message: "{label} is required"
 });
 
 /**

@@ -1,6 +1,6 @@
 Ember.TEMPLATES['clients/edit'] = Ember.Handlebars.compile """
   <div id="client-editor">
-    {{view Calendar.EditorHeaderView editorTitleBinding="name"}}
+    {{view Calendar.EditorHeaderView editorTitleBinding="name" editorTitleWhenNew="New Client"}}
     {{#unless isNew}}
       <div class="summary">
         <img {{bindAttr src="gravatarImageUrl"}} class="avatar"/>

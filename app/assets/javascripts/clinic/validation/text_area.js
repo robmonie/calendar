@@ -9,7 +9,6 @@ Calendar.TextArea = Calendar.ValidatableField.extend({
 
     focusOut: function() {
       this.set('parentView.hasHadFocus', true);
-      this.get('parentView.validator').validate(this.get('value'));
     }
 
   })

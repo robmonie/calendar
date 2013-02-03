@@ -16,4 +16,3 @@ Calendar.ClientsEditController = Ember.ObjectController.extend Calendar.EditCont
   preventDelete: (->
     !!@get('appointments.length')
   ).property('appointments.length')
-

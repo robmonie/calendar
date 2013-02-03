@@ -23,8 +23,6 @@ Calendar.DateTimeField = Calendar.ValidatableField.extend({
       }
     },
 
-    // valueBinding: 'parentView.value',
-
     value: function(key, value) {
       var date, dateString, dateValue, timeString;
       if (arguments.length === 1) {
@@ -61,7 +59,6 @@ Calendar.DateTimeField = Calendar.ValidatableField.extend({
 
     focusOut: function() {
       this.set('parentView.hasHadFocus', true);
-      this.get('parentView.validator').validate(this.get('value'));
     }
 
   })
