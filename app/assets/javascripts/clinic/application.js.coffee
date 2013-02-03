@@ -4,29 +4,35 @@ window.Calendar = Ember.Application.create
     rootUrl: '/clinic/'
 
 
-DS.RESTAdapter.configure("plurals", {
+Calendar.Adapter = DS.RESTAdapter.extend()
+
+Calendar.Adapter.configure("plurals", {
   availability: "availabilities"
 })
 
-DS.RESTAdapter.configure('Calendar.Appointment', {
+Calendar.Adapter.configure('Calendar.Appointment', {
   sideloadAs: 'appointments'
 })
-DS.RESTAdapter.configure('Calendar.AppointmentType', {
+Calendar.Adapter.configure('Calendar.AppointmentType', {
   sideloadAs: 'appointment_types'
 })
 
-DS.RESTAdapter.configure('Calendar.Availability', {
+Calendar.Adapter.configure('Calendar.Availability', {
   sideloadAs: 'availabilities'
 })
 
-DS.RESTAdapter.configure('Calendar.Client', {
+Calendar.Adapter.configure('Calendar.Client', {
   sideloadAs: 'clients'
 })
 
+Calendar.Adapter.map('Calendar.Client', {
+  appointments:
+    key: 'appointment_ids'
+})
 
 Calendar.store = DS.Store.create
   revision: 11
-  adapter: DS.RESTAdapter.create
+  adapter: Calendar.Adapter.create
     namespace: 'api'
 
 Calendar.mediator = Ember.Object.createWithMixins(Ember.Evented)

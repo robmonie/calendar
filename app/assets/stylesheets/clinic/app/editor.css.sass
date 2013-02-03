@@ -1,5 +1,7 @@
-$open-width: 600px
-$padding: 20px
+$editor-open-width: 600px
+$editor-padding: 20px
+$editor-header-height: 60px
+$editor-summary-height: 100px
 
 .mask
   z-index: 4
@@ -34,11 +36,23 @@ $padding: 20px
     position: absolute
     left: 0
     right: 0
-    height: 40px
+    height: $editor-header-height - 21px
     padding: 10px 20px
     background: #fafafa
     border-bottom: 1px solid #eee
     @include box-shadow(rgba(0, 0, 0, 0.2) 0px 1px 3px)
+
+  .summary
+    position: absolute
+    top: $editor-header-height
+    left: 0
+    right: 0
+    height: $editor-summary-height - 22px
+    padding: 10px
+    background: #f2f2f2
+    border-bottom: 1px solid #eee
+    border-top: 1px solid #fff
+
 
   h2
     float: left
@@ -82,15 +96,18 @@ $padding: 20px
 
   .standard-form
     position: absolute
-    top: 61px
+    top: $editor-header-height + 1px
     left: 20px
     right: 0px
     bottom: 0px
     overflow-x: hidden
     overflow-y: scroll
 
+    &.has-summary
+      top: $editor-header-height + $editor-summary-height + 1px
+
   &.is-editing
-    width: $open-width
+    width: $editor-open-width
     .unsaved-changes
       width: 122px
 

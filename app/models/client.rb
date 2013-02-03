@@ -4,5 +4,6 @@ class Client <  ActiveRecord::Base
   # validates_presence_of :name, :email, :phone
 
   belongs_to :business
+  has_many :appointments
 
 end
