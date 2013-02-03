@@ -12,6 +12,6 @@ Calendar.EditRouteMixin = Ember.Mixin.create
   exit: ->
     # @controllerFor(@routeName).set('content', null)
     #it'd be nice not to have to reach out for this info
-    unless @controllerFor(@get('indexRoute')).get('isTransactionCommitScheduled')
+    unless @controllerFor('application').get('isTransactionCommitScheduled')
       Calendar.store.defaultTransaction.rollback() # in case we exit via browser history
     @controllerFor(@get('indexRoute')).set('editController', null)

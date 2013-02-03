@@ -2,9 +2,6 @@ Ember.TEMPLATES['availabilities/edit'] = Ember.Handlebars.compile """
     {{view Calendar.EditorHeaderView editorTitle="Availability"}}
     <ul class="standard-form">
       <li>
-        <h2>Availability</h2>
-      </li>
-      <li>
         {{view Calendar.Select
           label="Weekday"
           contentBinding="weekdays"
