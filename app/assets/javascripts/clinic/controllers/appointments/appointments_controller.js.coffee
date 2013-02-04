@@ -10,13 +10,13 @@ Calendar.AppointmentsController = Ember.ArrayController.extend
 
   byStartDate: (->
     byStartDate = {}
-    @forEach (appointment) ->
+    @forEach (appointment) =>
       startTime = appointment.get('startTime')
       if startTime
         startDate = new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDate())
-
-        appointments = byStartDate[startDate] || byStartDate[startDate] = []
-        appointments.push(appointment)
+        endTime = appointment.get('endTime')
+        endDate = new Date(endTime.getFullYear(), endTime.getMonth(), endTime.getDate())
+        @_addDaysBetween(startDate, endDate, appointment, byStartDate)
 
     asArray = []
     _.each byStartDate, (appointments, startDate) ->
@@ -25,6 +25,15 @@ Calendar.AppointmentsController = Ember.ArrayController.extend
     asArray
 
   ).property('length', '@each.startTime').cacheable()
+
+
+  _addDaysBetween: (startDate, endDate, appointment, byStartDate) ->
+    xStart = new XDate(startDate)
+    xEnd = new XDate(endDate)
+    while xStart.diffDays(xEnd) >= 0
+      appointments = byStartDate[xStart.toString()] || byStartDate[xStart.toString()] = []
+      appointments.push(appointment)
+      xStart = xStart.addDays(1)
 
 
 #Locally used class

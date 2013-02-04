@@ -8,7 +8,7 @@ Ember.TEMPLATES['appointments/edit'] = Ember.Handlebars.compile """
           optionValuePath="content.id"
           optionLabelPath="content.summary"
           selectionBinding="appointmentType"
-          prompt="Adhoc appointment"
+          prompt="Adhoc calendar event"
           }}
       </li>
       <li>
