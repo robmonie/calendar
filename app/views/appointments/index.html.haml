@@ -14,8 +14,8 @@
             %li
               %i.icon-time
               %h4.label.label-info #{appointment.start_time.in_time_zone(current_user.timezone).strftime('%I:%M %p')} - #{appointment.end_time.in_time_zone(current_user.timezone).strftime('%I:%M %p')}
-              %strong #{appointment.client.name}
-              .appointment-type #{appointment.appointment_type.name} - #{number_to_currency(appointment.appointment_type.price)}
+              %strong #{appointment.try(:client).try(:name)}
+              .appointment-type #{appointment.try(:appointment_type).try(:name)} - #{number_to_currency(appointment.try(:appointment_type).try(:price))}
               %button.btn.btn-danger.delete{'data-id' => appointment.id}
                 %i.icon.icon-minus-sign.icon-white
 

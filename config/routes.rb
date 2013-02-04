@@ -44,7 +44,7 @@ Calendar::Application.routes.draw do
 
   match '*clinic' => 'clinics#index'
 
-  root :to => "appointments#index"
+  root :to => "clinics#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

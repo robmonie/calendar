@@ -12,9 +12,9 @@ class ApplicationController < ActionController::Base
     redirect_to edit_user_path(current_user)
   end
 
-  def after_sign_in_path_for(resource)
-    appointments_path
-  end
+  # def after_sign_in_path_for(resource)
+  #   "/"
+  # end
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to new_user_session_url
