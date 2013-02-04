@@ -1,6 +1,6 @@
 class Appointment < ActiveRecord::Base
 
-  validates_presence_of :start_time, :end_time, :client
+  validates_presence_of :start_time, :end_time
 
   belongs_to :user
   belongs_to :client
@@ -18,7 +18,7 @@ class Appointment < ActiveRecord::Base
   end
 
   def set_sha
-    self.sha = Digest::SHA1.hexdigest("#{id}#{client.email}")
+    self.sha = Digest::SHA1.hexdigest("#{id}#{start_time}")
   end
 
 end

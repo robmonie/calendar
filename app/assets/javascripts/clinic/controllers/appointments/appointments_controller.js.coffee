@@ -12,9 +12,9 @@ Calendar.AppointmentsController = Ember.ArrayController.extend
     byStartDate = {}
     @forEach (appointment) =>
       startTime = appointment.get('startTime')
-      if startTime
+      endTime = appointment.get('endTime')
+      if startTime && endTime
         startDate = new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDate())
-        endTime = appointment.get('endTime')
         endDate = new Date(endTime.getFullYear(), endTime.getMonth(), endTime.getDate())
         @_addDaysBetween(startDate, endDate, appointment, byStartDate)
 
