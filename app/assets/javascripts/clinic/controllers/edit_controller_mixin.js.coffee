@@ -1,5 +1,7 @@
 Calendar.EditControllerMixin = Ember.Mixin.create
 
+  needs: ['application']
+
   save: ->
     if validationGroup = @get('validationGroup')
       validationGroup.validate()
@@ -15,10 +17,10 @@ Calendar.EditControllerMixin = Ember.Mixin.create
     else if model.get('isDirty')
       Calendar.store.defaultTransaction.rollback()
 
-    @controllerFor(@get('indexRoute')).set('isDirty', false)
+    @getIndexController().set('isDirty', false)
     @transitionToRoute(@get('indexRoute'))
 
   delete: ->
     @get('content').deleteRecord()
-    @controllerFor('application').scheduleCommitOnTransaction(Calendar.store.defaultTransaction)
+    @get('controllers.application').scheduleCommitOnTransaction(Calendar.store.defaultTransaction)
     @transitionToRoute(@get('indexRoute'))

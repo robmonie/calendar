@@ -1,5 +1,10 @@
 Calendar.AvailabilitiesEditControllerMixin = Ember.Mixin.create
 
+  needs: ['availabilities']
+
+  getIndexController: ->
+    @get('controllers.availabilities')
+
   indexRoute: 'availabilities'
 
   weekdays: (->

@@ -3,11 +3,12 @@ Calendar.AppointmentsEditControllerMixin = Ember.Mixin.create
 
   clients: null
   appointments: null
-  # startTime: Calendar.transforms.dateString('content.startTime')
-  # endTime: Calendar.transforms.dateString('content.endTime')
 
+  needs: ['appointments']
   indexRoute: 'appointments'
 
+  getIndexController: ->
+    @get('controllers.appointments')
 
   overlappingAppointment: (->
     start = @get('content.startTime')
