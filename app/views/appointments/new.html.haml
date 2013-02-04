@@ -1,5 +1,9 @@
 .page-container
 
+  - if Date.today < Date.new(2013,3,1)
+    .alert
+      Please Note: I am taking a break during the month of Feb and will be unavailable for booking during this period. Please don't hesitate to book for any time from the 6th of March onwards.
+
   = simple_form_for [@business, @appointment] do |f|
     %fieldset.form-horizontal
       %legend Appointment Details
