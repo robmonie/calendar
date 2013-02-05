@@ -24,7 +24,7 @@ Calendar.AppointmentsController = Ember.ArrayController.extend
 
     asArray
 
-  ).property('length', '@each.startTime').cacheable()
+  ).property('@each.startTime').cacheable()
 
 
   _addDaysBetween: (startDate, endDate, appointment, byStartDate) ->
