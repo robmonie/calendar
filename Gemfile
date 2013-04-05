@@ -10,7 +10,7 @@ gem 'cancan',       '1.6.7'
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
-gem "active_model_serializers", :git => "git://github.com/rails-api/active_model_serializers.git"
+gem "active_model_serializers", '0.7.0'
 gem 'strong_parameters'
 
 # Bundle edge Rails instead:
@@ -48,10 +48,10 @@ group :development, :test do
   # Pretty printed test output
   gem 'turn',             '0.8.2', :require => false
   gem 'database_cleaner', '0.7.0'
-  gem 'capybara',         :git => 'git://github.com/jnicklas/capybara.git', :ref => 'ec94dd9d498b67ed5919'
-  gem 'selenium-webdriver', '2.8.0' #REMOVE THIS LINE WHEN 2.12> is released and this bug is fixed : http://code.google.com/p/selenium/issues/detail?id=2700
-  gem 'rspec',            '2.6.0'
-  gem 'rspec-rails',      '2.6.1'
+  gem 'capybara',         '2.0.2'
+  gem 'rspec',            '2.13.0'
+  gem 'rspec-rails',      '2.13.0'
   gem 'shoulda-matchers', '1.0.0'
   gem 'machinist',        '1.0.6'
+  gem 'konacha'
 end

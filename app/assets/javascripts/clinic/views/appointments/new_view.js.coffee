@@ -1,2 +1,2 @@
-Calendar.AppointmentsNewView = Ember.View.extend Calendar.ValidationGroup,
+Calendar.AppointmentsNewView = Ember.View.extend Calendar.ValidationGroupMixin,
   templateName: 'appointments/edit'

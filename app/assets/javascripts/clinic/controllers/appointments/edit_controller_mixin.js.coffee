@@ -13,7 +13,7 @@ Calendar.AppointmentsEditControllerMixin = Ember.Mixin.create
   overlappingAppointment: (->
     start = @get('content.startTime')
     end = @get('content.endTime')
-    appointments = @get('appointments')
+    appointments = @get('controllers.appointments')
     currentAppointment = @get('content')
 
     if start && end

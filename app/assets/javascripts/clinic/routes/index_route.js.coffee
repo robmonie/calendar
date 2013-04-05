@@ -5,5 +5,4 @@ Calendar.IndexRoute = Ember.Route.extend
 
   events:
     cancelCommit: ->
-      console.log 'cancel commit'
       @controllerFor('application').cancelCommit()

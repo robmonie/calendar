@@ -1,3 +1,4 @@
-#= require clinic/validation/group
-Calendar.AppointmentTypesEditView = Ember.View.extend Calendar.ValidationGroup,
+#= require clinic/validation/validation_group_mixin
+Calendar.AppointmentTypesEditView = Ember.View.extend Calendar.ValidationGroupMixin,
   templateName: 'appointment_types/edit'
+  classNames: ['editor-content']

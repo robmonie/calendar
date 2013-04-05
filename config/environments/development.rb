@@ -25,6 +25,6 @@ Calendar::Application.configure do
   # Do not compress assets
   config.assets.compress = false
 
-  # Expands the lines which load the assets
-  config.assets.debug = true
+  # Expands the lines which load the assets - leave as false or mobile safari/ie struggle with number of assets
+  config.assets.debug = false
 end

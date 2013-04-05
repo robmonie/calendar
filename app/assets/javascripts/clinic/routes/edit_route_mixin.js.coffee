@@ -1,7 +1,6 @@
 Calendar.EditRouteMixin = Ember.Mixin.create
 
   setupController: (controller, model) ->
-
     controller.set('content', model)
     @controllerFor(@get('indexRoute')).set('editController', controller)
     @setupControllerExtras(controller, model)

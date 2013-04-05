@@ -2,5 +2,5 @@
 Calendar.AvailabilitiesToolbarView = Calendar.ToolbarView.extend
 
   items: [
-    { label: 'New Availability', linkTo: 'availabilities.new' }
+    { label: 'New Availability', linkTo: 'availabilities.new', classNames: ['new-availability'] }
   ]

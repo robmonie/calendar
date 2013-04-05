@@ -29,7 +29,7 @@ Calendar.AppointmentsListView = Ember.View.extend
       daysAfterToday = _.filter allDays, (el) ->
         Number($(el).data('days-from-today')) > 0
 
-      closestToToday = _.min daysAfterToday, (el) ->
+      closestToToday = _.min [null].concat(daysAfterToday), (el) ->
         Number($(el).data('days-from-today'))
 
     scrollTo = today || closestToToday

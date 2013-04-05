@@ -1,3 +1,14 @@
+
+leftPad = (value) ->
+  if value < 10
+    "0#{value}"
+  else
+    value.toString()
+
+
+HOURS = [0..23].map (hour) => { label: leftPad(hour), value: hour }
+MINUTES = [0, 15, 30, 45].map (minute) => { label: leftPad(minute), value: minute }
+
 Calendar.AvailabilitiesEditControllerMixin = Ember.Mixin.create
 
   needs: ['availabilities']
@@ -12,16 +23,11 @@ Calendar.AvailabilitiesEditControllerMixin = Ember.Mixin.create
   ).property()
 
   hours: (->
-    [0..23].map (hour) => { label: @_leftPad(hour), value: hour }
+    HOURS
   ).property()
 
   minutes: (->
-    [0, 15, 30, 45].map (minute) => { label: @_leftPad(minute), value: minute }
+    MINUTES
   ).property()
 
 
-  _leftPad: (value) ->
-    if value < 10
-      "0#{value}"
-    else
-      value.toString()

@@ -53,13 +53,13 @@ Calendar.validatorRegistry = Ember.Object.create({
 
 Calendar.validatorRegistry.addValidator('required', {
   isValid: function(value) {
-    if (value) {
+    if (String(value)) {
       return true;
     } else {
       return false;
     }
   },
-  message: "{label} is required"
+  message: "This field is required"
 });
 
 /**
@@ -84,7 +84,7 @@ Calendar.validatorRegistry.addValidator('number', {
     isValid: function(value) {
       return !isNaN(Number(value))
     },
-    message: "{label} must be a number"
+    message: "This field must be a number"
   }
 );
 
@@ -158,7 +158,7 @@ Calendar.validatorRegistry.addValidator('minLength', Ember.Object.extend({
 }));
 
 /**
-* Validates that a value falls within a number range.
+* Validates that a value falls within a number range (inclusive).
 * If creating directly, instantiate with:
 * @property min
 * @property max

@@ -1,4 +1,8 @@
-Calendar.ValidationGroup = Ember.Mixin.create({
+/*
+  Mixin to any view that contains validatable fields that should be observed for validity as a group.
+*/
+
+Calendar.ValidationGroupMixin = Ember.Mixin.create({
 
   isValidationGroup: true,
 
@@ -8,7 +12,9 @@ Calendar.ValidationGroup = Ember.Mixin.create({
   },
 
   afterRender: function() {
-    this.controller.set('validationGroup', this);
+    if(this.controller) {
+      this.controller.set('validationGroup', this);
+    }
   },
 
   notifyValidity: function(validatable, validity) {
@@ -26,14 +32,14 @@ Calendar.ValidationGroup = Ember.Mixin.create({
     });
   },
 
-  isValid: (function() {
+  isValid: function() {
     return _.all(_.values(this._validityMap), function(item) {
       return item.validity;
     });
-  }).property('lastUpdated').cacheable(),
+  }.property('lastUpdated').cacheable(),
 
-  isInvalid: (function() {
+  isInvalid: function() {
     return ! this.get('isValid')
-  }).property('isValid').cacheable()
+  }.property('isValid').cacheable()
 
 });

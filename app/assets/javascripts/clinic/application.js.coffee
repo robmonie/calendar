@@ -31,7 +31,7 @@ Calendar.Adapter.map('Calendar.Client', {
 })
 
 Calendar.store = DS.Store.create
-  revision: 11
+  revision: 12
   adapter: Calendar.Adapter.create
     namespace: 'api'
 
@@ -52,3 +52,18 @@ Calendar.WEEK_DAYS = [
     {name: 'Friday', index: 5}
     {name: 'Saturday', index: 6}
   ]
+
+$(->
+  new FastClick(document.body)
+)
+
+# DEV DEBUGGING
+# Ember.subscribe "render",
+#   before: (name, start, payload) ->
+#     start
+
+#   after: (name, end, payload, start) ->
+#     duration = Math.round(end - start)
+#     template = payload.template
+#     console.log "rendered", template, "took", duration, "ms"  if template
+

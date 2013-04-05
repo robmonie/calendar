@@ -10,3 +10,4 @@
 #= require ember
 #= require ember_data
 #= require viewporter
+#= require fastclick

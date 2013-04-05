@@ -1,2 +1,2 @@
-Calendar.ClientsNewView = Ember.View.extend Calendar.ValidationGroup,
+Calendar.ClientsNewView = Ember.View.extend Calendar.ValidationGroupMixin,
   templateName: 'clients/edit'

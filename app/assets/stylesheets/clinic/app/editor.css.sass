@@ -12,7 +12,7 @@ $editor-summary-height: 100px
   width: 0
   margin-left: -$nav-width
   background: rgba(0, 0, 0, 0.3)
-  @include transition(all, 1s)
+  @include transition(all, 0.5s)
   opacity: 0
   &.is-dirty
     opacity: 1
@@ -30,7 +30,18 @@ $editor-summary-height: 100px
   overflow: hidden
   background: #fff
   @include box-shadow(rgba(0, 0, 0, 0.2) -2px 3px 15px)
-  @include transition(all, 0.3s)
+  @include transition(all, 0.5s)
+  @include transform(translate3d(0,0,0))
+
+  .editor-content
+    width: $editor-open-width
+    position: absolute
+    top: 0px
+    bottom: 0px
+    left: 0px
+    right: 0px
+    // opacity: 0
+
 
   .header
     position: absolute
@@ -108,6 +119,9 @@ $editor-summary-height: 100px
 
   &.is-editing
     width: $editor-open-width
+    // .editor-content
+    //   opacity: 1
+    //   @include transition(all, 2s)
     .unsaved-changes
       width: 122px
 
@@ -117,6 +131,8 @@ $editor-summary-height: 100px
     display: none
 
   #editor
+    .editor-content
+      width: 100%
     &.is-editing
       width: 100%
 
