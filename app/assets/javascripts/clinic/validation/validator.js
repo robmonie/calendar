@@ -25,8 +25,8 @@ Calendar.Validator = Ember.Object.extend({
 
     var errorMessages = [],
         errors = this.get('errors'),
-        rules = this.get('rules'),
-        requiredRule, rule, rules, i, len;
+        rules = this.get('rules');
+
 
     if (this.get('required')) {
       this._validateValueAsRequired(value, errorMessages);
@@ -108,7 +108,7 @@ Calendar.Validator = Ember.Object.extend({
   notifyValidity: function() {
     var validationGroup;
     if (validationGroup = this.get('validationGroup')) {
-      validationGroup.notifyValidity(this, this.get('host.isValid'));
+      validationGroup.notifyValidity(this.get('host'), this.get('host.isValid'));
     }
   }.observes('host.isValid')
 
