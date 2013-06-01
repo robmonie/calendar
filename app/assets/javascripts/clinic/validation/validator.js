@@ -108,7 +108,7 @@ Calendar.Validator = Ember.Object.extend({
   notifyValidity: function() {
     var validationGroup;
     if (validationGroup = this.get('validationGroup')) {
-      validationGroup.notifyValidity(this.get('host'), this.get('host.isValid'));
+      validationGroup.notifyValidity(this, this.get('host.isValid'));
     }
   }.observes('host.isValid')
 

@@ -18,8 +18,9 @@ Calendar.ValidationGroupMixin = Ember.Mixin.create({
   },
 
   notifyValidity: function(validatable, validity) {
-    this._validityMap[Ember.guidFor(validatable)] = {validity: validity, validatable: validatable};
-    this.set('lastUpdated', new Date().getTime() + validity.toString());
+    var guid = Ember.guidFor(validatable);
+    this._validityMap[guid] = {validity: validity, validatable: validatable};
+    this.set('lastUpdated', new Date().getTime() + guid);
   },
 
   unregister: function(validatable) {
